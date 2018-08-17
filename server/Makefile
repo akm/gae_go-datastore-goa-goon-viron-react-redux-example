@@ -10,7 +10,8 @@ dep_ensure:
 	@dep ensure
 
 goa_bootstrap:
-	goagen bootstrap -d $(REPO)/server/design
+	@mv vendor vendor.bak
+	@goagen bootstrap -d $(REPO)/server/design ; mv vendor.bak vendor
 
 init: install bootstrap import
 gen: clean generate import
