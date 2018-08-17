@@ -28,7 +28,7 @@ main: controller server/main.go
 
 server/main.go:
 	@mv vendor vendor.bak
-	@goagen main -d $(REPO)/design >/dev/null
+	@goagen main -d $(REPO)/server/design >/dev/null
 	@mkdir -p server
 	@mv main.go server
 	@rm *.go
@@ -44,7 +44,7 @@ server/main.go:
 
 app:
 	@mv vendor vendor.bak
-	@goagen app -d $(REPO)/design
+	@goagen app -d $(REPO)/server/design
 	@mv vendor.bak vendor
 
 controller: goa_controller converter
@@ -52,7 +52,7 @@ controller: goa_controller converter
 goa_controller:
 	@mv vendor vendor.bak
 	@mkdir -p controller
-	@goagen controller  -d $(REPO)/design --pkg controller --out controller --app-pkg ../app
+	@goagen controller  -d $(REPO)/server/design --pkg controller --out controller --app-pkg ../app
 	@mv vendor.bak vendor
 
 converter: converter_gen
@@ -71,9 +71,9 @@ clean:
 
 goa_gen:
 	@mv vendor vendor.bak
-	@goagen app     -d $(REPO)/design
-	@goagen swagger -d $(REPO)/design
-	@goagen client  -d $(REPO)/design
+	@goagen app     -d $(REPO)/server/design
+	@goagen swagger -d $(REPO)/server/design
+	@goagen client  -d $(REPO)/server/design
 	@mv vendor.bak vendor
 
 generate: goa_gen model_gen converter_gen
