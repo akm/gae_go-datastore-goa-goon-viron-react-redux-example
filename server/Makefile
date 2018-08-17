@@ -58,7 +58,8 @@ converter_gen:
 
 model: model_gen
 model_gen:
-	@goa_model_gen model design/*.yaml
+	@mkdir -p ./model
+	@goa_model_gen model --dir=./model design/*.yaml
 
 clean:
 	@rm -rf app
