@@ -28,7 +28,7 @@ main: controller server/main.go
 
 server/main.go:
 	@mv vendor vendor.bak
-	@goagen main -d $(REPO)/server/design >/dev/null
+	@goagen main -d $(REPO)/server/design >/dev/null ; mv vendor.bak vendor
 	@mkdir -p server
 	@mv main.go server
 	@rm *.go
@@ -40,20 +40,17 @@ server/main.go:
 	@echo '5. Add "controller." before each "NewXxxxController"'
 	@echo '6. Comment out the lines below the comment "Start service"'
 	@echo '7. Add http.HandleFunc("/", service.Mux.ServeHTTP) at the end of init func'
-	@mv vendor.bak vendor
 
 app:
 	@mv vendor vendor.bak
-	@goagen app -d $(REPO)/server/design
-	@mv vendor.bak vendor
+	@goagen app -d $(REPO)/server/design ; mv vendor.bak vendor
 
 controller: goa_controller converter
 
 goa_controller:
 	@mv vendor vendor.bak
 	@mkdir -p controller
-	@goagen controller  -d $(REPO)/server/design --pkg controller --out controller --app-pkg ../app
-	@mv vendor.bak vendor
+	@goagen controller  -d $(REPO)/server/design --pkg controller --out controller --app-pkg ../app ; mv vendor.bak vendor
 
 converter: converter_gen
 converter_gen:
@@ -71,10 +68,9 @@ clean:
 
 goa_gen:
 	@mv vendor vendor.bak
-	@goagen app     -d $(REPO)/server/design
-	@goagen swagger -d $(REPO)/server/design
-	@goagen client  -d $(REPO)/server/design
-	@mv vendor.bak vendor
+	@goagen app     -d $(REPO)/server/design && \
+	 goagen swagger -d $(REPO)/server/design && \
+	 goagen client  -d $(REPO)/server/design ; mv vendor.bak vendor
 
 generate: goa_gen model_gen converter_gen
 
