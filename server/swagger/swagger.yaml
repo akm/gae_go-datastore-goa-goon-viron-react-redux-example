@@ -1,0 +1,347 @@
+basePath: /
+consumes:
+- application/json
+- application/xml
+- application/gob
+- application/x-gob
+definitions:
+  Memo:
+    description: Memo (default view)
+    example:
+      content: Hic tenetur ut.
+      created_at: "2008-05-09T17:01:53Z"
+      id: Ratione ipsam qui blanditiis numquam consequatur.
+      shared: true
+      updated_at: "2007-03-31T16:05:01Z"
+    properties:
+      content:
+        description: Content of memo
+        example: Hic tenetur ut.
+        type: string
+      created_at:
+        description: Time when memo is created
+        example: "2008-05-09T17:01:53Z"
+        format: date-time
+        type: string
+      id:
+        example: Ratione ipsam qui blanditiis numquam consequatur.
+        type: string
+      shared:
+        description: Shared to public
+        example: true
+        type: boolean
+      updated_at:
+        description: Time when memo is updated
+        example: "2007-03-31T16:05:01Z"
+        format: date-time
+        type: string
+    required:
+    - id
+    - content
+    - shared
+    - created_at
+    - updated_at
+    title: 'Mediatype identifier: application/vnd.memo+json; view=default'
+    type: object
+  MemoCollection:
+    description: MemoCollection is the media type for an array of Memo (default view)
+    example:
+    - content: Hic tenetur ut.
+      created_at: "2008-05-09T17:01:53Z"
+      id: Ratione ipsam qui blanditiis numquam consequatur.
+      shared: true
+      updated_at: "2007-03-31T16:05:01Z"
+    - content: Hic tenetur ut.
+      created_at: "2008-05-09T17:01:53Z"
+      id: Ratione ipsam qui blanditiis numquam consequatur.
+      shared: true
+      updated_at: "2007-03-31T16:05:01Z"
+    items:
+      $ref: '#/definitions/Memo'
+    title: 'Mediatype identifier: application/vnd.memo+json; type=collection; view=default'
+    type: array
+  MemoPayload:
+    example:
+      content: Sed officia.
+      shared: true
+    properties:
+      content:
+        description: Content of memo
+        example: Sed officia.
+        type: string
+      shared:
+        description: Shared to public
+        example: true
+        type: boolean
+    required:
+    - content
+    title: MemoPayload
+    type: object
+  error:
+    description: Error response media type (default view)
+    example:
+      code: invalid_value
+      detail: Value of ID must be an integer
+      id: 3F1FKVRR
+      meta:
+        timestamp: 1.458609066e+09
+      status: "400"
+    properties:
+      code:
+        description: an application-specific error code, expressed as a string value.
+        example: invalid_value
+        type: string
+      detail:
+        description: a human-readable explanation specific to this occurrence of the
+          problem.
+        example: Value of ID must be an integer
+        type: string
+      id:
+        description: a unique identifier for this particular occurrence of the problem.
+        example: 3F1FKVRR
+        type: string
+      meta:
+        additionalProperties: true
+        description: a meta object containing non-standard meta-information about
+          the error.
+        example:
+          timestamp: 1.458609066e+09
+        type: object
+      status:
+        description: the HTTP status code applicable to this problem, expressed as
+          a string value.
+        example: "400"
+        type: string
+    title: 'Mediatype identifier: application/vnd.goa.error; view=default'
+    type: object
+host: localhost:8080
+info:
+  description: A simple appengine example
+  title: The appengine example
+  version: ""
+paths:
+  /memos:
+    get:
+      description: list
+      operationId: memos#list
+      produces:
+      - application/vnd.goa.error
+      - application/vnd.memo+json; type=collection
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/MemoCollection'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/error'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/error'
+      schemes:
+      - http
+      summary: list memos
+      tags:
+      - memos
+    post:
+      description: create
+      operationId: memos#create
+      parameters:
+      - in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/MemoPayload'
+      produces:
+      - application/vnd.goa.error
+      - application/vnd.memo+json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/Memo'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/error'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/error'
+      schemes:
+      - http
+      summary: create memos
+      tags:
+      - memos
+  /memos/{id}:
+    delete:
+      description: delete
+      operationId: memos#delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        type: string
+      - in: query
+        name: name
+        required: false
+        type: string
+      - description: Organization ID
+        in: query
+        name: org_id
+        required: false
+        type: string
+      produces:
+      - application/vnd.goa.error
+      - application/vnd.memo+json
+      responses:
+        "204":
+          description: No Content
+          schema:
+            $ref: '#/definitions/Memo'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/error'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/error'
+      schemes:
+      - http
+      summary: delete memos
+      tags:
+      - memos
+    get:
+      description: show
+      operationId: memos#show
+      parameters:
+      - in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/vnd.goa.error
+      - application/vnd.memo+json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Memo'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/error'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/error'
+      schemes:
+      - http
+      summary: show memos
+      tags:
+      - memos
+    put:
+      description: update
+      operationId: memos#update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        type: string
+      - in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/MemoPayload'
+      produces:
+      - application/vnd.goa.error
+      - application/vnd.memo+json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Memo'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/error'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/error'
+      schemes:
+      - http
+      summary: update memos
+      tags:
+      - memos
+produces:
+- application/json
+- application/xml
+- application/gob
+- application/x-gob
+schemes:
+- http
+swagger: "2.0"
