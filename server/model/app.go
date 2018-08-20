@@ -10,9 +10,15 @@ import (
 )
 
 type User struct {
-	Email     string    `datastore:"-" goon:"id" json:"email"`
-	CreatedAt time.Time `json:"created_at" validate:"required"`
-	UpdatedAt time.Time `json:"updated_at" validate:"required"`
+	ID                string    `datastore:"-" goon:"id" json:"id"`
+	Email             string    `json:"email,omitempty"`
+	AuthDomain        string    `json:"auth_domain,omitempty"`
+	Admin             bool      `json:"admin,omitempty"`
+	ClientID          string    `json:"client_id,omitempty"`
+	FederatedIdentity string    `json:"federated_identity,omitempty"`
+	FederatedProvider string    `json:"federated_provider,omitempty"`
+	CreatedAt         time.Time `json:"created_at" validate:"required"`
+	UpdatedAt         time.Time `json:"updated_at" validate:"required"`
 }
 
 type Memo struct {
@@ -73,8 +79,8 @@ func (s *UserStore) All(ctx context.Context) ([]*User, error) {
 	return r, nil
 }
 
-func (s *UserStore) ByID(ctx context.Context, email string) (*User, error) {
-	r := User{Email: email}
+func (s *UserStore) ByID(ctx context.Context, iD string) (*User, error) {
+	r := User{ID: iD}
 	err := s.Get(ctx, &r)
 	if err != nil {
 		return nil, err
@@ -88,7 +94,7 @@ func (s *UserStore) ByKey(ctx context.Context, key *datastore.Key) (*User, error
 		return nil, err
 	}
 
-	r := User{Email: key.StringID()}
+	r := User{ID: key.StringID()}
 	err := s.Get(ctx, &r)
 	if err != nil {
 		return nil, err
