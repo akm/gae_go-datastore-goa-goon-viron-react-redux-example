@@ -1,14 +1,17 @@
 //go:generate goagen bootstrap -d github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/server/design
 
-package main
+package server
 
 import (
+	"net/http"
+
 	"github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/server/app"
+	"github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/controller"
 	"github.com/goadesign/goa"
 	"github.com/goadesign/goa/middleware"
 )
 
-func main() {
+func init() {
 	// Create service
 	service := goa.New("appengine")
 
@@ -19,12 +22,13 @@ func main() {
 	service.Use(middleware.Recover())
 
 	// Mount "memos" controller
-	c := NewMemosController(service)
+	c := controller.NewMemosController(service)
 	app.MountMemosController(service, c)
 
-	// Start service
-	if err := service.ListenAndServe(":8080"); err != nil {
-		service.LogError("startup", "err", err)
-	}
+	// // Start service
+	// if err := service.ListenAndServe(":8080"); err != nil {
+	// 	service.LogError("startup", "err", err)
+	// }
 
+	http.HandleFunc("/", service.Mux.ServeHTTP)
 }
