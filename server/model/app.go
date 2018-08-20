@@ -158,7 +158,7 @@ func (s *UserStore) Create(ctx context.Context, m *User) (*datastore.Key, error)
 	}
 	if exist {
 		log.Errorf(ctx, "Failed to create %v because of another entity has same key\n", m)
-		return nil, fmt.Errorf("Duplicate Name error: %q of %v\n", m.Name, m)
+		return nil, fmt.Errorf("Duplicate ID error: %q of %v\n", m.ID, m)
 	}
 
 	return s.Put(ctx, m)
@@ -179,7 +179,7 @@ func (s *UserStore) Update(ctx context.Context, m *User) (*datastore.Key, error)
 	}
 	if !exist {
 		log.Errorf(ctx, "Failed to update %v because it doesn't exist\n", m)
-		return nil, fmt.Errorf("No data to update %q of %v\n", m.Name, m)
+		return nil, fmt.Errorf("No data to update %q of %v\n", m.ID, m)
 	}
 
 	return s.Put(ctx, m)
