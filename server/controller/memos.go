@@ -1,4 +1,4 @@
-package main
+package controller
 
 import (
 	"github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/server/app"
