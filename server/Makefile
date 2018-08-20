@@ -3,6 +3,8 @@
 REPO:=github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example
 GAE_PROJECT:=projectName
 
+SERVER_BASE=$(REPO)/server
+
 dep_init:
 	@dep init
 
@@ -11,7 +13,7 @@ dep_ensure:
 
 goa_bootstrap:
 	@mv vendor vendor.bak
-	@goagen bootstrap -d $(REPO)/server/design ; mv vendor.bak vendor
+	@goagen bootstrap -d $(SERVER_BASE)/design ; mv vendor.bak vendor
 
 init: install bootstrap import
 gen: clean generate import
@@ -28,14 +30,14 @@ main: controller server/main.go
 
 server/main.go:
 	@mv vendor vendor.bak
-	@goagen main -d $(REPO)/server/design >/dev/null ; mv vendor.bak vendor
+	@goagen main -d $(SERVER_BASE)/design >/dev/null ; mv vendor.bak vendor
 	@mkdir -p server
 	@mv main.go server
 	@rm *.go
 	@echo 'server/main.go'
 	@echo '1. Change package from "main" to "server"'
 	@echo '2. Add "net/http" to import section'
-	@echo '3. Add "github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/controller" to import section'
+	@echo '3. Add "$(SERVER_BASE)/controller" to import section'
 	@echo '4. Change "func main()" to "func init()"'
 	@echo '5. Add "controller." before each "NewXxxxController"'
 	@echo '6. Comment out the lines below the comment "Start service"'
@@ -43,14 +45,14 @@ server/main.go:
 
 app:
 	@mv vendor vendor.bak
-	@goagen app -d $(REPO)/server/design ; mv vendor.bak vendor
+	@goagen app -d $(SERVER_BASE)/design ; mv vendor.bak vendor
 
 controller: goa_controller converter
 
 goa_controller:
 	@mv vendor vendor.bak
 	@mkdir -p controller
-	@goagen controller  -d $(REPO)/server/design --pkg controller --out controller --app-pkg ../app ; mv vendor.bak vendor
+	@goagen controller  -d $(SERVER_BASE)/design --pkg controller --out controller --app-pkg ../app ; mv vendor.bak vendor
 
 converter: converter_gen
 converter_gen:
@@ -69,9 +71,9 @@ clean:
 
 goa_gen:
 	@mv vendor vendor.bak
-	@goagen app     -d $(REPO)/server/design && \
-	 goagen swagger -d $(REPO)/server/design && \
-	 goagen client  -d $(REPO)/server/design ; mv vendor.bak vendor
+	@goagen app     -d $(SERVER_BASE)/design && \
+	 goagen swagger -d $(SERVER_BASE)/design && \
+	 goagen client  -d $(SERVER_BASE)/design ; mv vendor.bak vendor
 
 generate: goa_gen model_gen converter_gen
 
@@ -95,10 +97,10 @@ fmt:
 	@gofmt -w controller/*.go model/*.go
 
 test:
-	goapp test github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/model
+	goapp test $(SERVER_BASE)/model
 
 build:
-	goapp build github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/server
+	goapp build $(SERVER_BASE)/server
 
 deploy:
 	goapp deploy -application $(GAE_PROJECT) ./app

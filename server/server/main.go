@@ -6,7 +6,7 @@ import (
 	"net/http"
 
 	"github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/server/app"
-	"github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/controller"
+	"github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/server/controller"
 	"github.com/goadesign/goa"
 	"github.com/goadesign/goa/middleware"
 )

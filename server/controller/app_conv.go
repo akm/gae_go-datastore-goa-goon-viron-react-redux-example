@@ -1,8 +1,8 @@
 package controller
 
 import (
-	"github.com/groovenauts/blocks-concurrent-batch-server/app"
-	"github.com/groovenauts/blocks-concurrent-batch-server/model"
+	"github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/server/app"
+	"github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/server/model"
 )
 
 func MemoPayloadToModel(src *app.MemoPayload) model.Memo {
