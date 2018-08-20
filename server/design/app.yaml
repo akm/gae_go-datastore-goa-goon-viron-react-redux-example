@@ -12,9 +12,17 @@ types:
       # id_type: int64
       # id_type: string
       # id_type: UUID (type: string)
-      id_name: Email
+      id_name: ID
       id_type: string
     fields:
+      # See https://godoc.org/google.golang.org/appengine/user#User
+      Email: string
+      AuthDomain: string
+      Admin: bool
+      # ID:  string
+      ClientID: string
+      FederatedIdentity: string
+      FederatedProvider: string
       CreatedAt: *time_required
       UpdatedAt: *time_required
   Memo:
