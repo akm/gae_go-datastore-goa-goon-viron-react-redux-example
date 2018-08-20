@@ -16,11 +16,13 @@ type User struct {
 }
 
 type Memo struct {
-	Id        int64     `datastore:"-" goon:"id" json:"id"`
-	Content   string    `json:"content,omitempty"`
-	Shared    bool      `json:"shared,omitempty"`
-	CreatedAt time.Time `json:"created_at" validate:"required"`
-	UpdatedAt time.Time `json:"updated_at" validate:"required"`
+	Id        int64          `datastore:"-" goon:"id" json:"id"`
+	AutherKey *datastore.Key `json:"auther_key" validate:"required"`
+	Content   string         `json:"content,omitempty"`
+	Shared    bool           `json:"shared,omitempty"`
+	CreatedBy string         `json:"created_by" validate:"required"`
+	CreatedAt time.Time      `json:"created_at" validate:"required"`
+	UpdatedAt time.Time      `json:"updated_at" validate:"required"`
 }
 
 func (m *User) PrepareToCreate() error {

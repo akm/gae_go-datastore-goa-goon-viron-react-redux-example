@@ -8,23 +8,23 @@ definitions:
   Memo:
     description: Memo (default view)
     example:
-      content: Hic tenetur ut.
-      created_at: "2008-05-09T17:01:53Z"
-      id: Ratione ipsam qui blanditiis numquam consequatur.
+      content: Harum ratione.
+      created_at: "1978-07-31T11:14:35Z"
+      id: Iure non culpa sed officia.
       shared: true
-      updated_at: "2007-03-31T16:05:01Z"
+      updated_at: "2006-03-10T01:02:07Z"
     properties:
       content:
         description: Content of memo
-        example: Hic tenetur ut.
+        example: Harum ratione.
         type: string
       created_at:
         description: Time when memo is created
-        example: "2008-05-09T17:01:53Z"
+        example: "1978-07-31T11:14:35Z"
         format: date-time
         type: string
       id:
-        example: Ratione ipsam qui blanditiis numquam consequatur.
+        example: Iure non culpa sed officia.
         type: string
       shared:
         description: Shared to public
@@ -32,7 +32,7 @@ definitions:
         type: boolean
       updated_at:
         description: Time when memo is updated
-        example: "2007-03-31T16:05:01Z"
+        example: "2006-03-10T01:02:07Z"
         format: date-time
         type: string
     required:
@@ -46,32 +46,37 @@ definitions:
   MemoCollection:
     description: MemoCollection is the media type for an array of Memo (default view)
     example:
-    - content: Hic tenetur ut.
-      created_at: "2008-05-09T17:01:53Z"
-      id: Ratione ipsam qui blanditiis numquam consequatur.
+    - content: Harum ratione.
+      created_at: "1978-07-31T11:14:35Z"
+      id: Iure non culpa sed officia.
       shared: true
-      updated_at: "2007-03-31T16:05:01Z"
-    - content: Hic tenetur ut.
-      created_at: "2008-05-09T17:01:53Z"
-      id: Ratione ipsam qui blanditiis numquam consequatur.
+      updated_at: "2006-03-10T01:02:07Z"
+    - content: Harum ratione.
+      created_at: "1978-07-31T11:14:35Z"
+      id: Iure non culpa sed officia.
       shared: true
-      updated_at: "2007-03-31T16:05:01Z"
+      updated_at: "2006-03-10T01:02:07Z"
     items:
       $ref: '#/definitions/Memo'
     title: 'Mediatype identifier: application/vnd.memo+json; type=collection; view=default'
     type: array
   MemoPayload:
     example:
-      content: Sed officia.
-      shared: true
+      content: Consequatur est quas repudiandae quae distinctio quaerat.
+      created_by: Amet sed.
+      shared: false
     properties:
       content:
         description: Content of memo
-        example: Sed officia.
+        example: Consequatur est quas repudiandae quae distinctio quaerat.
+        type: string
+      created_by:
+        description: Auther name
+        example: Amet sed.
         type: string
       shared:
         description: Shared to public
-        example: true
+        example: false
         type: boolean
     required:
     - content

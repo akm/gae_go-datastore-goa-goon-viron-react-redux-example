@@ -80,8 +80,9 @@ func RegisterCommands(app *cobra.Command, c *client.Client) {
 Payload example:
 
 {
-   "content": "Sed officia.",
-   "shared": true
+   "content": "Consequatur est quas repudiandae quae distinctio quaerat.",
+   "created_by": "Amet sed.",
+   "shared": false
 }`,
 		RunE: func(cmd *cobra.Command, args []string) error { return tmp1.Run(c, args) },
 	}
@@ -144,8 +145,9 @@ Payload example:
 Payload example:
 
 {
-   "content": "Sed officia.",
-   "shared": true
+   "content": "Consequatur est quas repudiandae quae distinctio quaerat.",
+   "created_by": "Amet sed.",
+   "shared": false
 }`,
 		RunE: func(cmd *cobra.Command, args []string) error { return tmp5.Run(c, args) },
 	}

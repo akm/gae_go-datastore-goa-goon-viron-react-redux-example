@@ -10,8 +10,10 @@ func MemoPayloadToModel(src *app.MemoPayload) model.Memo {
 		return model.Memo{}
 	}
 	return model.Memo{
-		Content: src.Content,
-		Shared:  BoolPointerToBool(src.Shared),
+		Content:   src.Content,
+		Shared:    BoolPointerToBool(src.Shared),
+		CreatedBy: StringPointerToString(src.CreatedBy),
+		// AutherKey no payload field
 		// CreatedAt no payload field
 		// UpdatedAt no payload field
 	}
@@ -26,6 +28,8 @@ func MemoModelToMediaType(src *model.Memo) *app.Memo {
 		Shared:    src.Shared,
 		CreatedAt: src.CreatedAt,
 		UpdatedAt: src.UpdatedAt,
+		// AutherKey no media type field
+		// CreatedBy no media type field
 		// No field for media type field "id"
 	}
 }

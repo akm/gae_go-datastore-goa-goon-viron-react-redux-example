@@ -18,6 +18,8 @@ import (
 type memoPayload struct {
 	// Content of memo
 	Content *string `form:"content,omitempty" json:"content,omitempty" yaml:"content,omitempty" xml:"content,omitempty"`
+	// Auther name
+	CreatedBy *string `form:"created_by,omitempty" json:"created_by,omitempty" yaml:"created_by,omitempty" xml:"created_by,omitempty"`
 	// Shared to public
 	Shared *bool `form:"shared,omitempty" json:"shared,omitempty" yaml:"shared,omitempty" xml:"shared,omitempty"`
 }
@@ -36,6 +38,9 @@ func (ut *memoPayload) Publicize() *MemoPayload {
 	if ut.Content != nil {
 		pub.Content = *ut.Content
 	}
+	if ut.CreatedBy != nil {
+		pub.CreatedBy = ut.CreatedBy
+	}
 	if ut.Shared != nil {
 		pub.Shared = ut.Shared
 	}
@@ -46,6 +51,8 @@ func (ut *memoPayload) Publicize() *MemoPayload {
 type MemoPayload struct {
 	// Content of memo
 	Content string `form:"content" json:"content" yaml:"content" xml:"content"`
+	// Auther name
+	CreatedBy *string `form:"created_by,omitempty" json:"created_by,omitempty" yaml:"created_by,omitempty" xml:"created_by,omitempty"`
 	// Shared to public
 	Shared *bool `form:"shared,omitempty" json:"shared,omitempty" yaml:"shared,omitempty" xml:"shared,omitempty"`
 }
