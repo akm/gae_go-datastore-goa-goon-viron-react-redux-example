@@ -64,18 +64,26 @@ type UserStore struct {
 }
 
 func (s *UserStore) All(ctx context.Context) ([]*User, error) {
+	return s.Select(ctx, s.Query(ctx))
+}
+
+func (s *UserStore) Select(ctx context.Context, q *datastore.Query) ([]*User, error) {
 	g := GoonFromContext(ctx)
 	r := []*User{}
-	k := g.Kind(new(User))
-	log.Infof(ctx, "Kind is %v\n", k)
-	q := datastore.NewQuery(k)
 	log.Infof(ctx, "q is %v\n", q)
 	_, err := g.GetAll(q.EventualConsistency(), &r)
 	if err != nil {
-		log.Errorf(ctx, "Failed to GetAll User because of %v\n", err)
+		log.Errorf(ctx, "Failed to Select User because of %v\n", err)
 		return nil, err
 	}
 	return r, nil
+}
+
+func (s *UserStore) Query(ctx context.Context) *datastore.Query {
+	g := GoonFromContext(ctx)
+	k := g.Kind(new(User))
+	// log.Infof(ctx, "Kind for User is %v\n", k)
+	return datastore.NewQuery(k)
 }
 
 func (s *UserStore) ByID(ctx context.Context, iD string) (*User, error) {
@@ -198,18 +206,26 @@ type MemoStore struct {
 }
 
 func (s *MemoStore) All(ctx context.Context) ([]*Memo, error) {
+	return s.Select(ctx, s.Query(ctx))
+}
+
+func (s *MemoStore) Select(ctx context.Context, q *datastore.Query) ([]*Memo, error) {
 	g := GoonFromContext(ctx)
 	r := []*Memo{}
-	k := g.Kind(new(Memo))
-	log.Infof(ctx, "Kind is %v\n", k)
-	q := datastore.NewQuery(k)
 	log.Infof(ctx, "q is %v\n", q)
 	_, err := g.GetAll(q.EventualConsistency(), &r)
 	if err != nil {
-		log.Errorf(ctx, "Failed to GetAll Memo because of %v\n", err)
+		log.Errorf(ctx, "Failed to Select Memo because of %v\n", err)
 		return nil, err
 	}
 	return r, nil
+}
+
+func (s *MemoStore) Query(ctx context.Context) *datastore.Query {
+	g := GoonFromContext(ctx)
+	k := g.Kind(new(Memo))
+	// log.Infof(ctx, "Kind for Memo is %v\n", k)
+	return datastore.NewQuery(k)
 }
 
 func (s *MemoStore) ByID(ctx context.Context, id int64) (*Memo, error) {
