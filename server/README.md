@@ -11,16 +11,20 @@
 1. Open developer console of browser
 1. Define methods to send request
     ```
+    const showStatusCode = r => {
+      console.log(r.status)
+      return r
+    }
     const sendReqWithBody = (method, path, data) => {
-      return fetch(path, {method: method, body: JSON.stringify(data)}).then(r => r.json()).then(d => console.log(d))
+      return fetch(path, {method: method, body: JSON.stringify(data)}).then(showStatusCode).then(r => r.json()).then(d => console.log(d))
     }
     const sendReqWithoutBody = (method, path) => {
-      return fetch(path, {method: method}).then(r => r.json()).then(d => console.log(d))
+      return fetch(path, {method: method}).then(showStatusCode).then(r => r.json()).then(d => console.log(d))
     }
     const post = (path, data) => sendReqWithBody("POST", path, data)
     const put = (path, data) => sendReqWithBody("PUT", path, data)
-    const del = (path) => sendReqWithoutBody("DELETE", path)
     const get = (path) => sendReqWithoutBody("GET", path)
+    const del = (path) => fetch(path, {method: "DELETE"}).then(showStatusCode).then(r => r.text()).then(d => console.log(d))
     ```
 1. Send some requests
    ```
