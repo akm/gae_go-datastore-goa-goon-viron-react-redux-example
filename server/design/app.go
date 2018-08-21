@@ -99,12 +99,10 @@ var _ = Resource("memos", func() {
 		Description("delete")
 		Routing(DELETE("/:id"))
 		Params(func() {
-			Param("org_id", String, "Organization ID")
-			Param("name")
 			Param("id")
 		})
 		Response(NoContent, Memo)
 		UseTrait(DefaultResponseTrait)
 	})
-	
+
 })
