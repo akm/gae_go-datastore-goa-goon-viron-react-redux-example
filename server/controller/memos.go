@@ -56,8 +56,22 @@ func (c *MemosController) List(ctx *app.ListMemosContext) error {
 	// MemosController_List: start_implement
 
 	// Put your logic here
+	appCtx := appengine.NewContext(ctx.Request)
+	return ByGoogleSignIn(appCtx, func(userKey *datastore.Key) error {
+		store := &model.MemoStore{}
+		q := store.Query(appCtx).Filter("AutherKey =", userKey)
+		memos, err := store.Select(appCtx, q)
+		if err != nil {
+			log.Errorf(appCtx, "Failed to list memos because of %v\n", err)
+			return err
+		}
+		results := []*app.Memo{}
+		for _, memo := range memos {
+			results = append(results, MemoModelToMediaType(memo))
+		}
 
-	return nil
+		return ctx.Created(results)
+	})
 	// MemosController_List: end_implement
 }
 
