@@ -113,4 +113,5 @@ var _ = Resource("swagger", func() {
 		Methods("GET") // Allow all origins to retrieve the Swagger JSON (CORS)
 	})
 	Files("/swagger.json", "swagger/swagger.json")
+	Files("/swaggerui/*filepath", "swaggerui/dist")
 })
