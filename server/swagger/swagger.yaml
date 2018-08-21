@@ -1,4 +1,3 @@
-basePath: /
 consumes:
 - application/json
 - application/xml
@@ -333,6 +332,17 @@ paths:
       summary: update memos
       tags:
       - memos
+  /swagger.json:
+    get:
+      operationId: swagger#/swagger.json
+      responses:
+        "200":
+          description: File downloaded
+          schema:
+            type: file
+      schemes:
+      - http
+      summary: Download swagger/swagger.json
 produces:
 - application/json
 - application/xml
