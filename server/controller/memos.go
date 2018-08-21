@@ -70,7 +70,7 @@ func (c *MemosController) List(ctx *app.ListMemosContext) error {
 			results = append(results, MemoModelToMediaType(memo))
 		}
 
-		return ctx.Created(results)
+		return ctx.OK(results)
 	})
 	// MemosController_List: end_implement
 }
