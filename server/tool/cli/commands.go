@@ -22,6 +22,7 @@ import (
 	"log"
 	"net/url"
 	"os"
+	"path"
 	"strconv"
 	"strings"
 	"time"
@@ -344,6 +345,14 @@ func (cmd *DownloadCommand) Run(c *client.Client, args []string) error {
 		fnf = c.DownloadSwaggerJSON
 		if outfile == "" {
 			outfile = "swagger.json"
+		}
+		goto found
+	}
+	if strings.HasPrefix(rpath, "/swaggerui/") {
+		fnd = c.DownloadSwaggerui
+		rpath = rpath[11:]
+		if outfile == "" {
+			_, outfile = path.Split(rpath)
 		}
 		goto found
 	}

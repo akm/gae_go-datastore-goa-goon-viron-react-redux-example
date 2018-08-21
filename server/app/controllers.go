@@ -208,11 +208,22 @@ func MountSwaggerController(service *goa.Service, ctrl SwaggerController) {
 	initService(service)
 	var h goa.Handler
 	service.Mux.Handle("OPTIONS", "/swagger.json", ctrl.MuxHandler("preflight", handleSwaggerOrigin(cors.HandlePreflight()), nil))
+	service.Mux.Handle("OPTIONS", "/swaggerui/*filepath", ctrl.MuxHandler("preflight", handleSwaggerOrigin(cors.HandlePreflight()), nil))
 
 	h = ctrl.FileHandler("/swagger.json", "swagger/swagger.json")
 	h = handleSwaggerOrigin(h)
 	service.Mux.Handle("GET", "/swagger.json", ctrl.MuxHandler("serve", h, nil))
 	service.LogInfo("mount", "ctrl", "Swagger", "files", "swagger/swagger.json", "route", "GET /swagger.json")
+
+	h = ctrl.FileHandler("/swaggerui/*filepath", "swaggerui/dist")
+	h = handleSwaggerOrigin(h)
+	service.Mux.Handle("GET", "/swaggerui/*filepath", ctrl.MuxHandler("serve", h, nil))
+	service.LogInfo("mount", "ctrl", "Swagger", "files", "swaggerui/dist", "route", "GET /swaggerui/*filepath")
+
+	h = ctrl.FileHandler("/swaggerui/", "swaggerui/dist/index.html")
+	h = handleSwaggerOrigin(h)
+	service.Mux.Handle("GET", "/swaggerui/", ctrl.MuxHandler("serve", h, nil))
+	service.LogInfo("mount", "ctrl", "Swagger", "files", "swaggerui/dist/index.html", "route", "GET /swaggerui/")
 }
 
 // handleSwaggerOrigin applies the CORS response headers corresponding to the origin.
