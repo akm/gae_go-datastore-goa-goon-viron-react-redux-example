@@ -133,8 +133,8 @@ paths:
       - application/vnd.goa.error
       - application/vnd.memo+json; type=collection
       responses:
-        "201":
-          description: Created
+        "200":
+          description: OK
           schema:
             $ref: '#/definitions/MemoCollection'
         "400":

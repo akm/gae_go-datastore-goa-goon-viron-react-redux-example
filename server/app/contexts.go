@@ -176,15 +176,15 @@ func NewListMemosContext(ctx context.Context, r *http.Request, service *goa.Serv
 	return &rctx, err
 }
 
-// Created sends a HTTP response with status code 201.
-func (ctx *ListMemosContext) Created(r MemoCollection) error {
+// OK sends a HTTP response with status code 200.
+func (ctx *ListMemosContext) OK(r MemoCollection) error {
 	if ctx.ResponseData.Header().Get("Content-Type") == "" {
 		ctx.ResponseData.Header().Set("Content-Type", "application/vnd.memo+json; type=collection")
 	}
 	if r == nil {
 		r = MemoCollection{}
 	}
-	return ctx.ResponseData.Service.Send(ctx.Context, 201, r)
+	return ctx.ResponseData.Service.Send(ctx.Context, 200, r)
 }
 
 // BadRequest sends a HTTP response with status code 400.
