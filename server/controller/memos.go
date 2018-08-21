@@ -80,9 +80,11 @@ func (c *MemosController) Show(ctx *app.ShowMemosContext) error {
 	// MemosController_Show: start_implement
 
 	// Put your logic here
+	appCtx := appengine.NewContext(ctx.Request)
+	return c.Member(appCtx, ctx.ID, ctx.BadRequest, ctx.NotFound, func(m *model.Memo) error {
+		return ctx.OK(MemoModelToMediaType(m))
+	})
 
-	res := &app.Memo{}
-	return ctx.OK(res)
 	// MemosController_Show: end_implement
 }
 
