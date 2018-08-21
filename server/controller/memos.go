@@ -1,6 +1,8 @@
 package controller
 
 import (
+	"fmt"
+
 	"google.golang.org/appengine"
 	"google.golang.org/appengine/datastore"
 	"google.golang.org/appengine/log"
@@ -46,8 +48,17 @@ func (c *MemosController) Delete(ctx *app.DeleteMemosContext) error {
 	// MemosController_Delete: start_implement
 
 	// Put your logic here
+	appCtx := appengine.NewContext(ctx.Request)
+	return c.Member(appCtx, ctx.ID, ctx.BadRequest, ctx.NotFound, func(m *model.Memo) error {
+		store := &model.MemoStore{}
+		if err := store.Delete(appCtx, m); err != nil {
+			log.Errorf(appCtx, "Failed to delete memo %v because of %v\n", m, err)
+			return err
+		}
+		log.Infof(appCtx, "DELETE /memos/%s   %v\n", ctx.ID, m)
+		return ctx.NoContent(nil)
+	})
 
-	return nil
 	// MemosController_Delete: end_implement
 }
 
@@ -93,8 +104,22 @@ func (c *MemosController) Update(ctx *app.UpdateMemosContext) error {
 	// MemosController_Update: start_implement
 
 	// Put your logic here
+	payload := ctx.Payload
+	if payload == nil {
+		return ctx.BadRequest(fmt.Errorf("no payload given"))
+	}
+	appCtx := appengine.NewContext(ctx.Request)
+	return c.Member(appCtx, ctx.ID, ctx.BadRequest, ctx.NotFound, func(m *model.Memo) error {
+		m.Content = payload.Content
+		m.Shared = BoolPointerToBool(payload.Shared)
 
-	res := &app.Memo{}
-	return ctx.OK(res)
+		store := &model.MemoStore{}
+		if _, err := store.Update(appCtx, m); err != nil {
+			log.Errorf(appCtx, "Failed to update memo %v because of %v\n", m, err)
+			return err
+		}
+		return ctx.OK(MemoModelToMediaType(m))
+	})
+
 	// MemosController_Update: end_implement
 }
