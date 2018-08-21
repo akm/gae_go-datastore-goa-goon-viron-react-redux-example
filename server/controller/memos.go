@@ -1,8 +1,14 @@
 package controller
 
 import (
-	"github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/server/app"
+	"google.golang.org/appengine"
+	"google.golang.org/appengine/datastore"
+	"google.golang.org/appengine/log"
+
 	"github.com/goadesign/goa"
+
+	"github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/server/app"
+	"github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/server/model"
 )
 
 // MemosController implements the memos resource.
@@ -20,8 +26,18 @@ func (c *MemosController) Create(ctx *app.CreateMemosContext) error {
 	// MemosController_Create: start_implement
 
 	// Put your logic here
+	appCtx := appengine.NewContext(ctx.Request)
+	return ByGoogleSignIn(appCtx, func(userKey *datastore.Key) error {
+		m := MemoPayloadToModel(ctx.Payload)
+		m.AutherKey = userKey
+		store := &model.MemoStore{}
+		if _, err := store.Create(appCtx, &m); err != nil {
+			log.Errorf(appCtx, "Failed to create memo %v because of %v\n", m, err)
+			return err
+		}
+		return ctx.Created(MemoModelToMediaType(&m))
+	})
 
-	return nil
 	// MemosController_Create: end_implement
 }
 
