@@ -38,6 +38,5 @@ types:
         required: true
       Content: string
       Shared: bool
-      CreatedBy: *string_required
       CreatedAt: *time_required
       UpdatedAt: *time_required
