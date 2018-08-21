@@ -153,7 +153,7 @@
   revision = "aaf60122140d3fcf75376d319f0554393160eb50"
 
 [[projects]]
-  digest = "1:ba5e331331c6e62f192602293340b50dab7aab164339f69d9ae7d0f0aa19ad44"
+  digest = "1:6e576c2b6cd37904780c1ba95ca72ee867970c7d2e9c9139538f7b27a9c00cc3"
   name = "google.golang.org/appengine"
   packages = [
     ".",
@@ -166,8 +166,10 @@
     "internal/memcache",
     "internal/modules",
     "internal/remote_api",
+    "internal/user",
     "log",
     "memcache",
+    "user",
   ]
   pruneopts = "UT"
   revision = "b1f26356af11148e710935ed1ac8a7f5702c7612"
@@ -196,8 +198,10 @@
     "github.com/mjibson/goon",
     "github.com/spf13/cobra",
     "golang.org/x/net/context",
+    "google.golang.org/appengine",
     "google.golang.org/appengine/datastore",
     "google.golang.org/appengine/log",
+    "google.golang.org/appengine/user",
     "gopkg.in/go-playground/validator.v9",
   ]
   solver-name = "gps-cdcl"
