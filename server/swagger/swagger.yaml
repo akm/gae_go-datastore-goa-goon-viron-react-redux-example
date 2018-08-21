@@ -1,4 +1,3 @@
-basePath: /
 consumes:
 - application/json
 - application/xml
@@ -333,6 +332,38 @@ paths:
       summary: update memos
       tags:
       - memos
+  /swagger.json:
+    get:
+      operationId: swagger#/swagger.json
+      responses:
+        "200":
+          description: File downloaded
+          schema:
+            type: file
+      schemes:
+      - http
+      summary: Download swagger/swagger.json
+  /swaggerui/{filepath}:
+    get:
+      operationId: swagger#/swaggerui/*filepath
+      parameters:
+      - description: Relative file path
+        in: path
+        name: filepath
+        required: true
+        type: string
+      responses:
+        "200":
+          description: File downloaded
+          schema:
+            type: file
+        "404":
+          description: File not found
+          schema:
+            $ref: '#/definitions/error'
+      schemes:
+      - http
+      summary: Download swaggerui/dist
 produces:
 - application/json
 - application/xml

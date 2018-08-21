@@ -77,6 +77,19 @@ goa_gen:
 
 generate: goa_gen model_gen converter_gen
 
+swaggerui:
+	rm -rf ./tmp/swaggerui && \
+	mkdir -p ./tmp/swaggerui && \
+	cd ./tmp/swaggerui && \
+		git init && \
+		git config core.sparsecheckout true && \
+		git remote add origin git@github.com:swagger-api/swagger-ui.git && \
+		echo "dist" > .git/info/sparse-checkout && \
+		git pull origin master && \
+		cd - && \
+	mkdir -p swaggerui && \
+	cp -R tmp/swaggerui/dist swaggerui/
+
 install:
 	@which dep || go get -u github.com/golang/dep/cmd/dep
 	@dep ensure
@@ -108,6 +121,6 @@ deploy:
 rollback:
 	appcfg.py rollback ./app -A $(GAE_PROJECT)
 
-local:
+local: swaggerui
 	dev_appserver.py --enable_console --skip_sdk_update_check=yes server/app.yaml
 # goapp serve ./server
