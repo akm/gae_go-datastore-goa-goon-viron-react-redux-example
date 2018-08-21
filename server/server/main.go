@@ -25,6 +25,9 @@ func init() {
 	c := controller.NewMemosController(service)
 	app.MountMemosController(service, c)
 
+	cs := controller.NewSwaggerController(service)
+	app.MountSwaggerController(service, cs)
+
 	// // Start service
 	// if err := service.ListenAndServe(":8080"); err != nil {
 	// 	service.LogError("startup", "err", err)
