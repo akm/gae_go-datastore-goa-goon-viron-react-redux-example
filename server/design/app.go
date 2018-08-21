@@ -65,7 +65,7 @@ var _ = Resource("memos", func() {
 	Action("list", func() {
 		Description("list")
 		Routing(GET(""))
-		Response(Created, CollectionOf(Memo))
+		Response(OK, CollectionOf(Memo))
 		UseTrait(DefaultResponseTrait)
 	})
 
