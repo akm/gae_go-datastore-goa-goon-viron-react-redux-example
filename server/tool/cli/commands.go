@@ -37,10 +37,7 @@ type (
 
 	// DeleteMemosCommand is the command line data structure for the delete action of memos
 	DeleteMemosCommand struct {
-		ID   string
-		Name string
-		// Organization ID
-		OrgID       string
+		ID          string
 		PrettyPrint bool
 	}
 
@@ -353,7 +350,7 @@ func (cmd *DeleteMemosCommand) Run(c *client.Client, args []string) error {
 	}
 	logger := goa.NewLogger(log.New(os.Stderr, "", log.LstdFlags))
 	ctx := goa.WithLogger(context.Background(), logger)
-	resp, err := c.DeleteMemos(ctx, path, stringFlagVal("name", cmd.Name), stringFlagVal("org_id", cmd.OrgID))
+	resp, err := c.DeleteMemos(ctx, path)
 	if err != nil {
 		goa.LogError(ctx, "failed", "err", err)
 		return err
@@ -367,10 +364,6 @@ func (cmd *DeleteMemosCommand) Run(c *client.Client, args []string) error {
 func (cmd *DeleteMemosCommand) RegisterFlags(cc *cobra.Command, c *client.Client) {
 	var id string
 	cc.Flags().StringVar(&cmd.ID, "id", id, ``)
-	var name string
-	cc.Flags().StringVar(&cmd.Name, "name", name, ``)
-	var orgID string
-	cc.Flags().StringVar(&cmd.OrgID, "org_id", orgID, `Organization ID`)
 }
 
 // Run makes the HTTP request corresponding to the ListMemosCommand command.

@@ -89,9 +89,7 @@ type DeleteMemosContext struct {
 	context.Context
 	*goa.ResponseData
 	*goa.RequestData
-	ID    string
-	Name  *string
-	OrgID *string
+	ID string
 }
 
 // NewDeleteMemosContext parses the incoming request URL and body, performs validations and creates the
@@ -107,16 +105,6 @@ func NewDeleteMemosContext(ctx context.Context, r *http.Request, service *goa.Se
 	if len(paramID) > 0 {
 		rawID := paramID[0]
 		rctx.ID = rawID
-	}
-	paramName := req.Params["name"]
-	if len(paramName) > 0 {
-		rawName := paramName[0]
-		rctx.Name = &rawName
-	}
-	paramOrgID := req.Params["org_id"]
-	if len(paramOrgID) > 0 {
-		rawOrgID := paramOrgID[0]
-		rctx.OrgID = &rawOrgID
 	}
 	return &rctx, err
 }

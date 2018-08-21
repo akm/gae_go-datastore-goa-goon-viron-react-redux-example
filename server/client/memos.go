@@ -69,8 +69,8 @@ func DeleteMemosPath(id string) string {
 }
 
 // delete
-func (c *Client) DeleteMemos(ctx context.Context, path string, name *string, orgID *string) (*http.Response, error) {
-	req, err := c.NewDeleteMemosRequest(ctx, path, name, orgID)
+func (c *Client) DeleteMemos(ctx context.Context, path string) (*http.Response, error) {
+	req, err := c.NewDeleteMemosRequest(ctx, path)
 	if err != nil {
 		return nil, err
 	}
@@ -78,20 +78,12 @@ func (c *Client) DeleteMemos(ctx context.Context, path string, name *string, org
 }
 
 // NewDeleteMemosRequest create the request corresponding to the delete action endpoint of the memos resource.
-func (c *Client) NewDeleteMemosRequest(ctx context.Context, path string, name *string, orgID *string) (*http.Request, error) {
+func (c *Client) NewDeleteMemosRequest(ctx context.Context, path string) (*http.Request, error) {
 	scheme := c.Scheme
 	if scheme == "" {
 		scheme = "http"
 	}
 	u := url.URL{Host: c.Host, Scheme: scheme, Path: path}
-	values := u.Query()
-	if name != nil {
-		values.Set("name", *name)
-	}
-	if orgID != nil {
-		values.Set("org_id", *orgID)
-	}
-	u.RawQuery = values.Encode()
 	req, err := http.NewRequest("DELETE", u.String(), nil)
 	if err != nil {
 		return nil, err

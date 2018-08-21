@@ -213,15 +213,6 @@ paths:
         name: id
         required: true
         type: string
-      - in: query
-        name: name
-        required: false
-        type: string
-      - description: Organization ID
-        in: query
-        name: org_id
-        required: false
-        type: string
       produces:
       - application/vnd.goa.error
       - application/vnd.memo+json

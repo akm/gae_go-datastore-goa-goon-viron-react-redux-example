@@ -508,7 +508,7 @@ func CreateMemosUnauthorized(t goatest.TInterface, ctx context.Context, service 
 // It returns the response writer so it's possible to inspect the response headers and the media type struct written to the response.
 // If ctx is nil then context.Background() is used.
 // If service is nil then a default service is created.
-func DeleteMemosBadRequest(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosController, id string, name *string, orgID *string) (http.ResponseWriter, error) {
+func DeleteMemosBadRequest(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosController, id string) (http.ResponseWriter, error) {
 	// Setup service
 	var (
 		logBuf bytes.Buffer
@@ -528,18 +528,8 @@ func DeleteMemosBadRequest(t goatest.TInterface, ctx context.Context, service *g
 
 	// Setup request context
 	rw := httptest.NewRecorder()
-	query := url.Values{}
-	if name != nil {
-		sliceVal := []string{*name}
-		query["name"] = sliceVal
-	}
-	if orgID != nil {
-		sliceVal := []string{*orgID}
-		query["org_id"] = sliceVal
-	}
 	u := &url.URL{
-		Path:     fmt.Sprintf("/memos/%v", id),
-		RawQuery: query.Encode(),
+		Path: fmt.Sprintf("/memos/%v", id),
 	}
 	req, err := http.NewRequest("DELETE", u.String(), nil)
 	if err != nil {
@@ -547,14 +537,6 @@ func DeleteMemosBadRequest(t goatest.TInterface, ctx context.Context, service *g
 	}
 	prms := url.Values{}
 	prms["id"] = []string{fmt.Sprintf("%v", id)}
-	if name != nil {
-		sliceVal := []string{*name}
-		prms["name"] = sliceVal
-	}
-	if orgID != nil {
-		sliceVal := []string{*orgID}
-		prms["org_id"] = sliceVal
-	}
 	if ctx == nil {
 		ctx = context.Background()
 	}
@@ -595,7 +577,7 @@ func DeleteMemosBadRequest(t goatest.TInterface, ctx context.Context, service *g
 // It returns the response writer so it's possible to inspect the response headers and the media type struct written to the response.
 // If ctx is nil then context.Background() is used.
 // If service is nil then a default service is created.
-func DeleteMemosConflict(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosController, id string, name *string, orgID *string) (http.ResponseWriter, error) {
+func DeleteMemosConflict(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosController, id string) (http.ResponseWriter, error) {
 	// Setup service
 	var (
 		logBuf bytes.Buffer
@@ -615,18 +597,8 @@ func DeleteMemosConflict(t goatest.TInterface, ctx context.Context, service *goa
 
 	// Setup request context
 	rw := httptest.NewRecorder()
-	query := url.Values{}
-	if name != nil {
-		sliceVal := []string{*name}
-		query["name"] = sliceVal
-	}
-	if orgID != nil {
-		sliceVal := []string{*orgID}
-		query["org_id"] = sliceVal
-	}
 	u := &url.URL{
-		Path:     fmt.Sprintf("/memos/%v", id),
-		RawQuery: query.Encode(),
+		Path: fmt.Sprintf("/memos/%v", id),
 	}
 	req, err := http.NewRequest("DELETE", u.String(), nil)
 	if err != nil {
@@ -634,14 +606,6 @@ func DeleteMemosConflict(t goatest.TInterface, ctx context.Context, service *goa
 	}
 	prms := url.Values{}
 	prms["id"] = []string{fmt.Sprintf("%v", id)}
-	if name != nil {
-		sliceVal := []string{*name}
-		prms["name"] = sliceVal
-	}
-	if orgID != nil {
-		sliceVal := []string{*orgID}
-		prms["org_id"] = sliceVal
-	}
 	if ctx == nil {
 		ctx = context.Background()
 	}
@@ -682,7 +646,7 @@ func DeleteMemosConflict(t goatest.TInterface, ctx context.Context, service *goa
 // It returns the response writer so it's possible to inspect the response headers and the media type struct written to the response.
 // If ctx is nil then context.Background() is used.
 // If service is nil then a default service is created.
-func DeleteMemosInternalServerError(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosController, id string, name *string, orgID *string) (http.ResponseWriter, error) {
+func DeleteMemosInternalServerError(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosController, id string) (http.ResponseWriter, error) {
 	// Setup service
 	var (
 		logBuf bytes.Buffer
@@ -702,18 +666,8 @@ func DeleteMemosInternalServerError(t goatest.TInterface, ctx context.Context, s
 
 	// Setup request context
 	rw := httptest.NewRecorder()
-	query := url.Values{}
-	if name != nil {
-		sliceVal := []string{*name}
-		query["name"] = sliceVal
-	}
-	if orgID != nil {
-		sliceVal := []string{*orgID}
-		query["org_id"] = sliceVal
-	}
 	u := &url.URL{
-		Path:     fmt.Sprintf("/memos/%v", id),
-		RawQuery: query.Encode(),
+		Path: fmt.Sprintf("/memos/%v", id),
 	}
 	req, err := http.NewRequest("DELETE", u.String(), nil)
 	if err != nil {
@@ -721,14 +675,6 @@ func DeleteMemosInternalServerError(t goatest.TInterface, ctx context.Context, s
 	}
 	prms := url.Values{}
 	prms["id"] = []string{fmt.Sprintf("%v", id)}
-	if name != nil {
-		sliceVal := []string{*name}
-		prms["name"] = sliceVal
-	}
-	if orgID != nil {
-		sliceVal := []string{*orgID}
-		prms["org_id"] = sliceVal
-	}
 	if ctx == nil {
 		ctx = context.Background()
 	}
@@ -769,7 +715,7 @@ func DeleteMemosInternalServerError(t goatest.TInterface, ctx context.Context, s
 // It returns the response writer so it's possible to inspect the response headers and the media type struct written to the response.
 // If ctx is nil then context.Background() is used.
 // If service is nil then a default service is created.
-func DeleteMemosNoContent(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosController, id string, name *string, orgID *string) (http.ResponseWriter, *app.Memo) {
+func DeleteMemosNoContent(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosController, id string) (http.ResponseWriter, *app.Memo) {
 	// Setup service
 	var (
 		logBuf bytes.Buffer
@@ -789,18 +735,8 @@ func DeleteMemosNoContent(t goatest.TInterface, ctx context.Context, service *go
 
 	// Setup request context
 	rw := httptest.NewRecorder()
-	query := url.Values{}
-	if name != nil {
-		sliceVal := []string{*name}
-		query["name"] = sliceVal
-	}
-	if orgID != nil {
-		sliceVal := []string{*orgID}
-		query["org_id"] = sliceVal
-	}
 	u := &url.URL{
-		Path:     fmt.Sprintf("/memos/%v", id),
-		RawQuery: query.Encode(),
+		Path: fmt.Sprintf("/memos/%v", id),
 	}
 	req, err := http.NewRequest("DELETE", u.String(), nil)
 	if err != nil {
@@ -808,14 +744,6 @@ func DeleteMemosNoContent(t goatest.TInterface, ctx context.Context, service *go
 	}
 	prms := url.Values{}
 	prms["id"] = []string{fmt.Sprintf("%v", id)}
-	if name != nil {
-		sliceVal := []string{*name}
-		prms["name"] = sliceVal
-	}
-	if orgID != nil {
-		sliceVal := []string{*orgID}
-		prms["org_id"] = sliceVal
-	}
 	if ctx == nil {
 		ctx = context.Background()
 	}
@@ -861,7 +789,7 @@ func DeleteMemosNoContent(t goatest.TInterface, ctx context.Context, service *go
 // It returns the response writer so it's possible to inspect the response headers and the media type struct written to the response.
 // If ctx is nil then context.Background() is used.
 // If service is nil then a default service is created.
-func DeleteMemosNotFound(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosController, id string, name *string, orgID *string) (http.ResponseWriter, error) {
+func DeleteMemosNotFound(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosController, id string) (http.ResponseWriter, error) {
 	// Setup service
 	var (
 		logBuf bytes.Buffer
@@ -881,18 +809,8 @@ func DeleteMemosNotFound(t goatest.TInterface, ctx context.Context, service *goa
 
 	// Setup request context
 	rw := httptest.NewRecorder()
-	query := url.Values{}
-	if name != nil {
-		sliceVal := []string{*name}
-		query["name"] = sliceVal
-	}
-	if orgID != nil {
-		sliceVal := []string{*orgID}
-		query["org_id"] = sliceVal
-	}
 	u := &url.URL{
-		Path:     fmt.Sprintf("/memos/%v", id),
-		RawQuery: query.Encode(),
+		Path: fmt.Sprintf("/memos/%v", id),
 	}
 	req, err := http.NewRequest("DELETE", u.String(), nil)
 	if err != nil {
@@ -900,14 +818,6 @@ func DeleteMemosNotFound(t goatest.TInterface, ctx context.Context, service *goa
 	}
 	prms := url.Values{}
 	prms["id"] = []string{fmt.Sprintf("%v", id)}
-	if name != nil {
-		sliceVal := []string{*name}
-		prms["name"] = sliceVal
-	}
-	if orgID != nil {
-		sliceVal := []string{*orgID}
-		prms["org_id"] = sliceVal
-	}
 	if ctx == nil {
 		ctx = context.Background()
 	}
@@ -948,7 +858,7 @@ func DeleteMemosNotFound(t goatest.TInterface, ctx context.Context, service *goa
 // It returns the response writer so it's possible to inspect the response headers and the media type struct written to the response.
 // If ctx is nil then context.Background() is used.
 // If service is nil then a default service is created.
-func DeleteMemosUnauthorized(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosController, id string, name *string, orgID *string) (http.ResponseWriter, error) {
+func DeleteMemosUnauthorized(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosController, id string) (http.ResponseWriter, error) {
 	// Setup service
 	var (
 		logBuf bytes.Buffer
@@ -968,18 +878,8 @@ func DeleteMemosUnauthorized(t goatest.TInterface, ctx context.Context, service 
 
 	// Setup request context
 	rw := httptest.NewRecorder()
-	query := url.Values{}
-	if name != nil {
-		sliceVal := []string{*name}
-		query["name"] = sliceVal
-	}
-	if orgID != nil {
-		sliceVal := []string{*orgID}
-		query["org_id"] = sliceVal
-	}
 	u := &url.URL{
-		Path:     fmt.Sprintf("/memos/%v", id),
-		RawQuery: query.Encode(),
+		Path: fmt.Sprintf("/memos/%v", id),
 	}
 	req, err := http.NewRequest("DELETE", u.String(), nil)
 	if err != nil {
@@ -987,14 +887,6 @@ func DeleteMemosUnauthorized(t goatest.TInterface, ctx context.Context, service 
 	}
 	prms := url.Values{}
 	prms["id"] = []string{fmt.Sprintf("%v", id)}
-	if name != nil {
-		sliceVal := []string{*name}
-		prms["name"] = sliceVal
-	}
-	if orgID != nil {
-		sliceVal := []string{*orgID}
-		prms["org_id"] = sliceVal
-	}
 	if ctx == nil {
 		ctx = context.Background()
 	}
