@@ -202,6 +202,20 @@ func (s *UserStore) Put(ctx context.Context, m *User) (*datastore.Key, error) {
 	return key, nil
 }
 
+func (s *UserStore) Delete(ctx context.Context, m *User) error {
+	g := GoonFromContext(ctx)
+	key, err := g.KeyError(m)
+	if err != nil {
+		log.Errorf(ctx, "Failed to Get key of %v because of %v\n", m, err)
+		return err
+	}
+	if err := g.Delete(key); err != nil {
+		log.Errorf(ctx, "Failed to Delete %v because of %v\n", m, err)
+		return err
+	}
+	return nil
+}
+
 type MemoStore struct {
 }
 
@@ -324,4 +338,18 @@ func (s *MemoStore) Put(ctx context.Context, m *Memo) (*datastore.Key, error) {
 		return nil, err
 	}
 	return key, nil
+}
+
+func (s *MemoStore) Delete(ctx context.Context, m *Memo) error {
+	g := GoonFromContext(ctx)
+	key, err := g.KeyError(m)
+	if err != nil {
+		log.Errorf(ctx, "Failed to Get key of %v because of %v\n", m, err)
+		return err
+	}
+	if err := g.Delete(key); err != nil {
+		log.Errorf(ctx, "Failed to Delete %v because of %v\n", m, err)
+		return err
+	}
+	return nil
 }
