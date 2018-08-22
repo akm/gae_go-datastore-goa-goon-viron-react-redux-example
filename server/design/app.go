@@ -115,3 +115,13 @@ var _ = Resource("swagger", func() {
 	Files("/swagger.json", "swagger/swagger.json")
 	Files("/swaggerui/*filepath", "swaggerui/dist")
 })
+
+// See https://cam-inc.github.io/viron-doc/docs/dev_api_authtype.html
+//     https://cam-inc.github.io/viron-doc/docs/dev_api_menu.html
+var _ = Resource("viron", func() {
+	Origin("*", func() {
+		Methods("GET") // Allow all origins to retrieve the Swagger JSON (CORS)
+	})
+	Files("/viron_authtype", "viron/authtype.json")
+	Files("/viron", "viron/menu.json")
+})
