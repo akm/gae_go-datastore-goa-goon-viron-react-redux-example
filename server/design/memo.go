@@ -82,6 +82,17 @@ var _ = Resource("memos", func() {
 
 })
 
+var AdminMemoPayload = Type("AdminMemoPayload", func() {
+	Description("Memo payload for admin")
+	Reference(MemoPayload)
+	members := []string{"content", "shared"}
+	for _, m := range members {
+		Member(m)
+	}
+	Member("author_key", String, "Encoded author_key")
+	Required("content", "author_key")
+})
+
 var _ = Resource("memos_admin", func() {
 	BasePath("/admin/memos")
 	DefaultMedia(Memo)
@@ -96,7 +107,7 @@ var _ = Resource("memos_admin", func() {
 	Action("create", func() {
 		Description("create")
 		Routing(POST(""))
-		Payload(MemoPayload)
+		Payload(AdminMemoPayload)
 		Response(Created, Memo)
 		UseTrait(DefaultResponseTrait)
 	})
@@ -106,7 +117,7 @@ var _ = Resource("memos_admin", func() {
 		Params(func() {
 			Param("id")
 		})
-		Payload(MemoPayload)
+		Payload(AdminMemoPayload)
 		Response(OK, Memo)
 		UseTrait(DefaultResponseTrait)
 	})
