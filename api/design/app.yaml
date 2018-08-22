@@ -33,7 +33,7 @@ types:
     payload: MemoPayload
     media_type: Memo
     fields:
-      AutherKey:
+      AuthorKey:
         type: "*datastore.Key"
         required: true
       Content: string

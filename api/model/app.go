@@ -23,7 +23,7 @@ type User struct {
 
 type Memo struct {
 	Id        int64          `datastore:"-" goon:"id" json:"id"`
-	AutherKey *datastore.Key `json:"auther_key" validate:"required"`
+	AuthorKey *datastore.Key `json:"author_key" validate:"required"`
 	Content   string         `json:"content,omitempty"`
 	Shared    bool           `json:"shared,omitempty"`
 	CreatedAt time.Time      `json:"created_at" validate:"required"`

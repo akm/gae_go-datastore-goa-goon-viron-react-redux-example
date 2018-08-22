@@ -31,7 +31,7 @@ func (c *MemosController) Create(ctx *app.CreateMemosContext) error {
 	appCtx := appengine.NewContext(ctx.Request)
 	return ByGoogleSignIn(appCtx, func(userKey *datastore.Key) error {
 		m := MemoPayloadToModel(ctx.Payload)
-		m.AutherKey = userKey
+		m.AuthorKey = userKey
 		store := &model.MemoStore{}
 		if _, err := store.Create(appCtx, &m); err != nil {
 			log.Errorf(appCtx, "Failed to create memo %v because of %v\n", m, err)
@@ -70,7 +70,7 @@ func (c *MemosController) List(ctx *app.ListMemosContext) error {
 	appCtx := appengine.NewContext(ctx.Request)
 	return ByGoogleSignIn(appCtx, func(userKey *datastore.Key) error {
 		store := &model.MemoStore{}
-		q := store.Query(appCtx).Filter("AutherKey =", userKey)
+		q := store.Query(appCtx).Filter("AuthorKey =", userKey)
 		memos, err := store.Select(appCtx, q)
 		if err != nil {
 			log.Errorf(appCtx, "Failed to list memos because of %v\n", err)
