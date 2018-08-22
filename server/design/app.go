@@ -107,22 +107,17 @@ var _ = Resource("memos", func() {
 
 })
 
-// See https://github.com/goadesign/goa#4-document
 var _ = Resource("swagger", func() {
 	Origin("*", func() {
 		Methods("OPTIONS", "GET")                // Allow all origins to retrieve the Swagger JSON (CORS)
 		Headers("Content-Type", "Authorization") // These are required by Viron on browser
 	})
+	// See https://github.com/goadesign/goa#4-document
 	Files("/swagger.json", "swagger/swagger.json")
 	Files("/swaggerui/*filepath", "swaggerui/dist")
-})
 
-// See https://cam-inc.github.io/viron-doc/docs/dev_api_authtype.html
-//     https://cam-inc.github.io/viron-doc/docs/dev_api_menu.html
-var _ = Resource("viron", func() {
-	Origin("*", func() {
-		Methods("GET") // Allow all origins to retrieve the Swagger JSON (CORS)
-	})
+	// See https://cam-inc.github.io/viron-doc/docs/dev_api_authtype.html
+	//     https://cam-inc.github.io/viron-doc/docs/dev_api_menu.html
 	Files("/viron_authtype", "viron/authtype.json")
 	Files("/viron", "viron/menu.json")
 })
