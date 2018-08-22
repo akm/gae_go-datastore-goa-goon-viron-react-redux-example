@@ -110,7 +110,7 @@ var _ = Resource("memos", func() {
 // See https://github.com/goadesign/goa#4-document
 var _ = Resource("swagger", func() {
 	Origin("*", func() {
-		Methods("GET") // Allow all origins to retrieve the Swagger JSON (CORS)
+		Methods("OPTIONS", "GET") // Allow all origins to retrieve the Swagger JSON (CORS)
 	})
 	Files("/swagger.json", "swagger/swagger.json")
 	Files("/swaggerui/*filepath", "swaggerui/dist")
