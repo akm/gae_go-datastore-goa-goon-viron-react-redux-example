@@ -3,7 +3,7 @@
 REPO:=github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example
 GAE_PROJECT ?= projectName
 
-SERVER_BASE=$(REPO)/server
+SERVER_BASE=$(REPO)/api
 
 LOCAL_PORT ?= 8080
 
