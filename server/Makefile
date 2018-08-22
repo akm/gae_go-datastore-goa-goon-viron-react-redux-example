@@ -1,9 +1,11 @@
 ##### Convenient command ######
 
 REPO:=github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example
-GAE_PROJECT:=projectName
+GAE_PROJECT ?= projectName
 
 SERVER_BASE=$(REPO)/server
+
+LOCAL_PORT ?= 8080
 
 dep_init:
 	@dep init
@@ -122,5 +124,13 @@ rollback:
 	appcfg.py rollback ./app -A $(GAE_PROJECT)
 
 local: swaggerui
-	dev_appserver.py --enable_console --skip_sdk_update_check=yes server/app.yaml
+	dev_appserver.py --port=$(LOCAL_PORT) --enable_console --skip_sdk_update_check=yes server/app.yaml
 # goapp serve ./server
+
+viron:
+	git clone git@github.com:cam-inc/viron.git
+
+run_viron: viron
+	cd viron && \
+	npm install && \
+	docker-compose -f docker-compose.dev.yml up --build mysql web
