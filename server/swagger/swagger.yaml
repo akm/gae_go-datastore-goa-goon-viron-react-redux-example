@@ -366,7 +366,7 @@ paths:
       summary: Download swaggerui/dist
   /viron:
     get:
-      operationId: viron#/viron
+      operationId: swagger#/viron
       responses:
         "200":
           description: File downloaded
@@ -377,7 +377,7 @@ paths:
       summary: Download viron/menu.json
   /viron_authtype:
     get:
-      operationId: viron#/viron_authtype
+      operationId: swagger#/viron_authtype
       responses:
         "200":
           description: File downloaded
