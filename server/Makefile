@@ -134,9 +134,13 @@ local_https: swaggerui
 # goapp serve ./server
 
 viron:
-	git clone git@github.com:cam-inc/viron.git
+	git clone git@github.com:cam-inc/viron.git && \
+	cd viron && \
+	cp ./rollup.local.config.js ./rollup.local.config.js.orig && \
+	sed -e 's/port: 8080/port: 8081/' ./rollup.local.config.js.orig > ./rollup.local.config.js
 
 run_viron: viron
 	cd viron && \
+	rm package-lock.json && \
 	npm install && \
 	npm start
