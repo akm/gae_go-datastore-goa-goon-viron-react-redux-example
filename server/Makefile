@@ -139,4 +139,4 @@ viron:
 run_viron: viron
 	cd viron && \
 	npm install && \
-	docker-compose -f docker-compose.dev.yml up --build mysql web
+	npm start
