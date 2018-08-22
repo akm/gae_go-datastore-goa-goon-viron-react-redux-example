@@ -364,6 +364,28 @@ paths:
       schemes:
       - http
       summary: Download swaggerui/dist
+  /viron:
+    get:
+      operationId: swagger#/viron
+      responses:
+        "200":
+          description: File downloaded
+          schema:
+            type: file
+      schemes:
+      - http
+      summary: Download viron/menu.json
+  /viron_authtype:
+    get:
+      operationId: swagger#/viron_authtype
+      responses:
+        "200":
+          description: File downloaded
+          schema:
+            type: file
+      schemes:
+      - http
+      summary: Download viron/authtype.json
 produces:
 - application/json
 - application/xml

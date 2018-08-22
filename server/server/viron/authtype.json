@@ -1,0 +1,14 @@
+[
+  {
+    "type": "email",
+    "provider": "viron-example",
+    "url": "/admin/signin",
+    "method": "POST"
+  },
+  {
+    "type": "signout",
+    "provider": "",
+    "url": "/admin/signout",
+    "method": "POST"
+  }
+]

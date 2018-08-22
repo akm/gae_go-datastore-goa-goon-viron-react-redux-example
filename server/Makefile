@@ -1,9 +1,11 @@
 ##### Convenient command ######
 
 REPO:=github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example
-GAE_PROJECT:=projectName
+GAE_PROJECT ?= projectName
 
 SERVER_BASE=$(REPO)/server
+
+LOCAL_PORT ?= 8080
 
 dep_init:
 	@dep init
@@ -122,5 +124,23 @@ rollback:
 	appcfg.py rollback ./app -A $(GAE_PROJECT)
 
 local: swaggerui
-	dev_appserver.py --enable_console --skip_sdk_update_check=yes server/app.yaml
+	dev_appserver.py --port=$(LOCAL_PORT) --enable_console --skip_sdk_update_check=yes server/app.yaml
 # goapp serve ./server
+
+local_https: swaggerui
+	dev_appserver.py --port=$(LOCAL_PORT) --enable_console --skip_sdk_update_check=yes server/app.yaml \
+		--ssl_certificate_path $(SSL_CERTIFICATE_PATH) \
+		--ssl_certificate_key_path $(SSL_CERTIFICATE_KEY_PATH)
+# goapp serve ./server
+
+viron:
+	git clone git@github.com:cam-inc/viron.git && \
+	cd viron && \
+	cp ./rollup.local.config.js ./rollup.local.config.js.orig && \
+	sed -e 's/port: 8080/port: 8081/' ./rollup.local.config.js.orig > ./rollup.local.config.js
+
+run_viron: viron
+	cd viron && \
+	rm package-lock.json && \
+	npm install && \
+	npm start
