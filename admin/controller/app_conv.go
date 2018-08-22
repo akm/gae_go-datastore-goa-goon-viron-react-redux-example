@@ -42,15 +42,23 @@ func UserModelToMediaType(src *model.User) *app.User {
 }
 
 func MemoPayloadToModel(src *app.MemoPayload) (*model.Memo, error) {
-	r := model.Memo{}
-	if key, err := StringPointerToDatastoreKey(src.AuthorKey); err != nil {
+	r := &model.Memo{}
+	err := CopyFromMemoPayloadToModel(src, r)
+	if err != nil {
 		return nil, err
+	}
+	return r, nil
+}
+
+func CopyFromMemoPayloadToModel(src *app.MemoPayload, r *model.Memo) error {
+	if key, err := StringPointerToDatastoreKey(src.AuthorKey); err != nil {
+		return err
 	} else {
 		r.AuthorKey = key
 	}
 	r.Content = src.Content
 	r.Shared = BoolPointerToBool(src.Shared)
-	return &r, nil
+	return nil
 }
 
 func MemoModelToMediaType(src *model.Memo) (*app.Memo, error) {
