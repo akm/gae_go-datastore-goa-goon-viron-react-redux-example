@@ -110,9 +110,8 @@ func RegisterCommands(app *cobra.Command, c *client.Client) {
 Payload example:
 
 {
-   "content": "Consequatur est quas repudiandae quae distinctio quaerat.",
-   "created_by": "Amet sed.",
-   "shared": false
+   "content": "Sed officia.",
+   "shared": true
 }`,
 		RunE: func(cmd *cobra.Command, args []string) error { return tmp1.Run(c, args) },
 	}
@@ -128,9 +127,9 @@ Payload example:
 Payload example:
 
 {
-   "content": "Consequatur est quas repudiandae quae distinctio quaerat.",
-   "created_by": "Amet sed.",
-   "shared": false
+   "author_key": "Et quia consequatur est quas.",
+   "content": "Quae distinctio quaerat cum amet sed exercitationem.",
+   "shared": true
 }`,
 		RunE: func(cmd *cobra.Command, args []string) error { return tmp2.Run(c, args) },
 	}
@@ -211,9 +210,8 @@ Payload example:
 Payload example:
 
 {
-   "content": "Consequatur est quas repudiandae quae distinctio quaerat.",
-   "created_by": "Amet sed.",
-   "shared": false
+   "content": "Sed officia.",
+   "shared": true
 }`,
 		RunE: func(cmd *cobra.Command, args []string) error { return tmp8.Run(c, args) },
 	}
@@ -229,9 +227,9 @@ Payload example:
 Payload example:
 
 {
-   "content": "Consequatur est quas repudiandae quae distinctio quaerat.",
-   "created_by": "Amet sed.",
-   "shared": false
+   "author_key": "Et quia consequatur est quas.",
+   "content": "Quae distinctio quaerat cum amet sed exercitationem.",
+   "shared": true
 }`,
 		RunE: func(cmd *cobra.Command, args []string) error { return tmp9.Run(c, args) },
 	}
@@ -618,7 +616,7 @@ func (cmd *CreateMemosAdminCommand) Run(c *client.Client, args []string) error {
 	} else {
 		path = "/admin/memos"
 	}
-	var payload client.MemoPayload
+	var payload client.AdminMemoPayload
 	if cmd.Payload != "" {
 		err := json.Unmarshal([]byte(cmd.Payload), &payload)
 		if err != nil {
@@ -701,7 +699,7 @@ func (cmd *UpdateMemosAdminCommand) Run(c *client.Client, args []string) error {
 	} else {
 		path = fmt.Sprintf("/admin/memos/%v", url.QueryEscape(cmd.ID))
 	}
-	var payload client.MemoPayload
+	var payload client.AdminMemoPayload
 	if cmd.Payload != "" {
 		err := json.Unmarshal([]byte(cmd.Payload), &payload)
 		if err != nil {

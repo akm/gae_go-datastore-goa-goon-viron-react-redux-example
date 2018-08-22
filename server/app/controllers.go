@@ -225,7 +225,7 @@ func MountMemosAdminController(service *goa.Service, ctrl MemosAdminController) 
 		}
 		// Build the payload
 		if rawPayload := goa.ContextRequest(ctx).Payload; rawPayload != nil {
-			rctx.Payload = rawPayload.(*MemoPayload)
+			rctx.Payload = rawPayload.(*AdminMemoPayload)
 		} else {
 			return goa.MissingPayloadError()
 		}
@@ -279,7 +279,7 @@ func MountMemosAdminController(service *goa.Service, ctrl MemosAdminController) 
 		}
 		// Build the payload
 		if rawPayload := goa.ContextRequest(ctx).Payload; rawPayload != nil {
-			rctx.Payload = rawPayload.(*MemoPayload)
+			rctx.Payload = rawPayload.(*AdminMemoPayload)
 		} else {
 			return goa.MissingPayloadError()
 		}
@@ -317,7 +317,7 @@ func handleMemosAdminOrigin(h goa.Handler) goa.Handler {
 
 // unmarshalCreateMemosAdminPayload unmarshals the request body into the context request data Payload field.
 func unmarshalCreateMemosAdminPayload(ctx context.Context, service *goa.Service, req *http.Request) error {
-	payload := &memoPayload{}
+	payload := &adminMemoPayload{}
 	if err := service.DecodeRequest(req, payload); err != nil {
 		return err
 	}
@@ -332,7 +332,7 @@ func unmarshalCreateMemosAdminPayload(ctx context.Context, service *goa.Service,
 
 // unmarshalUpdateMemosAdminPayload unmarshals the request body into the context request data Payload field.
 func unmarshalUpdateMemosAdminPayload(ctx context.Context, service *goa.Service, req *http.Request) error {
-	payload := &memoPayload{}
+	payload := &adminMemoPayload{}
 	if err := service.DecodeRequest(req, payload); err != nil {
 		return err
 	}

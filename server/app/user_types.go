@@ -14,12 +14,67 @@ import (
 	"github.com/goadesign/goa"
 )
 
+// Memo payload for admin
+type adminMemoPayload struct {
+	// Encoded author_key
+	AuthorKey *string `form:"author_key,omitempty" json:"author_key,omitempty" yaml:"author_key,omitempty" xml:"author_key,omitempty"`
+	// Content of memo
+	Content *string `form:"content,omitempty" json:"content,omitempty" yaml:"content,omitempty" xml:"content,omitempty"`
+	// Shared to public
+	Shared *bool `form:"shared,omitempty" json:"shared,omitempty" yaml:"shared,omitempty" xml:"shared,omitempty"`
+}
+
+// Validate validates the adminMemoPayload type instance.
+func (ut *adminMemoPayload) Validate() (err error) {
+	if ut.Content == nil {
+		err = goa.MergeErrors(err, goa.MissingAttributeError(`request`, "content"))
+	}
+	if ut.AuthorKey == nil {
+		err = goa.MergeErrors(err, goa.MissingAttributeError(`request`, "author_key"))
+	}
+	return
+}
+
+// Publicize creates AdminMemoPayload from adminMemoPayload
+func (ut *adminMemoPayload) Publicize() *AdminMemoPayload {
+	var pub AdminMemoPayload
+	if ut.AuthorKey != nil {
+		pub.AuthorKey = *ut.AuthorKey
+	}
+	if ut.Content != nil {
+		pub.Content = *ut.Content
+	}
+	if ut.Shared != nil {
+		pub.Shared = ut.Shared
+	}
+	return &pub
+}
+
+// Memo payload for admin
+type AdminMemoPayload struct {
+	// Encoded author_key
+	AuthorKey string `form:"author_key" json:"author_key" yaml:"author_key" xml:"author_key"`
+	// Content of memo
+	Content string `form:"content" json:"content" yaml:"content" xml:"content"`
+	// Shared to public
+	Shared *bool `form:"shared,omitempty" json:"shared,omitempty" yaml:"shared,omitempty" xml:"shared,omitempty"`
+}
+
+// Validate validates the AdminMemoPayload type instance.
+func (ut *AdminMemoPayload) Validate() (err error) {
+	if ut.Content == "" {
+		err = goa.MergeErrors(err, goa.MissingAttributeError(`type`, "content"))
+	}
+	if ut.AuthorKey == "" {
+		err = goa.MergeErrors(err, goa.MissingAttributeError(`type`, "author_key"))
+	}
+	return
+}
+
 // memoPayload user type.
 type memoPayload struct {
 	// Content of memo
 	Content *string `form:"content,omitempty" json:"content,omitempty" yaml:"content,omitempty" xml:"content,omitempty"`
-	// Auther name
-	CreatedBy *string `form:"created_by,omitempty" json:"created_by,omitempty" yaml:"created_by,omitempty" xml:"created_by,omitempty"`
 	// Shared to public
 	Shared *bool `form:"shared,omitempty" json:"shared,omitempty" yaml:"shared,omitempty" xml:"shared,omitempty"`
 }
@@ -38,9 +93,6 @@ func (ut *memoPayload) Publicize() *MemoPayload {
 	if ut.Content != nil {
 		pub.Content = *ut.Content
 	}
-	if ut.CreatedBy != nil {
-		pub.CreatedBy = ut.CreatedBy
-	}
 	if ut.Shared != nil {
 		pub.Shared = ut.Shared
 	}
@@ -51,8 +103,6 @@ func (ut *memoPayload) Publicize() *MemoPayload {
 type MemoPayload struct {
 	// Content of memo
 	Content string `form:"content" json:"content" yaml:"content" xml:"content"`
-	// Auther name
-	CreatedBy *string `form:"created_by,omitempty" json:"created_by,omitempty" yaml:"created_by,omitempty" xml:"created_by,omitempty"`
 	// Shared to public
 	Shared *bool `form:"shared,omitempty" json:"shared,omitempty" yaml:"shared,omitempty" xml:"shared,omitempty"`
 }

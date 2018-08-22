@@ -379,7 +379,7 @@ type CreateMemosAdminContext struct {
 	context.Context
 	*goa.ResponseData
 	*goa.RequestData
-	Payload *MemoPayload
+	Payload *AdminMemoPayload
 }
 
 // NewCreateMemosAdminContext parses the incoming request URL and body, performs validations and creates the
@@ -591,7 +591,7 @@ type UpdateMemosAdminContext struct {
 	*goa.ResponseData
 	*goa.RequestData
 	ID      string
-	Payload *MemoPayload
+	Payload *AdminMemoPayload
 }
 
 // NewUpdateMemosAdminContext parses the incoming request URL and body, performs validations and creates the

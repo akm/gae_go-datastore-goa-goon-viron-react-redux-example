@@ -28,7 +28,7 @@ import (
 // It returns the response writer so it's possible to inspect the response headers and the media type struct written to the response.
 // If ctx is nil then context.Background() is used.
 // If service is nil then a default service is created.
-func CreateMemosAdminBadRequest(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosAdminController, payload *app.MemoPayload) (http.ResponseWriter, error) {
+func CreateMemosAdminBadRequest(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosAdminController, payload *app.AdminMemoPayload) (http.ResponseWriter, error) {
 	// Setup service
 	var (
 		logBuf bytes.Buffer
@@ -107,7 +107,7 @@ func CreateMemosAdminBadRequest(t goatest.TInterface, ctx context.Context, servi
 // It returns the response writer so it's possible to inspect the response headers and the media type struct written to the response.
 // If ctx is nil then context.Background() is used.
 // If service is nil then a default service is created.
-func CreateMemosAdminConflict(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosAdminController, payload *app.MemoPayload) (http.ResponseWriter, error) {
+func CreateMemosAdminConflict(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosAdminController, payload *app.AdminMemoPayload) (http.ResponseWriter, error) {
 	// Setup service
 	var (
 		logBuf bytes.Buffer
@@ -186,7 +186,7 @@ func CreateMemosAdminConflict(t goatest.TInterface, ctx context.Context, service
 // It returns the response writer so it's possible to inspect the response headers and the media type struct written to the response.
 // If ctx is nil then context.Background() is used.
 // If service is nil then a default service is created.
-func CreateMemosAdminCreated(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosAdminController, payload *app.MemoPayload) (http.ResponseWriter, *app.Memo) {
+func CreateMemosAdminCreated(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosAdminController, payload *app.AdminMemoPayload) (http.ResponseWriter, *app.Memo) {
 	// Setup service
 	var (
 		logBuf bytes.Buffer
@@ -271,7 +271,7 @@ func CreateMemosAdminCreated(t goatest.TInterface, ctx context.Context, service 
 // It returns the response writer so it's possible to inspect the response headers and the media type struct written to the response.
 // If ctx is nil then context.Background() is used.
 // If service is nil then a default service is created.
-func CreateMemosAdminInternalServerError(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosAdminController, payload *app.MemoPayload) (http.ResponseWriter, error) {
+func CreateMemosAdminInternalServerError(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosAdminController, payload *app.AdminMemoPayload) (http.ResponseWriter, error) {
 	// Setup service
 	var (
 		logBuf bytes.Buffer
@@ -350,7 +350,7 @@ func CreateMemosAdminInternalServerError(t goatest.TInterface, ctx context.Conte
 // It returns the response writer so it's possible to inspect the response headers and the media type struct written to the response.
 // If ctx is nil then context.Background() is used.
 // If service is nil then a default service is created.
-func CreateMemosAdminNotFound(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosAdminController, payload *app.MemoPayload) (http.ResponseWriter, error) {
+func CreateMemosAdminNotFound(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosAdminController, payload *app.AdminMemoPayload) (http.ResponseWriter, error) {
 	// Setup service
 	var (
 		logBuf bytes.Buffer
@@ -429,7 +429,7 @@ func CreateMemosAdminNotFound(t goatest.TInterface, ctx context.Context, service
 // It returns the response writer so it's possible to inspect the response headers and the media type struct written to the response.
 // If ctx is nil then context.Background() is used.
 // If service is nil then a default service is created.
-func CreateMemosAdminUnauthorized(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosAdminController, payload *app.MemoPayload) (http.ResponseWriter, error) {
+func CreateMemosAdminUnauthorized(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosAdminController, payload *app.AdminMemoPayload) (http.ResponseWriter, error) {
 	// Setup service
 	var (
 		logBuf bytes.Buffer
@@ -1340,7 +1340,7 @@ func ListMemosAdminUnauthorized(t goatest.TInterface, ctx context.Context, servi
 // It returns the response writer so it's possible to inspect the response headers and the media type struct written to the response.
 // If ctx is nil then context.Background() is used.
 // If service is nil then a default service is created.
-func UpdateMemosAdminBadRequest(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosAdminController, id string, payload *app.MemoPayload) (http.ResponseWriter, error) {
+func UpdateMemosAdminBadRequest(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosAdminController, id string, payload *app.AdminMemoPayload) (http.ResponseWriter, error) {
 	// Setup service
 	var (
 		logBuf bytes.Buffer
@@ -1420,7 +1420,7 @@ func UpdateMemosAdminBadRequest(t goatest.TInterface, ctx context.Context, servi
 // It returns the response writer so it's possible to inspect the response headers and the media type struct written to the response.
 // If ctx is nil then context.Background() is used.
 // If service is nil then a default service is created.
-func UpdateMemosAdminConflict(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosAdminController, id string, payload *app.MemoPayload) (http.ResponseWriter, error) {
+func UpdateMemosAdminConflict(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosAdminController, id string, payload *app.AdminMemoPayload) (http.ResponseWriter, error) {
 	// Setup service
 	var (
 		logBuf bytes.Buffer
@@ -1500,7 +1500,7 @@ func UpdateMemosAdminConflict(t goatest.TInterface, ctx context.Context, service
 // It returns the response writer so it's possible to inspect the response headers and the media type struct written to the response.
 // If ctx is nil then context.Background() is used.
 // If service is nil then a default service is created.
-func UpdateMemosAdminInternalServerError(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosAdminController, id string, payload *app.MemoPayload) (http.ResponseWriter, error) {
+func UpdateMemosAdminInternalServerError(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosAdminController, id string, payload *app.AdminMemoPayload) (http.ResponseWriter, error) {
 	// Setup service
 	var (
 		logBuf bytes.Buffer
@@ -1580,7 +1580,7 @@ func UpdateMemosAdminInternalServerError(t goatest.TInterface, ctx context.Conte
 // It returns the response writer so it's possible to inspect the response headers and the media type struct written to the response.
 // If ctx is nil then context.Background() is used.
 // If service is nil then a default service is created.
-func UpdateMemosAdminNotFound(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosAdminController, id string, payload *app.MemoPayload) (http.ResponseWriter, error) {
+func UpdateMemosAdminNotFound(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosAdminController, id string, payload *app.AdminMemoPayload) (http.ResponseWriter, error) {
 	// Setup service
 	var (
 		logBuf bytes.Buffer
@@ -1660,7 +1660,7 @@ func UpdateMemosAdminNotFound(t goatest.TInterface, ctx context.Context, service
 // It returns the response writer so it's possible to inspect the response headers and the media type struct written to the response.
 // If ctx is nil then context.Background() is used.
 // If service is nil then a default service is created.
-func UpdateMemosAdminOK(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosAdminController, id string, payload *app.MemoPayload) (http.ResponseWriter, *app.Memo) {
+func UpdateMemosAdminOK(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosAdminController, id string, payload *app.AdminMemoPayload) (http.ResponseWriter, *app.Memo) {
 	// Setup service
 	var (
 		logBuf bytes.Buffer
@@ -1746,7 +1746,7 @@ func UpdateMemosAdminOK(t goatest.TInterface, ctx context.Context, service *goa.
 // It returns the response writer so it's possible to inspect the response headers and the media type struct written to the response.
 // If ctx is nil then context.Background() is used.
 // If service is nil then a default service is created.
-func UpdateMemosAdminUnauthorized(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosAdminController, id string, payload *app.MemoPayload) (http.ResponseWriter, error) {
+func UpdateMemosAdminUnauthorized(t goatest.TInterface, ctx context.Context, service *goa.Service, ctrl app.MemosAdminController, id string, payload *app.AdminMemoPayload) (http.ResponseWriter, error) {
 	// Setup service
 	var (
 		logBuf bytes.Buffer

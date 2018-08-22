@@ -25,7 +25,7 @@ func CreateMemosAdminPath() string {
 }
 
 // create
-func (c *Client) CreateMemosAdmin(ctx context.Context, path string, payload *MemoPayload, contentType string) (*http.Response, error) {
+func (c *Client) CreateMemosAdmin(ctx context.Context, path string, payload *AdminMemoPayload, contentType string) (*http.Response, error) {
 	req, err := c.NewCreateMemosAdminRequest(ctx, path, payload, contentType)
 	if err != nil {
 		return nil, err
@@ -34,7 +34,7 @@ func (c *Client) CreateMemosAdmin(ctx context.Context, path string, payload *Mem
 }
 
 // NewCreateMemosAdminRequest create the request corresponding to the create action endpoint of the memos_admin resource.
-func (c *Client) NewCreateMemosAdminRequest(ctx context.Context, path string, payload *MemoPayload, contentType string) (*http.Request, error) {
+func (c *Client) NewCreateMemosAdminRequest(ctx context.Context, path string, payload *AdminMemoPayload, contentType string) (*http.Request, error) {
 	var body bytes.Buffer
 	if contentType == "" {
 		contentType = "*/*" // Use default encoder
@@ -128,7 +128,7 @@ func UpdateMemosAdminPath(id string) string {
 }
 
 // update
-func (c *Client) UpdateMemosAdmin(ctx context.Context, path string, payload *MemoPayload, contentType string) (*http.Response, error) {
+func (c *Client) UpdateMemosAdmin(ctx context.Context, path string, payload *AdminMemoPayload, contentType string) (*http.Response, error) {
 	req, err := c.NewUpdateMemosAdminRequest(ctx, path, payload, contentType)
 	if err != nil {
 		return nil, err
@@ -137,7 +137,7 @@ func (c *Client) UpdateMemosAdmin(ctx context.Context, path string, payload *Mem
 }
 
 // NewUpdateMemosAdminRequest create the request corresponding to the update action endpoint of the memos_admin resource.
-func (c *Client) NewUpdateMemosAdminRequest(ctx context.Context, path string, payload *MemoPayload, contentType string) (*http.Request, error) {
+func (c *Client) NewUpdateMemosAdminRequest(ctx context.Context, path string, payload *AdminMemoPayload, contentType string) (*http.Request, error) {
 	var body bytes.Buffer
 	if contentType == "" {
 		contentType = "*/*" // Use default encoder

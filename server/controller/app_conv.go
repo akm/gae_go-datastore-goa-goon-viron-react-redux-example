@@ -16,7 +16,6 @@ func MemoPayloadToModel(src *app.MemoPayload) model.Memo {
 		// AutherKey no payload field
 		// CreatedAt no payload field
 		// UpdatedAt no payload field
-		// No model field for payload field "created_by"
 	}
 }
 

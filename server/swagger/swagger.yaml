@@ -4,14 +4,38 @@ consumes:
 - application/gob
 - application/x-gob
 definitions:
+  AdminMemoPayload:
+    description: Memo payload for admin
+    example:
+      author_key: Et quia consequatur est quas.
+      content: Quae distinctio quaerat cum amet sed exercitationem.
+      shared: true
+    properties:
+      author_key:
+        description: Encoded author_key
+        example: Et quia consequatur est quas.
+        type: string
+      content:
+        description: Content of memo
+        example: Quae distinctio quaerat cum amet sed exercitationem.
+        type: string
+      shared:
+        description: Shared to public
+        example: true
+        type: boolean
+    required:
+    - content
+    - author_key
+    title: AdminMemoPayload
+    type: object
   Memo:
     description: Memo (default view)
     example:
       content: Harum ratione.
       created_at: "1978-07-31T11:14:35Z"
-      id: Iure non culpa sed officia.
+      id: Blanditiis numquam consequatur.
       shared: true
-      updated_at: "2006-03-10T01:02:07Z"
+      updated_at: "2007-03-31T16:05:01Z"
     properties:
       content:
         description: Content of memo
@@ -23,7 +47,7 @@ definitions:
         format: date-time
         type: string
       id:
-        example: Iure non culpa sed officia.
+        example: Blanditiis numquam consequatur.
         type: string
       shared:
         description: Shared to public
@@ -31,7 +55,7 @@ definitions:
         type: boolean
       updated_at:
         description: Time when memo is updated
-        example: "2006-03-10T01:02:07Z"
+        example: "2007-03-31T16:05:01Z"
         format: date-time
         type: string
     required:
@@ -47,35 +71,25 @@ definitions:
     example:
     - content: Harum ratione.
       created_at: "1978-07-31T11:14:35Z"
-      id: Iure non culpa sed officia.
+      id: Blanditiis numquam consequatur.
       shared: true
-      updated_at: "2006-03-10T01:02:07Z"
-    - content: Harum ratione.
-      created_at: "1978-07-31T11:14:35Z"
-      id: Iure non culpa sed officia.
-      shared: true
-      updated_at: "2006-03-10T01:02:07Z"
+      updated_at: "2007-03-31T16:05:01Z"
     items:
       $ref: '#/definitions/Memo'
     title: 'Mediatype identifier: application/vnd.memo+json; type=collection; view=default'
     type: array
   MemoPayload:
     example:
-      content: Consequatur est quas repudiandae quae distinctio quaerat.
-      created_by: Amet sed.
-      shared: false
+      content: Sed officia.
+      shared: true
     properties:
       content:
         description: Content of memo
-        example: Consequatur est quas repudiandae quae distinctio quaerat.
-        type: string
-      created_by:
-        description: Auther name
-        example: Amet sed.
+        example: Sed officia.
         type: string
       shared:
         description: Shared to public
-        example: false
+        example: true
         type: boolean
     required:
     - content
@@ -165,11 +179,12 @@ paths:
       description: create
       operationId: memos_admin#create
       parameters:
-      - in: body
+      - description: Memo payload for admin
+        in: body
         name: payload
         required: true
         schema:
-          $ref: '#/definitions/MemoPayload'
+          $ref: '#/definitions/AdminMemoPayload'
       produces:
       - application/vnd.goa.error
       - application/vnd.memo+json
@@ -253,11 +268,12 @@ paths:
         name: id
         required: true
         type: string
-      - in: body
+      - description: Memo payload for admin
+        in: body
         name: payload
         required: true
         schema:
-          $ref: '#/definitions/MemoPayload'
+          $ref: '#/definitions/AdminMemoPayload'
       produces:
       - application/vnd.goa.error
       - application/vnd.memo+json
