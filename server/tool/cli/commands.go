@@ -77,7 +77,7 @@ func RegisterCommands(app *cobra.Command, c *client.Client) {
 	}
 	tmp1 := new(CreateMemosCommand)
 	sub = &cobra.Command{
-		Use:   `memos ["/memos"]`,
+		Use:   `memos ["/app/memos"]`,
 		Short: ``,
 		Long: `
 
@@ -100,7 +100,7 @@ Payload example:
 	}
 	tmp2 := new(DeleteMemosCommand)
 	sub = &cobra.Command{
-		Use:   `memos ["/memos/ID"]`,
+		Use:   `memos ["/app/memos/ID"]`,
 		Short: ``,
 		RunE:  func(cmd *cobra.Command, args []string) error { return tmp2.Run(c, args) },
 	}
@@ -114,7 +114,7 @@ Payload example:
 	}
 	tmp3 := new(ListMemosCommand)
 	sub = &cobra.Command{
-		Use:   `memos ["/memos"]`,
+		Use:   `memos ["/app/memos"]`,
 		Short: ``,
 		RunE:  func(cmd *cobra.Command, args []string) error { return tmp3.Run(c, args) },
 	}
@@ -128,7 +128,7 @@ Payload example:
 	}
 	tmp4 := new(ShowMemosCommand)
 	sub = &cobra.Command{
-		Use:   `memos ["/memos/ID"]`,
+		Use:   `memos ["/app/memos/ID"]`,
 		Short: ``,
 		RunE:  func(cmd *cobra.Command, args []string) error { return tmp4.Run(c, args) },
 	}
@@ -142,7 +142,7 @@ Payload example:
 	}
 	tmp5 := new(UpdateMemosCommand)
 	sub = &cobra.Command{
-		Use:   `memos ["/memos/ID"]`,
+		Use:   `memos ["/app/memos/ID"]`,
 		Short: ``,
 		Long: `
 
@@ -392,7 +392,7 @@ func (cmd *CreateMemosCommand) Run(c *client.Client, args []string) error {
 	if len(args) > 0 {
 		path = args[0]
 	} else {
-		path = "/memos"
+		path = "/app/memos"
 	}
 	var payload client.MemoPayload
 	if cmd.Payload != "" {
@@ -425,7 +425,7 @@ func (cmd *DeleteMemosCommand) Run(c *client.Client, args []string) error {
 	if len(args) > 0 {
 		path = args[0]
 	} else {
-		path = fmt.Sprintf("/memos/%v", url.QueryEscape(cmd.ID))
+		path = fmt.Sprintf("/app/memos/%v", url.QueryEscape(cmd.ID))
 	}
 	logger := goa.NewLogger(log.New(os.Stderr, "", log.LstdFlags))
 	ctx := goa.WithLogger(context.Background(), logger)
@@ -451,7 +451,7 @@ func (cmd *ListMemosCommand) Run(c *client.Client, args []string) error {
 	if len(args) > 0 {
 		path = args[0]
 	} else {
-		path = "/memos"
+		path = "/app/memos"
 	}
 	logger := goa.NewLogger(log.New(os.Stderr, "", log.LstdFlags))
 	ctx := goa.WithLogger(context.Background(), logger)
@@ -475,7 +475,7 @@ func (cmd *ShowMemosCommand) Run(c *client.Client, args []string) error {
 	if len(args) > 0 {
 		path = args[0]
 	} else {
-		path = fmt.Sprintf("/memos/%v", url.QueryEscape(cmd.ID))
+		path = fmt.Sprintf("/app/memos/%v", url.QueryEscape(cmd.ID))
 	}
 	logger := goa.NewLogger(log.New(os.Stderr, "", log.LstdFlags))
 	ctx := goa.WithLogger(context.Background(), logger)
@@ -501,7 +501,7 @@ func (cmd *UpdateMemosCommand) Run(c *client.Client, args []string) error {
 	if len(args) > 0 {
 		path = args[0]
 	} else {
-		path = fmt.Sprintf("/memos/%v", url.QueryEscape(cmd.ID))
+		path = fmt.Sprintf("/app/memos/%v", url.QueryEscape(cmd.ID))
 	}
 	var payload client.MemoPayload
 	if cmd.Payload != "" {

@@ -124,7 +124,7 @@ info:
   title: The appengine example
   version: ""
 paths:
-  /memos:
+  /app/memos:
     get:
       description: list
       operationId: memos#list
@@ -203,7 +203,7 @@ paths:
       summary: create memos
       tags:
       - memos
-  /memos/{id}:
+  /app/memos/{id}:
     delete:
       description: delete
       operationId: memos#delete

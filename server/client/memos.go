@@ -21,7 +21,7 @@ import (
 // CreateMemosPath computes a request path to the create action of memos.
 func CreateMemosPath() string {
 
-	return fmt.Sprintf("/memos")
+	return fmt.Sprintf("/app/memos")
 }
 
 // create
@@ -65,7 +65,7 @@ func (c *Client) NewCreateMemosRequest(ctx context.Context, path string, payload
 func DeleteMemosPath(id string) string {
 	param0 := id
 
-	return fmt.Sprintf("/memos/%s", param0)
+	return fmt.Sprintf("/app/memos/%s", param0)
 }
 
 // delete
@@ -94,7 +94,7 @@ func (c *Client) NewDeleteMemosRequest(ctx context.Context, path string) (*http.
 // ListMemosPath computes a request path to the list action of memos.
 func ListMemosPath() string {
 
-	return fmt.Sprintf("/memos")
+	return fmt.Sprintf("/app/memos")
 }
 
 // list
@@ -124,7 +124,7 @@ func (c *Client) NewListMemosRequest(ctx context.Context, path string) (*http.Re
 func ShowMemosPath(id string) string {
 	param0 := id
 
-	return fmt.Sprintf("/memos/%s", param0)
+	return fmt.Sprintf("/app/memos/%s", param0)
 }
 
 // show
@@ -154,7 +154,7 @@ func (c *Client) NewShowMemosRequest(ctx context.Context, path string) (*http.Re
 func UpdateMemosPath(id string) string {
 	param0 := id
 
-	return fmt.Sprintf("/memos/%s", param0)
+	return fmt.Sprintf("/app/memos/%s", param0)
 }
 
 // update

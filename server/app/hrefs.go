@@ -18,5 +18,5 @@ import (
 // MemosHref returns the resource href.
 func MemosHref(id interface{}) string {
 	paramid := strings.TrimLeftFunc(fmt.Sprintf("%v", id), func(r rune) bool { return r == '/' })
-	return fmt.Sprintf("/memos/%v", paramid)
+	return fmt.Sprintf("/app/memos/%v", paramid)
 }
