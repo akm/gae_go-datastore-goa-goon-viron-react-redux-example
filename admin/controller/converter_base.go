@@ -2,6 +2,8 @@ package controller
 
 import (
 	"strconv"
+
+	"google.golang.org/appengine/datastore"
 )
 
 func BoolPointerToBool(v *bool) bool {
@@ -57,4 +59,27 @@ func Int64ToString(v int64) string {
 func Int64ToStringPointer(v int64) *string {
 	s := Int64ToString(v)
 	return &s
+}
+
+func StringToDatastoreKey(v string) (*datastore.Key, error) {
+	return datastore.DecodeKey(v)
+}
+
+func StringPointerToDatastoreKey(v *string) (*datastore.Key, error) {
+	if v == nil {
+		return nil, nil
+	}
+	return StringToDatastoreKey(*v)
+}
+
+func DatastoreKeyToString(key *datastore.Key) (string, error) {
+	if key == nil {
+		return "", nil
+	}
+	return key.Encode(), nil
+}
+
+func DatastoreKeyToStringPointer(key *datastore.Key) (*string, error) {
+	s, err := DatastoreKeyToString(key)
+	return &s, err
 }
