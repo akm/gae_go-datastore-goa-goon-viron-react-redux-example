@@ -43,7 +43,7 @@ var _ = API("appengine", func() {
 var MemoPayload = Type("MemoPayload", func() {
 	Member("content", String, "Content of memo")
 	Member("shared", Boolean, "Shared to public")
-	Member("created_by", String, "Auther name")
+	Member("created_by", String, "Author name")
 	Required("content")
 })
 
@@ -54,7 +54,7 @@ var Memo = MediaType("application/vnd.memo+json", func() {
 	Reference(MemoPayload)
 	Attributes(func() {
 		Attribute("id")
-		Attribute("auther_email", String, "Auther email")
+		Attribute("author_email", String, "Author email")
 		Attribute("content")
 		Attribute("shared")
 		Attribute("created_by")
