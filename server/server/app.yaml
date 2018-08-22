@@ -3,6 +3,13 @@ runtime: go
 api_version: go1.9
 
 handlers:
+- url: /swagger.json
+  script: _go_app
+- url: /viron_authtype
+  script: _go_app
+- url: /viron
+  script: _go_app
+
 - url: /.*
   script: _go_app
   login: required
