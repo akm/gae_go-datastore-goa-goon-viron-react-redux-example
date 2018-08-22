@@ -1,0 +1,6 @@
+---
+go_package: github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/admin
+swagger_yaml: "./swagger/swagger.yaml"
+gofmt_disabled: false
+model_dir: "./model"
+controller_dir: "./controller"
