@@ -28,8 +28,8 @@
     ```
 1. Send some requests
    ```
-   post("/memos", {content: "Memo#1", shared: false})
-   get("/memos")
+   post("/app/memos", {content: "Memo#1", shared: false})
+   get("/app/memos")
    ```
 
 
