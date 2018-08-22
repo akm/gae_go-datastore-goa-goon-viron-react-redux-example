@@ -124,6 +124,173 @@ info:
   title: The appengine example
   version: ""
 paths:
+  /admin/memos:
+    get:
+      description: list
+      operationId: memos_admin#list
+      produces:
+      - application/vnd.goa.error
+      - application/vnd.memo+json; type=collection
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/MemoCollection'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/error'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/error'
+      schemes:
+      - http
+      summary: list memos_admin
+      tags:
+      - memos_admin
+    post:
+      description: create
+      operationId: memos_admin#create
+      parameters:
+      - in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/MemoPayload'
+      produces:
+      - application/vnd.goa.error
+      - application/vnd.memo+json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/Memo'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/error'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/error'
+      schemes:
+      - http
+      summary: create memos_admin
+      tags:
+      - memos_admin
+  /admin/memos/{id}:
+    delete:
+      description: delete
+      operationId: memos_admin#delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/vnd.goa.error
+      - application/vnd.memo+json
+      responses:
+        "204":
+          description: No Content
+          schema:
+            $ref: '#/definitions/Memo'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/error'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/error'
+      schemes:
+      - http
+      summary: delete memos_admin
+      tags:
+      - memos_admin
+    put:
+      description: update
+      operationId: memos_admin#update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        type: string
+      - in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/MemoPayload'
+      produces:
+      - application/vnd.goa.error
+      - application/vnd.memo+json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Memo'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/error'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/error'
+      schemes:
+      - http
+      summary: update memos_admin
+      tags:
+      - memos_admin
   /app/memos:
     get:
       description: list

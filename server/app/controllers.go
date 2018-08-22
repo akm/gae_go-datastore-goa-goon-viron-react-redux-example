@@ -197,6 +197,154 @@ func unmarshalUpdateMemosPayload(ctx context.Context, service *goa.Service, req 
 	return nil
 }
 
+// MemosAdminController is the controller interface for the MemosAdmin actions.
+type MemosAdminController interface {
+	goa.Muxer
+	Create(*CreateMemosAdminContext) error
+	Delete(*DeleteMemosAdminContext) error
+	List(*ListMemosAdminContext) error
+	Update(*UpdateMemosAdminContext) error
+}
+
+// MountMemosAdminController "mounts" a MemosAdmin resource controller on the given service.
+func MountMemosAdminController(service *goa.Service, ctrl MemosAdminController) {
+	initService(service)
+	var h goa.Handler
+	service.Mux.Handle("OPTIONS", "/admin/memos", ctrl.MuxHandler("preflight", handleMemosAdminOrigin(cors.HandlePreflight()), nil))
+	service.Mux.Handle("OPTIONS", "/admin/memos/:id", ctrl.MuxHandler("preflight", handleMemosAdminOrigin(cors.HandlePreflight()), nil))
+
+	h = func(ctx context.Context, rw http.ResponseWriter, req *http.Request) error {
+		// Check if there was an error loading the request
+		if err := goa.ContextError(ctx); err != nil {
+			return err
+		}
+		// Build the context
+		rctx, err := NewCreateMemosAdminContext(ctx, req, service)
+		if err != nil {
+			return err
+		}
+		// Build the payload
+		if rawPayload := goa.ContextRequest(ctx).Payload; rawPayload != nil {
+			rctx.Payload = rawPayload.(*MemoPayload)
+		} else {
+			return goa.MissingPayloadError()
+		}
+		return ctrl.Create(rctx)
+	}
+	h = handleMemosAdminOrigin(h)
+	service.Mux.Handle("POST", "/admin/memos", ctrl.MuxHandler("create", h, unmarshalCreateMemosAdminPayload))
+	service.LogInfo("mount", "ctrl", "MemosAdmin", "action", "Create", "route", "POST /admin/memos")
+
+	h = func(ctx context.Context, rw http.ResponseWriter, req *http.Request) error {
+		// Check if there was an error loading the request
+		if err := goa.ContextError(ctx); err != nil {
+			return err
+		}
+		// Build the context
+		rctx, err := NewDeleteMemosAdminContext(ctx, req, service)
+		if err != nil {
+			return err
+		}
+		return ctrl.Delete(rctx)
+	}
+	h = handleMemosAdminOrigin(h)
+	service.Mux.Handle("DELETE", "/admin/memos/:id", ctrl.MuxHandler("delete", h, nil))
+	service.LogInfo("mount", "ctrl", "MemosAdmin", "action", "Delete", "route", "DELETE /admin/memos/:id")
+
+	h = func(ctx context.Context, rw http.ResponseWriter, req *http.Request) error {
+		// Check if there was an error loading the request
+		if err := goa.ContextError(ctx); err != nil {
+			return err
+		}
+		// Build the context
+		rctx, err := NewListMemosAdminContext(ctx, req, service)
+		if err != nil {
+			return err
+		}
+		return ctrl.List(rctx)
+	}
+	h = handleMemosAdminOrigin(h)
+	service.Mux.Handle("GET", "/admin/memos", ctrl.MuxHandler("list", h, nil))
+	service.LogInfo("mount", "ctrl", "MemosAdmin", "action", "List", "route", "GET /admin/memos")
+
+	h = func(ctx context.Context, rw http.ResponseWriter, req *http.Request) error {
+		// Check if there was an error loading the request
+		if err := goa.ContextError(ctx); err != nil {
+			return err
+		}
+		// Build the context
+		rctx, err := NewUpdateMemosAdminContext(ctx, req, service)
+		if err != nil {
+			return err
+		}
+		// Build the payload
+		if rawPayload := goa.ContextRequest(ctx).Payload; rawPayload != nil {
+			rctx.Payload = rawPayload.(*MemoPayload)
+		} else {
+			return goa.MissingPayloadError()
+		}
+		return ctrl.Update(rctx)
+	}
+	h = handleMemosAdminOrigin(h)
+	service.Mux.Handle("PUT", "/admin/memos/:id", ctrl.MuxHandler("update", h, unmarshalUpdateMemosAdminPayload))
+	service.LogInfo("mount", "ctrl", "MemosAdmin", "action", "Update", "route", "PUT /admin/memos/:id")
+}
+
+// handleMemosAdminOrigin applies the CORS response headers corresponding to the origin.
+func handleMemosAdminOrigin(h goa.Handler) goa.Handler {
+
+	return func(ctx context.Context, rw http.ResponseWriter, req *http.Request) error {
+		origin := req.Header.Get("Origin")
+		if origin == "" {
+			// Not a CORS request
+			return h(ctx, rw, req)
+		}
+		if cors.MatchOrigin(origin, "*") {
+			ctx = goa.WithLogContext(ctx, "origin", origin)
+			rw.Header().Set("Access-Control-Allow-Origin", origin)
+			rw.Header().Set("Access-Control-Max-Age", "600")
+			rw.Header().Set("Access-Control-Allow-Credentials", "true")
+			if acrm := req.Header.Get("Access-Control-Request-Method"); acrm != "" {
+				// We are handling a preflight request
+				rw.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+			}
+			return h(ctx, rw, req)
+		}
+
+		return h(ctx, rw, req)
+	}
+}
+
+// unmarshalCreateMemosAdminPayload unmarshals the request body into the context request data Payload field.
+func unmarshalCreateMemosAdminPayload(ctx context.Context, service *goa.Service, req *http.Request) error {
+	payload := &memoPayload{}
+	if err := service.DecodeRequest(req, payload); err != nil {
+		return err
+	}
+	if err := payload.Validate(); err != nil {
+		// Initialize payload with private data structure so it can be logged
+		goa.ContextRequest(ctx).Payload = payload
+		return err
+	}
+	goa.ContextRequest(ctx).Payload = payload.Publicize()
+	return nil
+}
+
+// unmarshalUpdateMemosAdminPayload unmarshals the request body into the context request data Payload field.
+func unmarshalUpdateMemosAdminPayload(ctx context.Context, service *goa.Service, req *http.Request) error {
+	payload := &memoPayload{}
+	if err := service.DecodeRequest(req, payload); err != nil {
+		return err
+	}
+	if err := payload.Validate(); err != nil {
+		// Initialize payload with private data structure so it can be logged
+		goa.ContextRequest(ctx).Payload = payload
+		return err
+	}
+	goa.ContextRequest(ctx).Payload = payload.Publicize()
+	return nil
+}
+
 // SwaggerController is the controller interface for the Swagger actions.
 type SwaggerController interface {
 	goa.Muxer
