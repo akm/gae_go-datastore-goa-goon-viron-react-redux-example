@@ -70,7 +70,7 @@ definitions:
         example: Consequatur est quas repudiandae quae distinctio quaerat.
         type: string
       created_by:
-        description: Auther name
+        description: Author name
         example: Amet sed.
         type: string
       shared:
