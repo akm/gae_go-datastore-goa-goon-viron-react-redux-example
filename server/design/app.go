@@ -71,7 +71,7 @@ var Memo = MediaType("application/vnd.memo+json", func() {
 })
 
 var _ = Resource("memos", func() {
-	BasePath("/memos")
+	BasePath("/app/memos")
 	DefaultMedia(Memo)
 
 	Action("list", func() {
