@@ -6,7 +6,7 @@ import (
 
 	"google.golang.org/appengine/datastore"
 
-	"github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/server/model"
+	"github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/api/model"
 )
 
 func (c *MemosController) Member(ctx context.Context, idStr string, badRequest, notFound func(r error) error, f func(*model.Memo) error) error {

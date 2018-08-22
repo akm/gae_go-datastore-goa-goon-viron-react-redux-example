@@ -1,12 +1,12 @@
-//go:generate goagen bootstrap -d github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/server/design
+//go:generate goagen bootstrap -d github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/api/design
 
 package server
 
 import (
 	"net/http"
 
-	"github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/server/app"
-	"github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/server/controller"
+	"github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/api/app"
+	"github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/api/controller"
 	"github.com/goadesign/goa"
 	"github.com/goadesign/goa/middleware"
 )

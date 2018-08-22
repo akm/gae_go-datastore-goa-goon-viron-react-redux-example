@@ -4,8 +4,8 @@
 //
 // Command:
 // $ goagen
-// --design=github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/server/design
-// --out=$(GOPATH)/src/github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/server
+// --design=github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/api/design
+// --out=$(GOPATH)/src/github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/api
 // --version=v1.3.1
 
 package app

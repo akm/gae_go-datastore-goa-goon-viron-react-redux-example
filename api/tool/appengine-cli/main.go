@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/server/client"
-	"github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/server/tool/cli"
+	"github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/api/client"
+	"github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/api/tool/cli"
 	goaclient "github.com/goadesign/goa/client"
 	"github.com/spf13/cobra"
 	"net/http"
