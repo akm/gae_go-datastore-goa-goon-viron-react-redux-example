@@ -3,6 +3,14 @@
 
 [[projects]]
   branch = "master"
+  digest = "1:ef5b0622d834c139454148b8fd0c92bb314828900532b267ae62da9fec109866"
+  name = "github.com/armon/go-metrics"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "3c58d8115a78a6879e5df75ae900846768d36895"
+
+[[projects]]
+  branch = "master"
   digest = "1:376e5a9fdb57657725ff19b4c510c3f5e1f804ab4ab0ff3064d8f4dc01e40fe2"
   name = "github.com/dimfeld/httppath"
   packages = ["."]
@@ -10,16 +18,81 @@
   revision = "ee938bf735983d53694d79138ad9820efff94c92"
 
 [[projects]]
-  digest = "1:23ccf428ff2913b0ac0867811f0c96c075e1f020e70ed71919e41b98e8c6a9d2"
+  digest = "1:8d983343581370768675191a8695f52d663f50a9234c571128f3d146314892cf"
+  name = "github.com/dimfeld/httptreemux"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "7f532489e7739b3d49df5c602bf63549881fe753"
+  version = "v5.0.1"
+
+[[projects]]
+  digest = "1:e1ff887e232b2d8f4f7c7db15a5fac7be418025afc4dda53c59c765dbb5aa6b4"
+  name = "github.com/go-playground/locales"
+  packages = [
+    ".",
+    "currency",
+  ]
+  pruneopts = "UT"
+  revision = "f63010822830b6fe52288ee52d5a1151088ce039"
+  version = "v0.12.1"
+
+[[projects]]
+  digest = "1:e022cf244bcac1b6ef933f1a2e0adcf6a6dfd7b872d8d41e4d4179bb09a87cbc"
+  name = "github.com/go-playground/universal-translator"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "b32fa301c9fe55953584134cb6853a13c87ec0a1"
+  version = "v0.16.0"
+
+[[projects]]
+  digest = "1:d81e6d45cfadc49c3db514ed0245bc6435d86cf5aef73e3ce3e9089fa8d6db1c"
   name = "github.com/goadesign/goa"
   packages = [
+    ".",
+    "client",
+    "cors",
     "design",
     "design/apidsl",
     "dslengine",
+    "goatest",
+    "middleware",
+    "uuid",
   ]
   pruneopts = "UT"
   revision = "e01bb31dd9403fa9d40747e1f93345bc96ea675e"
   version = "v1.4.0"
+
+[[projects]]
+  digest = "1:97df918963298c287643883209a2c3f642e6593379f97ab400c2a2e219ab647d"
+  name = "github.com/golang/protobuf"
+  packages = ["proto"]
+  pruneopts = "UT"
+  revision = "aa810b61a9c79d51363740d207bb46cf8e620ed5"
+  version = "v1.2.0"
+
+[[projects]]
+  branch = "master"
+  digest = "1:2394f5a25132b3868eff44599cc28d44bdd0330806e34c495d754dd052df612b"
+  name = "github.com/hashicorp/go-immutable-radix"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "7f3cd4390caab3250a57f30efdb2a65dd7649ecf"
+
+[[projects]]
+  branch = "master"
+  digest = "1:e0e3eb7886110c57a7c103fbc5fc419b1651d3014655b47b71f26809c2daeb1c"
+  name = "github.com/hashicorp/golang-lru"
+  packages = ["simplelru"]
+  pruneopts = "UT"
+  revision = "0fb14efe8c47ae851c0034ed7a448854d3d34cf3"
+
+[[projects]]
+  digest = "1:870d441fe217b8e689d7949fef6e43efbc787e50f200cb1e70dbca9204a1d6be"
+  name = "github.com/inconshreveable/mousetrap"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "76626ae9c91c4f2a10f34cad8ce83ea42c93bb75"
+  version = "v1.0"
 
 [[projects]]
   branch = "master"
@@ -30,12 +103,27 @@
   revision = "9fbc68a78c4dbc7914e1a23f88f126bea4383b97"
 
 [[projects]]
-  digest = "1:274f67cb6fed9588ea2521ecdac05a6d62a8c51c074c1fccc6a49a40ba80e925"
+  digest = "1:ff6b0586c0621a76832cf783eee58cbb9d9795d2ce8acbc199a4131db11c42a9"
   name = "github.com/satori/go.uuid"
   packages = ["."]
   pruneopts = "UT"
-  revision = "f58768cc1a7a7e77a3bd49e98cdd21419399b6a3"
-  version = "v1.2.0"
+  revision = "36e9d2ebbde5e3f13ab2e25625fd453271d6522e"
+
+[[projects]]
+  digest = "1:645cabccbb4fa8aab25a956cbcbdf6a6845ca736b2c64e197ca7cbb9d210b939"
+  name = "github.com/spf13/cobra"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "ef82de70bb3f60c65fb8eebacbb2d122ef517385"
+  version = "v0.0.3"
+
+[[projects]]
+  digest = "1:dab83a1bbc7ad3d7a6ba1a1cc1760f25ac38cdf7d96a5cdd55cd915a4f5ceaf9"
+  name = "github.com/spf13/pflag"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "9a97c102cda95a86cec2345a6f09f55a939babf5"
+  version = "v1.0.2"
 
 [[projects]]
   branch = "master"
@@ -45,12 +133,61 @@
   pruneopts = "UT"
   revision = "795b5e3961ea1912fde60af417ad85e86acc0d6a"
 
+[[projects]]
+  branch = "master"
+  digest = "1:290b8002a96a5f5c1bd8316884f6e2414f5fb1e46a22bbd5a1ff0d45dc944cb3"
+  name = "golang.org/x/net"
+  packages = [
+    "context",
+    "websocket",
+  ]
+  pruneopts = "UT"
+  revision = "922f4815f713f213882e8ef45e0d315b164d705c"
+
+[[projects]]
+  digest = "1:d50df23e719db5e18aa809ae66440662117c575494261ad905044da281a9d7b1"
+  name = "google.golang.org/appengine"
+  packages = [
+    ".",
+    "datastore",
+    "internal",
+    "internal/app_identity",
+    "internal/base",
+    "internal/datastore",
+    "internal/log",
+    "internal/modules",
+    "internal/remote_api",
+    "log",
+  ]
+  pruneopts = "UT"
+  revision = "b1f26356af11148e710935ed1ac8a7f5702c7612"
+  version = "v1.1.0"
+
+[[projects]]
+  digest = "1:e2f64cca6e235f32cd4c2f9be9ae0cda1f8608fc6fdb68936e8d10e4e0bb074d"
+  name = "gopkg.in/go-playground/validator.v9"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "e69e9a28bb62b977fdc58d051f1bb477b7cbe486"
+  version = "v9.21.0"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
+    "github.com/goadesign/goa",
+    "github.com/goadesign/goa/client",
+    "github.com/goadesign/goa/cors",
     "github.com/goadesign/goa/design",
     "github.com/goadesign/goa/design/apidsl",
+    "github.com/goadesign/goa/goatest",
+    "github.com/goadesign/goa/middleware",
+    "github.com/goadesign/goa/uuid",
+    "github.com/spf13/cobra",
+    "golang.org/x/net/context",
+    "google.golang.org/appengine/datastore",
+    "google.golang.org/appengine/log",
+    "gopkg.in/go-playground/validator.v9",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1
