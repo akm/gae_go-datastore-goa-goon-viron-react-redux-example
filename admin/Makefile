@@ -14,8 +14,9 @@ dep_ensure:
 	@dep ensure
 
 goa_bootstrap:
-	@mv vendor vendor.bak
-	@goagen bootstrap -d $(SERVER_BASE)/design ; mv vendor.bak vendor
+	@mv vendor vendor.bak && \
+	goagen bootstrap -d $(SERVER_BASE)/design && \
+  rm *.go ; mv vendor.bak vendor
 
 init: install bootstrap import
 gen: clean generate import
