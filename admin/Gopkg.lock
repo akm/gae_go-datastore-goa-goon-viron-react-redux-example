@@ -103,6 +103,14 @@
   revision = "9fbc68a78c4dbc7914e1a23f88f126bea4383b97"
 
 [[projects]]
+  branch = "master"
+  digest = "1:e97a6f4c77f71471b34dbc72bf9ffe4f87d083993afebd8e71e758a60b6104ff"
+  name = "github.com/mjibson/goon"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "0c01b4bc4f4970fa6f91409bf7f134a10809219c"
+
+[[projects]]
   digest = "1:ff6b0586c0621a76832cf783eee58cbb9d9795d2ce8acbc199a4131db11c42a9"
   name = "github.com/satori/go.uuid"
   packages = ["."]
@@ -145,7 +153,7 @@
   revision = "922f4815f713f213882e8ef45e0d315b164d705c"
 
 [[projects]]
-  digest = "1:d50df23e719db5e18aa809ae66440662117c575494261ad905044da281a9d7b1"
+  digest = "1:ba5e331331c6e62f192602293340b50dab7aab164339f69d9ae7d0f0aa19ad44"
   name = "google.golang.org/appengine"
   packages = [
     ".",
@@ -155,9 +163,11 @@
     "internal/base",
     "internal/datastore",
     "internal/log",
+    "internal/memcache",
     "internal/modules",
     "internal/remote_api",
     "log",
+    "memcache",
   ]
   pruneopts = "UT"
   revision = "b1f26356af11148e710935ed1ac8a7f5702c7612"
@@ -183,6 +193,7 @@
     "github.com/goadesign/goa/goatest",
     "github.com/goadesign/goa/middleware",
     "github.com/goadesign/goa/uuid",
+    "github.com/mjibson/goon",
     "github.com/spf13/cobra",
     "golang.org/x/net/context",
     "google.golang.org/appengine/datastore",
