@@ -1,6 +1,6 @@
 //go:generate goagen bootstrap -d github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/api/design
 
-package server
+package appengine
 
 import (
 	"net/http"
