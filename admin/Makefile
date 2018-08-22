@@ -59,12 +59,12 @@ goa_controller:
 
 converter: converter_gen
 converter_gen:
-	@goa_model_gen converter ../../api/design/*.yaml
+	@goa_model_gen converter ../api/design/*.yaml
 
 model: model_gen
 model_gen:
 	@mkdir -p ./model
-	@goa_model_gen model ../../api/design/*.yaml
+	@goa_model_gen model ../api/design/*.yaml
 
 clean:
 	@rm -rf app
