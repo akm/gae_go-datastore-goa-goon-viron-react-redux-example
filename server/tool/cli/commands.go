@@ -348,6 +348,20 @@ func (cmd *DownloadCommand) Run(c *client.Client, args []string) error {
 		}
 		goto found
 	}
+	if rpath == "/viron_authtype" {
+		fnf = c.DownloadVironAuthtype
+		if outfile == "" {
+			outfile = "authtype.json"
+		}
+		goto found
+	}
+	if rpath == "/viron" {
+		fnf = c.DownloadViron
+		if outfile == "" {
+			outfile = "menu.json"
+		}
+		goto found
+	}
 	if strings.HasPrefix(rpath, "/swaggerui/") {
 		fnd = c.DownloadSwaggerui
 		rpath = rpath[11:]
