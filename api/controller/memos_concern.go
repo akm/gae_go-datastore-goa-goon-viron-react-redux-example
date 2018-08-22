@@ -23,7 +23,7 @@ func (c *MemosController) Member(ctx context.Context, idStr string, badRequest, 
 			}
 			return err
 		}
-		if !userKey.Equal(m.AutherKey) {
+		if !userKey.Equal(m.AuthorKey) {
 			return notFound(datastore.ErrNoSuchEntity)
 		}
 
