@@ -9,8 +9,8 @@ import (
 
 	"github.com/goadesign/goa"
 
-	"github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/server/app"
-	"github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/server/model"
+	"github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/api/app"
+	"github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/api/model"
 )
 
 // MemosController implements the memos resource.

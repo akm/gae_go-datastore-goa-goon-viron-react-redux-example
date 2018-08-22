@@ -9,7 +9,7 @@ import (
 
 	"github.com/mjibson/goon"
 
-	"github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/server/model"
+	"github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/api/model"
 )
 
 func ByGoogleSignIn(ctx context.Context, f func(*datastore.Key) error) error {

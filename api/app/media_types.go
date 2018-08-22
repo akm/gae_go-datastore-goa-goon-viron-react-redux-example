@@ -4,24 +4,16 @@
 //
 // Command:
 // $ goagen
-// --design=github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/server/design
-// --out=$(GOPATH)/src/github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/server
+// --design=github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/api/design
+// --out=$(GOPATH)/src/github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/api
 // --version=v1.3.1
 
-package client
+package app
 
 import (
 	"github.com/goadesign/goa"
-	"net/http"
 	"time"
 )
-
-// DecodeErrorResponse decodes the ErrorResponse instance encoded in resp body.
-func (c *Client) DecodeErrorResponse(resp *http.Response) (*goa.ErrorResponse, error) {
-	var decoded goa.ErrorResponse
-	err := c.Decoder.Decode(&decoded, resp.Body, resp.Header.Get("Content-Type"))
-	return &decoded, err
-}
 
 // Memo (default view)
 //
@@ -50,13 +42,6 @@ func (mt *Memo) Validate() (err error) {
 	return
 }
 
-// DecodeMemo decodes the Memo instance encoded in resp body.
-func (c *Client) DecodeMemo(resp *http.Response) (*Memo, error) {
-	var decoded Memo
-	err := c.Decoder.Decode(&decoded, resp.Body, resp.Header.Get("Content-Type"))
-	return &decoded, err
-}
-
 // MemoCollection is the media type for an array of Memo (default view)
 //
 // Identifier: application/vnd.memo+json; type=collection; view=default
@@ -72,11 +57,4 @@ func (mt MemoCollection) Validate() (err error) {
 		}
 	}
 	return
-}
-
-// DecodeMemoCollection decodes the MemoCollection instance encoded in resp body.
-func (c *Client) DecodeMemoCollection(resp *http.Response) (MemoCollection, error) {
-	var decoded MemoCollection
-	err := c.Decoder.Decode(&decoded, resp.Body, resp.Header.Get("Content-Type"))
-	return decoded, err
 }

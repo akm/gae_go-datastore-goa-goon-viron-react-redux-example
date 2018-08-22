@@ -4,8 +4,8 @@
 //
 // Command:
 // $ goagen
-// --design=github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/server/design
-// --out=$(GOPATH)/src/github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/server
+// --design=github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/api/design
+// --out=$(GOPATH)/src/github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/api
 // --version=v1.3.1
 
 package cli
@@ -14,7 +14,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/server/client"
+	"github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example/api/client"
 	"github.com/goadesign/goa"
 	goaclient "github.com/goadesign/goa/client"
 	uuid "github.com/goadesign/goa/uuid"

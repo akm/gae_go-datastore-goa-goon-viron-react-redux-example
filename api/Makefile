@@ -3,7 +3,7 @@
 REPO:=github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example
 GAE_PROJECT ?= projectName
 
-SERVER_BASE=$(REPO)/server
+SERVER_BASE=$(REPO)/api
 
 LOCAL_PORT ?= 8080
 
@@ -28,16 +28,16 @@ gen: clean generate import
 #	https://github.com/goadesign/goa/issues/923#issuecomment-290424097
 bootstrap: generate main
 
-main: controller server/main.go
+main: controller appengine/main.go
 
-server/main.go:
+appengine/main.go:
 	@mv vendor vendor.bak
 	@goagen main -d $(SERVER_BASE)/design >/dev/null ; mv vendor.bak vendor
-	@mkdir -p server
-	@mv main.go server
+	@mkdir -p appengine
+	@mv main.go appengine
 	@rm *.go
-	@echo 'server/main.go'
-	@echo '1. Change package from "main" to "server"'
+	@echo 'appengine/main.go'
+	@echo '1. Change package from "main" to "appengine"'
 	@echo '2. Add "net/http" to import section'
 	@echo '3. Add "$(SERVER_BASE)/controller" to import section'
 	@echo '4. Change "func main()" to "func init()"'
@@ -115,7 +115,7 @@ test:
 	goapp test $(SERVER_BASE)/model
 
 build:
-	goapp build $(SERVER_BASE)/server
+	goapp build $(SERVER_BASE)/appengine
 
 deploy:
 	goapp deploy -application $(GAE_PROJECT) ./app
@@ -124,14 +124,14 @@ rollback:
 	appcfg.py rollback ./app -A $(GAE_PROJECT)
 
 local: swaggerui
-	dev_appserver.py --port=$(LOCAL_PORT) --enable_console --skip_sdk_update_check=yes server/app.yaml
-# goapp serve ./server
+	dev_appserver.py --port=$(LOCAL_PORT) --enable_console --skip_sdk_update_check=yes appengine/app.yaml
+# goapp serve ./appengine
 
 local_https: swaggerui
-	dev_appserver.py --port=$(LOCAL_PORT) --enable_console --skip_sdk_update_check=yes server/app.yaml \
+	dev_appserver.py --port=$(LOCAL_PORT) --enable_console --skip_sdk_update_check=yes appengine/app.yaml \
 		--ssl_certificate_path $(SSL_CERTIFICATE_PATH) \
 		--ssl_certificate_key_path $(SSL_CERTIFICATE_KEY_PATH)
-# goapp serve ./server
+# goapp serve ./appengine
 
 viron:
 	git clone git@github.com:cam-inc/viron.git && \
