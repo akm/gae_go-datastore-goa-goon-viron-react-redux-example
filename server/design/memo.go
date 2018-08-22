@@ -8,7 +8,6 @@ import (
 var MemoPayload = Type("MemoPayload", func() {
 	Member("content", String, "Content of memo")
 	Member("shared", Boolean, "Shared to public")
-	Member("created_by", String, "Auther name")
 	Required("content")
 })
 
@@ -22,7 +21,6 @@ var Memo = MediaType("application/vnd.memo+json", func() {
 		Attribute("auther_email", String, "Auther email")
 		Attribute("content")
 		Attribute("shared")
-		Attribute("created_by")
 		Attribute("created_at", DateTime, "Time when memo is created")
 		Attribute("updated_at", DateTime, "Time when memo is updated")
 		Required(attrNames...)
