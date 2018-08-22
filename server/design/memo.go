@@ -83,3 +83,43 @@ var _ = Resource("memos", func() {
 	})
 
 })
+
+var _ = Resource("memos_admin", func() {
+	BasePath("/admin/memos")
+	DefaultMedia(Memo)
+
+	Action("list", func() {
+		Description("list")
+		Routing(GET(""))
+		Response(OK, CollectionOf(Memo))
+		UseTrait(DefaultResponseTrait)
+	})
+
+	Action("create", func() {
+		Description("create")
+		Routing(POST(""))
+		Payload(MemoPayload)
+		Response(Created, Memo)
+		UseTrait(DefaultResponseTrait)
+	})
+	Action("update", func() {
+		Description("update")
+		Routing(PUT("/:id"))
+		Params(func() {
+			Param("id")
+		})
+		Payload(MemoPayload)
+		Response(OK, Memo)
+		UseTrait(DefaultResponseTrait)
+	})
+	Action("delete", func() {
+		Description("delete")
+		Routing(DELETE("/:id"))
+		Params(func() {
+			Param("id")
+		})
+		Response(NoContent, Memo)
+		UseTrait(DefaultResponseTrait)
+	})
+
+})
