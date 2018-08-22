@@ -242,6 +242,7 @@ func handleSwaggerOrigin(h goa.Handler) goa.Handler {
 			if acrm := req.Header.Get("Access-Control-Request-Method"); acrm != "" {
 				// We are handling a preflight request
 				rw.Header().Set("Access-Control-Allow-Methods", "OPTIONS, GET")
+				rw.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
 			}
 			return h(ctx, rw, req)
 		}
@@ -290,6 +291,7 @@ func handleVironOrigin(h goa.Handler) goa.Handler {
 			if acrm := req.Header.Get("Access-Control-Request-Method"); acrm != "" {
 				// We are handling a preflight request
 				rw.Header().Set("Access-Control-Allow-Methods", "GET")
+				rw.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
 			}
 			return h(ctx, rw, req)
 		}
