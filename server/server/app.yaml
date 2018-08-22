@@ -10,7 +10,7 @@ handlers:
 - url: /viron
   script: _go_app
 
-- url: /.*
+- url: /app/.*
   script: _go_app
   login: required
 
