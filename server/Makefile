@@ -127,6 +127,12 @@ local: swaggerui
 	dev_appserver.py --port=$(LOCAL_PORT) --enable_console --skip_sdk_update_check=yes server/app.yaml
 # goapp serve ./server
 
+local_https: swaggerui
+	dev_appserver.py --port=$(LOCAL_PORT) --enable_console --skip_sdk_update_check=yes server/app.yaml \
+		--ssl_certificate_path $(SSL_CERTIFICATE_PATH) \
+		--ssl_certificate_key_path $(SSL_CERTIFICATE_KEY_PATH)
+# goapp serve ./server
+
 viron:
 	git clone git@github.com:cam-inc/viron.git
 
