@@ -241,7 +241,7 @@ func handleSwaggerOrigin(h goa.Handler) goa.Handler {
 			rw.Header().Set("Access-Control-Allow-Credentials", "false")
 			if acrm := req.Header.Get("Access-Control-Request-Method"); acrm != "" {
 				// We are handling a preflight request
-				rw.Header().Set("Access-Control-Allow-Methods", "GET")
+				rw.Header().Set("Access-Control-Allow-Methods", "OPTIONS, GET")
 			}
 			return h(ctx, rw, req)
 		}
