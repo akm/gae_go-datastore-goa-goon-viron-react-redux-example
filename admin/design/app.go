@@ -28,6 +28,7 @@ var _ = API("appengine", func() {
 	Origin("*", func() {
 		Methods("GET", "POST", "PUT", "DELETE", "OPTIONS")
 		MaxAge(600)
+		Headers("Content-Type", "Authorization") // These are required by Viron on browser
 		Credentials()
 	})
 
