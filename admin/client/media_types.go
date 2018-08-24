@@ -95,7 +95,8 @@ type User struct {
 	// Auth Domain
 	AuthDomain string `form:"auth_domain" json:"auth_domain" yaml:"auth_domain" xml:"auth_domain"`
 	// Client ID
-	ClientID string `form:"client_id" json:"client_id" yaml:"client_id" xml:"client_id"`
+	ClientID  string    `form:"client_id" json:"client_id" yaml:"client_id" xml:"client_id"`
+	CreatedAt time.Time `form:"created_at" json:"created_at" yaml:"created_at" xml:"created_at"`
 	// Email
 	Email string `form:"email" json:"email" yaml:"email" xml:"email"`
 	// FederatedIdentity
@@ -103,7 +104,8 @@ type User struct {
 	// FederatedProvider
 	FederatedProvider string `form:"federated_provider" json:"federated_provider" yaml:"federated_provider" xml:"federated_provider"`
 	// not auto-generated ID
-	ID string `form:"id" json:"id" yaml:"id" xml:"id"`
+	ID        string    `form:"id" json:"id" yaml:"id" xml:"id"`
+	UpdatedAt time.Time `form:"updated_at" json:"updated_at" yaml:"updated_at" xml:"updated_at"`
 }
 
 // Validate validates the User media type instance.
@@ -127,6 +129,7 @@ func (mt *User) Validate() (err error) {
 	if mt.FederatedProvider == "" {
 		err = goa.MergeErrors(err, goa.MissingAttributeError(`response`, "federated_provider"))
 	}
+
 	return
 }
 

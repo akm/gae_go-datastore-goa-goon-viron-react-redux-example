@@ -89,10 +89,12 @@ definitions:
       admin: true
       auth_domain: Officia nihil saepe et quia consequatur est.
       client_id: Repudiandae quae distinctio quaerat.
+      created_at: "1999-08-07T08:46:18Z"
       email: Sed exercitationem impedit.
       federated_identity: Suscipit amet cum.
       federated_provider: Voluptatem et aspernatur et.
       id: Aut et similique consectetur corporis aut ratione.
+      updated_at: "1989-02-14T21:32:02Z"
     properties:
       admin:
         description: Admin
@@ -105,6 +107,10 @@ definitions:
       client_id:
         description: Client ID
         example: Repudiandae quae distinctio quaerat.
+        type: string
+      created_at:
+        example: "1999-08-07T08:46:18Z"
+        format: date-time
         type: string
       email:
         description: Email
@@ -122,6 +128,10 @@ definitions:
         description: not auto-generated ID
         example: Aut et similique consectetur corporis aut ratione.
         type: string
+      updated_at:
+        example: "1989-02-14T21:32:02Z"
+        format: date-time
+        type: string
     required:
     - id
     - email
@@ -130,6 +140,8 @@ definitions:
     - client_id
     - federated_identity
     - federated_provider
+    - created_at
+    - updated_at
     title: 'Mediatype identifier: application/vnd.user+json; view=default'
     type: object
   UserCollection:
@@ -138,17 +150,21 @@ definitions:
     - admin: true
       auth_domain: Officia nihil saepe et quia consequatur est.
       client_id: Repudiandae quae distinctio quaerat.
+      created_at: "1999-08-07T08:46:18Z"
       email: Sed exercitationem impedit.
       federated_identity: Suscipit amet cum.
       federated_provider: Voluptatem et aspernatur et.
       id: Aut et similique consectetur corporis aut ratione.
+      updated_at: "1989-02-14T21:32:02Z"
     - admin: true
       auth_domain: Officia nihil saepe et quia consequatur est.
       client_id: Repudiandae quae distinctio quaerat.
+      created_at: "1999-08-07T08:46:18Z"
       email: Sed exercitationem impedit.
       federated_identity: Suscipit amet cum.
       federated_provider: Voluptatem et aspernatur et.
       id: Aut et similique consectetur corporis aut ratione.
+      updated_at: "1989-02-14T21:32:02Z"
     items:
       $ref: '#/definitions/User'
     title: 'Mediatype identifier: application/vnd.user+json; type=collection; view=default'
