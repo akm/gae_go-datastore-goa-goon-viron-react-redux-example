@@ -49,7 +49,7 @@ var User = MediaType("application/vnd.user+json", func() {
 })
 
 var _ = Resource("users", func() {
-	BasePath("/users")
+	BasePath("/admin/users")
 	DefaultMedia(User)
 
 	Action("list", func() {
