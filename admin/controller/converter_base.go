@@ -61,25 +61,25 @@ func Int64ToStringPointer(v int64) *string {
 	return &s
 }
 
-func StringToDatastoreKey(v string) (*datastore.Key, error) {
+func StringToDatastoreKeyPointer(v string) (*datastore.Key, error) {
 	return datastore.DecodeKey(v)
 }
 
-func StringPointerToDatastoreKey(v *string) (*datastore.Key, error) {
+func StringPointerToDatastoreKeyPointer(v *string) (*datastore.Key, error) {
 	if v == nil {
 		return nil, nil
 	}
-	return StringToDatastoreKey(*v)
+	return StringToDatastoreKeyPointer(*v)
 }
 
-func DatastoreKeyToString(key *datastore.Key) (string, error) {
+func DatastoreKeyPointerToString(key *datastore.Key) (string, error) {
 	if key == nil {
 		return "", nil
 	}
 	return key.Encode(), nil
 }
 
-func DatastoreKeyToStringPointer(key *datastore.Key) (*string, error) {
-	s, err := DatastoreKeyToString(key)
+func DatastoreKeyPointerToStringPointer(key *datastore.Key) (*string, error) {
+	s, err := DatastoreKeyPointerToString(key)
 	return &s, err
 }

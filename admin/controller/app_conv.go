@@ -41,40 +41,39 @@ func UserModelToMediaType(src *model.User) *app.User {
 	}
 }
 
-func MemoPayloadToModel(src *app.MemoPayload) (*model.Memo, error) {
-	r := &model.Memo{}
-	err := CopyFromMemoPayloadToModel(src, r)
-	if err != nil {
+func MemoPayloadToModel(payload *app.MemoPayload) (*model.Memo, error) {
+	model := &model.Memo{}
+	if err := CopyFromMemoPayloadToModel(payload, model); err != nil {
 		return nil, err
 	}
-	return r, nil
+	return model, nil
 }
 
-func CopyFromMemoPayloadToModel(src *app.MemoPayload, r *model.Memo) error {
-	if key, err := StringPointerToDatastoreKey(src.AuthorKey); err != nil {
+func CopyFromMemoPayloadToModel(payload *app.MemoPayload, model *model.Memo) error {
+	if key, err := StringPointerToDatastoreKeyPointer(payload.AuthorKey); err != nil {
 		return err
 	} else {
-		r.AuthorKey = key
+		model.AuthorKey = key
 	}
-	r.Content = src.Content
-	r.Shared = BoolPointerToBool(src.Shared)
+	model.Content = payload.Content
+	model.Shared = BoolPointerToBool(payload.Shared)
 	return nil
 }
 
-func MemoModelToMediaType(src *model.Memo) (*app.Memo, error) {
-	if src == nil {
+func MemoModelToMediaType(model *model.Memo) (*app.Memo, error) {
+	if model == nil {
 		return nil, nil
 	}
 	r := app.Memo{}
-	r.ID = Int64ToString(src.Id)
-	if s, err := DatastoreKeyToString(src.AuthorKey); err != nil {
+	r.ID = Int64ToString(model.Id)
+	if s, err := DatastoreKeyPointerToString(model.AuthorKey); err != nil {
 		return nil, err
 	} else {
 		r.AuthorKey = s
 	}
-	r.Content = src.Content
-	r.Shared = src.Shared
-	r.CreatedAt = src.CreatedAt
-	r.UpdatedAt = src.UpdatedAt
+	r.Content = model.Content
+	r.Shared = model.Shared
+	r.CreatedAt = model.CreatedAt
+	r.UpdatedAt = model.UpdatedAt
 	return &r, nil
 }

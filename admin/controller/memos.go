@@ -27,8 +27,8 @@ func (c *MemosController) Create(ctx *app.CreateMemosContext) error {
 
 	// Put your logic here
 	appCtx := appengine.NewContext(ctx.Request)
-	m, err := MemoPayloadToModel(ctx.Payload)
-	if err != nil {
+	m := &model.Memo{}
+	if err := CopyFromMemoPayloadToModel(ctx.Payload, m); err != nil {
 		return ctx.BadRequest(err)
 	}
 	store := &model.MemoStore{}
