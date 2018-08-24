@@ -45,8 +45,8 @@ type MemosController interface {
 func MountMemosController(service *goa.Service, ctrl MemosController) {
 	initService(service)
 	var h goa.Handler
-	service.Mux.Handle("OPTIONS", "/memos", ctrl.MuxHandler("preflight", handleMemosOrigin(cors.HandlePreflight()), nil))
-	service.Mux.Handle("OPTIONS", "/memos/:id", ctrl.MuxHandler("preflight", handleMemosOrigin(cors.HandlePreflight()), nil))
+	service.Mux.Handle("OPTIONS", "/admin/memos", ctrl.MuxHandler("preflight", handleMemosOrigin(cors.HandlePreflight()), nil))
+	service.Mux.Handle("OPTIONS", "/admin/memos/:id", ctrl.MuxHandler("preflight", handleMemosOrigin(cors.HandlePreflight()), nil))
 
 	h = func(ctx context.Context, rw http.ResponseWriter, req *http.Request) error {
 		// Check if there was an error loading the request
@@ -67,8 +67,8 @@ func MountMemosController(service *goa.Service, ctrl MemosController) {
 		return ctrl.Create(rctx)
 	}
 	h = handleMemosOrigin(h)
-	service.Mux.Handle("POST", "/memos", ctrl.MuxHandler("create", h, unmarshalCreateMemosPayload))
-	service.LogInfo("mount", "ctrl", "Memos", "action", "Create", "route", "POST /memos")
+	service.Mux.Handle("POST", "/admin/memos", ctrl.MuxHandler("create", h, unmarshalCreateMemosPayload))
+	service.LogInfo("mount", "ctrl", "Memos", "action", "Create", "route", "POST /admin/memos")
 
 	h = func(ctx context.Context, rw http.ResponseWriter, req *http.Request) error {
 		// Check if there was an error loading the request
@@ -83,8 +83,8 @@ func MountMemosController(service *goa.Service, ctrl MemosController) {
 		return ctrl.Delete(rctx)
 	}
 	h = handleMemosOrigin(h)
-	service.Mux.Handle("DELETE", "/memos/:id", ctrl.MuxHandler("delete", h, nil))
-	service.LogInfo("mount", "ctrl", "Memos", "action", "Delete", "route", "DELETE /memos/:id")
+	service.Mux.Handle("DELETE", "/admin/memos/:id", ctrl.MuxHandler("delete", h, nil))
+	service.LogInfo("mount", "ctrl", "Memos", "action", "Delete", "route", "DELETE /admin/memos/:id")
 
 	h = func(ctx context.Context, rw http.ResponseWriter, req *http.Request) error {
 		// Check if there was an error loading the request
@@ -99,8 +99,8 @@ func MountMemosController(service *goa.Service, ctrl MemosController) {
 		return ctrl.List(rctx)
 	}
 	h = handleMemosOrigin(h)
-	service.Mux.Handle("GET", "/memos", ctrl.MuxHandler("list", h, nil))
-	service.LogInfo("mount", "ctrl", "Memos", "action", "List", "route", "GET /memos")
+	service.Mux.Handle("GET", "/admin/memos", ctrl.MuxHandler("list", h, nil))
+	service.LogInfo("mount", "ctrl", "Memos", "action", "List", "route", "GET /admin/memos")
 
 	h = func(ctx context.Context, rw http.ResponseWriter, req *http.Request) error {
 		// Check if there was an error loading the request
@@ -121,8 +121,8 @@ func MountMemosController(service *goa.Service, ctrl MemosController) {
 		return ctrl.Update(rctx)
 	}
 	h = handleMemosOrigin(h)
-	service.Mux.Handle("PUT", "/memos/:id", ctrl.MuxHandler("update", h, unmarshalUpdateMemosPayload))
-	service.LogInfo("mount", "ctrl", "Memos", "action", "Update", "route", "PUT /memos/:id")
+	service.Mux.Handle("PUT", "/admin/memos/:id", ctrl.MuxHandler("update", h, unmarshalUpdateMemosPayload))
+	service.LogInfo("mount", "ctrl", "Memos", "action", "Update", "route", "PUT /admin/memos/:id")
 }
 
 // handleMemosOrigin applies the CORS response headers corresponding to the origin.
@@ -259,8 +259,8 @@ type UsersController interface {
 func MountUsersController(service *goa.Service, ctrl UsersController) {
 	initService(service)
 	var h goa.Handler
-	service.Mux.Handle("OPTIONS", "/users", ctrl.MuxHandler("preflight", handleUsersOrigin(cors.HandlePreflight()), nil))
-	service.Mux.Handle("OPTIONS", "/users/:id", ctrl.MuxHandler("preflight", handleUsersOrigin(cors.HandlePreflight()), nil))
+	service.Mux.Handle("OPTIONS", "/admin/users", ctrl.MuxHandler("preflight", handleUsersOrigin(cors.HandlePreflight()), nil))
+	service.Mux.Handle("OPTIONS", "/admin/users/:id", ctrl.MuxHandler("preflight", handleUsersOrigin(cors.HandlePreflight()), nil))
 
 	h = func(ctx context.Context, rw http.ResponseWriter, req *http.Request) error {
 		// Check if there was an error loading the request
@@ -281,8 +281,8 @@ func MountUsersController(service *goa.Service, ctrl UsersController) {
 		return ctrl.Create(rctx)
 	}
 	h = handleUsersOrigin(h)
-	service.Mux.Handle("POST", "/users", ctrl.MuxHandler("create", h, unmarshalCreateUsersPayload))
-	service.LogInfo("mount", "ctrl", "Users", "action", "Create", "route", "POST /users")
+	service.Mux.Handle("POST", "/admin/users", ctrl.MuxHandler("create", h, unmarshalCreateUsersPayload))
+	service.LogInfo("mount", "ctrl", "Users", "action", "Create", "route", "POST /admin/users")
 
 	h = func(ctx context.Context, rw http.ResponseWriter, req *http.Request) error {
 		// Check if there was an error loading the request
@@ -297,8 +297,8 @@ func MountUsersController(service *goa.Service, ctrl UsersController) {
 		return ctrl.Delete(rctx)
 	}
 	h = handleUsersOrigin(h)
-	service.Mux.Handle("DELETE", "/users/:id", ctrl.MuxHandler("delete", h, nil))
-	service.LogInfo("mount", "ctrl", "Users", "action", "Delete", "route", "DELETE /users/:id")
+	service.Mux.Handle("DELETE", "/admin/users/:id", ctrl.MuxHandler("delete", h, nil))
+	service.LogInfo("mount", "ctrl", "Users", "action", "Delete", "route", "DELETE /admin/users/:id")
 
 	h = func(ctx context.Context, rw http.ResponseWriter, req *http.Request) error {
 		// Check if there was an error loading the request
@@ -313,8 +313,8 @@ func MountUsersController(service *goa.Service, ctrl UsersController) {
 		return ctrl.List(rctx)
 	}
 	h = handleUsersOrigin(h)
-	service.Mux.Handle("GET", "/users", ctrl.MuxHandler("list", h, nil))
-	service.LogInfo("mount", "ctrl", "Users", "action", "List", "route", "GET /users")
+	service.Mux.Handle("GET", "/admin/users", ctrl.MuxHandler("list", h, nil))
+	service.LogInfo("mount", "ctrl", "Users", "action", "List", "route", "GET /admin/users")
 
 	h = func(ctx context.Context, rw http.ResponseWriter, req *http.Request) error {
 		// Check if there was an error loading the request
@@ -335,8 +335,8 @@ func MountUsersController(service *goa.Service, ctrl UsersController) {
 		return ctrl.Update(rctx)
 	}
 	h = handleUsersOrigin(h)
-	service.Mux.Handle("PUT", "/users/:id", ctrl.MuxHandler("update", h, unmarshalUpdateUsersPayload))
-	service.LogInfo("mount", "ctrl", "Users", "action", "Update", "route", "PUT /users/:id")
+	service.Mux.Handle("PUT", "/admin/users/:id", ctrl.MuxHandler("update", h, unmarshalUpdateUsersPayload))
+	service.LogInfo("mount", "ctrl", "Users", "action", "Update", "route", "PUT /admin/users/:id")
 }
 
 // handleUsersOrigin applies the CORS response headers corresponding to the origin.

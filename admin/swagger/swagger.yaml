@@ -249,13 +249,13 @@ definitions:
         type: string
     title: 'Mediatype identifier: application/vnd.goa.error; view=default'
     type: object
-host: localhost:8080
+host: localhost:8081
 info:
   description: A simple appengine example
   title: The appengine example
   version: ""
 paths:
-  /memos:
+  /admin/memos:
     get:
       description: list
       operationId: memos#list
@@ -334,7 +334,7 @@ paths:
       summary: create memos
       tags:
       - memos
-  /memos/{id}:
+  /admin/memos/{id}:
     delete:
       description: delete
       operationId: memos#delete
@@ -422,39 +422,7 @@ paths:
       summary: update memos
       tags:
       - memos
-  /swagger.json:
-    get:
-      operationId: swagger#/swagger.json
-      responses:
-        "200":
-          description: File downloaded
-          schema:
-            type: file
-      schemes:
-      - http
-      summary: Download swagger/swagger.json
-  /swaggerui/{filepath}:
-    get:
-      operationId: swagger#/swaggerui/*filepath
-      parameters:
-      - description: Relative file path
-        in: path
-        name: filepath
-        required: true
-        type: string
-      responses:
-        "200":
-          description: File downloaded
-          schema:
-            type: file
-        "404":
-          description: File not found
-          schema:
-            $ref: '#/definitions/error'
-      schemes:
-      - http
-      summary: Download swaggerui/dist
-  /users:
+  /admin/users:
     get:
       description: list
       operationId: users#list
@@ -533,7 +501,7 @@ paths:
       summary: create users
       tags:
       - users
-  /users/{id}:
+  /admin/users/{id}:
     delete:
       description: delete
       operationId: users#delete
@@ -623,6 +591,38 @@ paths:
       summary: update users
       tags:
       - users
+  /swagger.json:
+    get:
+      operationId: swagger#/swagger.json
+      responses:
+        "200":
+          description: File downloaded
+          schema:
+            type: file
+      schemes:
+      - http
+      summary: Download swagger/swagger.json
+  /swaggerui/{filepath}:
+    get:
+      operationId: swagger#/swaggerui/*filepath
+      parameters:
+      - description: Relative file path
+        in: path
+        name: filepath
+        required: true
+        type: string
+      responses:
+        "200":
+          description: File downloaded
+          schema:
+            type: file
+        "404":
+          description: File not found
+          schema:
+            $ref: '#/definitions/error'
+      schemes:
+      - http
+      summary: Download swaggerui/dist
   /viron:
     get:
       operationId: swagger#/viron

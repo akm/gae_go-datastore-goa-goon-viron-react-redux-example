@@ -21,7 +21,7 @@ import (
 // CreateUsersPath computes a request path to the create action of users.
 func CreateUsersPath() string {
 
-	return fmt.Sprintf("/users")
+	return fmt.Sprintf("/admin/users")
 }
 
 // create
@@ -65,7 +65,7 @@ func (c *Client) NewCreateUsersRequest(ctx context.Context, path string, payload
 func DeleteUsersPath(id string) string {
 	param0 := id
 
-	return fmt.Sprintf("/users/%s", param0)
+	return fmt.Sprintf("/admin/users/%s", param0)
 }
 
 // delete
@@ -94,7 +94,7 @@ func (c *Client) NewDeleteUsersRequest(ctx context.Context, path string) (*http.
 // ListUsersPath computes a request path to the list action of users.
 func ListUsersPath() string {
 
-	return fmt.Sprintf("/users")
+	return fmt.Sprintf("/admin/users")
 }
 
 // list
@@ -124,7 +124,7 @@ func (c *Client) NewListUsersRequest(ctx context.Context, path string) (*http.Re
 func UpdateUsersPath(id string) string {
 	param0 := id
 
-	return fmt.Sprintf("/users/%s", param0)
+	return fmt.Sprintf("/admin/users/%s", param0)
 }
 
 // update
