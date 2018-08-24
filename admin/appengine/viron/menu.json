@@ -17,11 +17,36 @@
       "components": []
     },
     {
-      "section": "manage",
-      "group": "user",
-      "id": "user",
-      "name": "ユーザー",
-      "components": []
+      group: "memo",
+      id: "memo",
+      name: "メモ",
+      section: "manage",
+      components: [{
+        name: "メモ",
+        api: {
+          path: "/admin/memos",
+          method: "get",
+        },
+        style: "table",
+        primary: "id",
+        pagination: false
+      }]
+    },
+    {
+      group: "user",
+      id: "user",
+      name: "ユーザー",
+      section: "manage",
+      components: [{
+        name: "ユーザー",
+        api: {
+          path: "/admin/users",
+          method: "get",
+        },
+        style: "table",
+        primary: "id",
+        pagination: false
+      }]
     }
   ]
 }
