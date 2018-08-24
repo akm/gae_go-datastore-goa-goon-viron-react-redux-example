@@ -1,12 +1,12 @@
-# API Server
+# Admin
 
-## Run API Server locally
+## Run API server locally
 
 1. Start local server
     ```
     $ make local
     ```
-1. Open http://localhost:8080/_ah/login
+1. Open http://localhost:8081/_ah/login
 1. Click login
 1. Open developer console of browser
 1. Define methods to send request
@@ -31,3 +31,20 @@
    post("/memos", {content: "Memo#1", shared: false})
    get("/memos")
    ```
+
+
+## Run Viron server locally
+
+1. Start local server
+    ```
+    $ make local
+    ```
+1. Open another terminal
+1. Start MySQL server
+1. Modify viron_local.mysql.env
+1. Start Viron
+    ```
+    $ make run_viron
+    ```
+1. Open https://localhost:8082
+1. Add http://localhost:8081/swagger.json

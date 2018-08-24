@@ -1,0 +1,52 @@
+{
+  "theme": "standard",
+  "color": "white",
+  "name": "Viron example - local",
+  "tags": [
+    "local",
+    "viron",
+    "example"
+  ],
+  "thumbnail": "https://avatars3.githubusercontent.com/u/23251378?v=3&s=200",
+  "pages": [
+    {
+      "section": "dashboard",
+      "group": "",
+      "id": "quickview",
+      "name": "クイックビュー",
+      "components": []
+    },
+    {
+      group: "memo",
+      id: "memo",
+      name: "メモ",
+      section: "manage",
+      components: [{
+        name: "メモ",
+        api: {
+          path: "/admin/memos",
+          method: "get",
+        },
+        style: "table",
+        primary: "id",
+        pagination: false
+      }]
+    },
+    {
+      group: "user",
+      id: "user",
+      name: "ユーザー",
+      section: "manage",
+      components: [{
+        name: "ユーザー",
+        api: {
+          path: "/admin/users",
+          method: "get",
+        },
+        style: "table",
+        primary: "id",
+        pagination: false
+      }]
+    }
+  ]
+}

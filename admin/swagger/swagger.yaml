@@ -1,0 +1,655 @@
+consumes:
+- application/json
+- application/xml
+- application/gob
+- application/x-gob
+definitions:
+  Memo:
+    description: Memo (default view)
+    example:
+      author_key: Hic tenetur ut.
+      content: Harum ratione.
+      created_at: "1978-07-31T11:14:35Z"
+      id: Blanditiis numquam consequatur.
+      shared: true
+      updated_at: "2007-03-31T16:05:01Z"
+    properties:
+      author_key:
+        description: Encoded datastore.Key
+        example: Hic tenetur ut.
+        type: string
+      content:
+        description: Content of memo
+        example: Harum ratione.
+        type: string
+      created_at:
+        description: Time when memo is created
+        example: "1978-07-31T11:14:35Z"
+        format: date-time
+        type: string
+      id:
+        example: Blanditiis numquam consequatur.
+        type: string
+      shared:
+        description: Shared to public
+        example: true
+        type: boolean
+      updated_at:
+        description: Time when memo is updated
+        example: "2007-03-31T16:05:01Z"
+        format: date-time
+        type: string
+    required:
+    - id
+    - author_key
+    - content
+    - shared
+    - created_at
+    - updated_at
+    title: 'Mediatype identifier: application/vnd.memo+json; view=default'
+    type: object
+  MemoCollection:
+    description: MemoCollection is the media type for an array of Memo (default view)
+    example:
+    - author_key: Hic tenetur ut.
+      content: Harum ratione.
+      created_at: "1978-07-31T11:14:35Z"
+      id: Blanditiis numquam consequatur.
+      shared: true
+      updated_at: "2007-03-31T16:05:01Z"
+    items:
+      $ref: '#/definitions/Memo'
+    title: 'Mediatype identifier: application/vnd.memo+json; type=collection; view=default'
+    type: array
+  MemoPayload:
+    example:
+      author_key: Ut iusto pariatur sequi adipisci eius temporibus.
+      content: Quis quibusdam.
+      shared: true
+    properties:
+      author_key:
+        description: Encoded datastore.Key
+        example: Ut iusto pariatur sequi adipisci eius temporibus.
+        type: string
+      content:
+        description: Content of memo
+        example: Quis quibusdam.
+        type: string
+      shared:
+        description: Shared to public
+        example: true
+        type: boolean
+    required:
+    - content
+    title: MemoPayload
+    type: object
+  User:
+    description: User (default view)
+    example:
+      admin: true
+      auth_domain: Officia nihil saepe et quia consequatur est.
+      client_id: Repudiandae quae distinctio quaerat.
+      created_at: "1999-08-07T08:46:18Z"
+      email: Sed exercitationem impedit.
+      federated_identity: Suscipit amet cum.
+      federated_provider: Voluptatem et aspernatur et.
+      id: Aut et similique consectetur corporis aut ratione.
+      updated_at: "1989-02-14T21:32:02Z"
+    properties:
+      admin:
+        description: Admin
+        example: true
+        type: boolean
+      auth_domain:
+        description: Auth Domain
+        example: Officia nihil saepe et quia consequatur est.
+        type: string
+      client_id:
+        description: Client ID
+        example: Repudiandae quae distinctio quaerat.
+        type: string
+      created_at:
+        example: "1999-08-07T08:46:18Z"
+        format: date-time
+        type: string
+      email:
+        description: Email
+        example: Sed exercitationem impedit.
+        type: string
+      federated_identity:
+        description: FederatedIdentity
+        example: Suscipit amet cum.
+        type: string
+      federated_provider:
+        description: FederatedProvider
+        example: Voluptatem et aspernatur et.
+        type: string
+      id:
+        description: not auto-generated ID
+        example: Aut et similique consectetur corporis aut ratione.
+        type: string
+      updated_at:
+        example: "1989-02-14T21:32:02Z"
+        format: date-time
+        type: string
+    required:
+    - id
+    - email
+    - auth_domain
+    - admin
+    - client_id
+    - federated_identity
+    - federated_provider
+    - created_at
+    - updated_at
+    title: 'Mediatype identifier: application/vnd.user+json; view=default'
+    type: object
+  UserCollection:
+    description: UserCollection is the media type for an array of User (default view)
+    example:
+    - admin: true
+      auth_domain: Officia nihil saepe et quia consequatur est.
+      client_id: Repudiandae quae distinctio quaerat.
+      created_at: "1999-08-07T08:46:18Z"
+      email: Sed exercitationem impedit.
+      federated_identity: Suscipit amet cum.
+      federated_provider: Voluptatem et aspernatur et.
+      id: Aut et similique consectetur corporis aut ratione.
+      updated_at: "1989-02-14T21:32:02Z"
+    - admin: true
+      auth_domain: Officia nihil saepe et quia consequatur est.
+      client_id: Repudiandae quae distinctio quaerat.
+      created_at: "1999-08-07T08:46:18Z"
+      email: Sed exercitationem impedit.
+      federated_identity: Suscipit amet cum.
+      federated_provider: Voluptatem et aspernatur et.
+      id: Aut et similique consectetur corporis aut ratione.
+      updated_at: "1989-02-14T21:32:02Z"
+    items:
+      $ref: '#/definitions/User'
+    title: 'Mediatype identifier: application/vnd.user+json; type=collection; view=default'
+    type: array
+  UserPayload:
+    example:
+      admin: false
+      auth_domain: Eum aliquam eaque repellendus consequuntur dignissimos nemo.
+      client_id: Cum veritatis aut odio numquam.
+      email: Non aut illo saepe qui.
+      federated_identity: Quaerat perspiciatis nulla esse enim animi.
+      federated_provider: Nisi veritatis.
+      id: Aliquam eveniet.
+    properties:
+      admin:
+        description: Admin
+        example: false
+        type: boolean
+      auth_domain:
+        description: Auth Domain
+        example: Eum aliquam eaque repellendus consequuntur dignissimos nemo.
+        type: string
+      client_id:
+        description: Client ID
+        example: Cum veritatis aut odio numquam.
+        type: string
+      email:
+        description: Email
+        example: Non aut illo saepe qui.
+        type: string
+      federated_identity:
+        description: FederatedIdentity
+        example: Quaerat perspiciatis nulla esse enim animi.
+        type: string
+      federated_provider:
+        description: FederatedProvider
+        example: Nisi veritatis.
+        type: string
+      id:
+        description: not auto-generated ID
+        example: Aliquam eveniet.
+        type: string
+    required:
+    - id
+    - email
+    title: UserPayload
+    type: object
+  error:
+    description: Error response media type (default view)
+    example:
+      code: invalid_value
+      detail: Value of ID must be an integer
+      id: 3F1FKVRR
+      meta:
+        timestamp: 1.458609066e+09
+      status: "400"
+    properties:
+      code:
+        description: an application-specific error code, expressed as a string value.
+        example: invalid_value
+        type: string
+      detail:
+        description: a human-readable explanation specific to this occurrence of the
+          problem.
+        example: Value of ID must be an integer
+        type: string
+      id:
+        description: a unique identifier for this particular occurrence of the problem.
+        example: 3F1FKVRR
+        type: string
+      meta:
+        additionalProperties: true
+        description: a meta object containing non-standard meta-information about
+          the error.
+        example:
+          timestamp: 1.458609066e+09
+        type: object
+      status:
+        description: the HTTP status code applicable to this problem, expressed as
+          a string value.
+        example: "400"
+        type: string
+    title: 'Mediatype identifier: application/vnd.goa.error; view=default'
+    type: object
+host: localhost:8081
+info:
+  description: A simple appengine example
+  title: The appengine example
+  version: ""
+paths:
+  /admin/memos:
+    get:
+      description: list
+      operationId: memos#list
+      produces:
+      - application/vnd.goa.error
+      - application/vnd.memo+json; type=collection
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/MemoCollection'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/error'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/error'
+      schemes:
+      - http
+      summary: list memos
+      tags:
+      - memos
+    post:
+      description: create
+      operationId: memos#create
+      parameters:
+      - in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/MemoPayload'
+      produces:
+      - application/vnd.goa.error
+      - application/vnd.memo+json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/Memo'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/error'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/error'
+      schemes:
+      - http
+      summary: create memos
+      tags:
+      - memos
+  /admin/memos/{id}:
+    delete:
+      description: delete
+      operationId: memos#delete
+      parameters:
+      - in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/vnd.goa.error
+      - application/vnd.memo+json
+      responses:
+        "204":
+          description: No Content
+          schema:
+            $ref: '#/definitions/Memo'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/error'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/error'
+      schemes:
+      - http
+      summary: delete memos
+      tags:
+      - memos
+    put:
+      description: update
+      operationId: memos#update
+      parameters:
+      - in: path
+        name: id
+        required: true
+        type: string
+      - in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/MemoPayload'
+      produces:
+      - application/vnd.goa.error
+      - application/vnd.memo+json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Memo'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/error'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/error'
+      schemes:
+      - http
+      summary: update memos
+      tags:
+      - memos
+  /admin/users:
+    get:
+      description: list
+      operationId: users#list
+      produces:
+      - application/vnd.goa.error
+      - application/vnd.user+json; type=collection
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/UserCollection'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/error'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/error'
+      schemes:
+      - http
+      summary: list users
+      tags:
+      - users
+    post:
+      description: create
+      operationId: users#create
+      parameters:
+      - in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/UserPayload'
+      produces:
+      - application/vnd.goa.error
+      - application/vnd.user+json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/error'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/error'
+      schemes:
+      - http
+      summary: create users
+      tags:
+      - users
+  /admin/users/{id}:
+    delete:
+      description: delete
+      operationId: users#delete
+      parameters:
+      - description: not auto-generated ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/vnd.goa.error
+      - application/vnd.user+json
+      responses:
+        "204":
+          description: No Content
+          schema:
+            $ref: '#/definitions/User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/error'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/error'
+      schemes:
+      - http
+      summary: delete users
+      tags:
+      - users
+    put:
+      description: update
+      operationId: users#update
+      parameters:
+      - description: not auto-generated ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/UserPayload'
+      produces:
+      - application/vnd.goa.error
+      - application/vnd.user+json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/error'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/error'
+      schemes:
+      - http
+      summary: update users
+      tags:
+      - users
+  /swagger.json:
+    get:
+      operationId: swagger#/swagger.json
+      responses:
+        "200":
+          description: File downloaded
+          schema:
+            type: file
+      schemes:
+      - http
+      summary: Download swagger/swagger.json
+  /swaggerui/{filepath}:
+    get:
+      operationId: swagger#/swaggerui/*filepath
+      parameters:
+      - description: Relative file path
+        in: path
+        name: filepath
+        required: true
+        type: string
+      responses:
+        "200":
+          description: File downloaded
+          schema:
+            type: file
+        "404":
+          description: File not found
+          schema:
+            $ref: '#/definitions/error'
+      schemes:
+      - http
+      summary: Download swaggerui/dist
+  /viron:
+    get:
+      operationId: swagger#/viron
+      responses:
+        "200":
+          description: File downloaded
+          schema:
+            type: file
+      schemes:
+      - http
+      summary: Download viron/menu.json
+  /viron_authtype:
+    get:
+      operationId: swagger#/viron_authtype
+      responses:
+        "200":
+          description: File downloaded
+          schema:
+            type: file
+      schemes:
+      - http
+      summary: Download viron/authtype.json
+produces:
+- application/json
+- application/xml
+- application/gob
+- application/x-gob
+schemes:
+- http
+swagger: "2.0"

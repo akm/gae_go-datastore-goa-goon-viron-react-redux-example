@@ -3,9 +3,9 @@
 REPO:=github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example
 GAE_PROJECT ?= projectName
 
-SERVER_BASE=$(REPO)/api
+SERVER_BASE=$(REPO)/admin
 
-LOCAL_PORT ?= 8080
+LOCAL_PORT ?= 8081
 
 dep_init:
 	@dep init
@@ -14,8 +14,9 @@ dep_ensure:
 	@dep ensure
 
 goa_bootstrap:
-	@mv vendor vendor.bak
-	@goagen bootstrap -d $(SERVER_BASE)/design ; mv vendor.bak vendor
+	@mv vendor vendor.bak && \
+	goagen bootstrap -d $(SERVER_BASE)/design && \
+  rm *.go ; mv vendor.bak vendor
 
 init: install bootstrap import
 gen: clean generate import
@@ -58,12 +59,12 @@ goa_controller:
 
 converter: converter_gen
 converter_gen:
-	@goa_model_gen converter design/*.yaml
+	@goa_model_gen converter ../api/design/*.yaml
 
 model: model_gen
 model_gen:
 	@mkdir -p ./model
-	@goa_model_gen model design/*.yaml
+	@goa_model_gen model ../api/design/*.yaml
 
 clean:
 	@rm -rf app
@@ -132,3 +133,17 @@ local_https: swaggerui
 		--ssl_certificate_path $(SSL_CERTIFICATE_PATH) \
 		--ssl_certificate_key_path $(SSL_CERTIFICATE_KEY_PATH)
 # goapp serve ./appengine
+
+viron:
+	git clone git@github.com:cam-inc/viron.git && \
+	cd viron && \
+		cp ./rollup.local.config.js ./rollup.local.config.js.orig && \
+		sed -e 's/port: 8080/port: 8082/' ./rollup.local.config.js.orig > ./rollup.local.config.js && \
+	cd - && \
+	cp -f viron_local.mysql.env viron/mysql.env
+
+run_viron: viron
+	cd viron && \
+	rm package-lock.json && \
+	npm install && \
+	npm start
