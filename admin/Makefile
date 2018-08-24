@@ -137,8 +137,10 @@ local_https: swaggerui
 viron:
 	git clone git@github.com:cam-inc/viron.git && \
 	cd viron && \
-	cp ./rollup.local.config.js ./rollup.local.config.js.orig && \
-	sed -e 's/port: 8080/port: 8082/' ./rollup.local.config.js.orig > ./rollup.local.config.js
+		cp ./rollup.local.config.js ./rollup.local.config.js.orig && \
+		sed -e 's/port: 8080/port: 8082/' ./rollup.local.config.js.orig > ./rollup.local.config.js && \
+	cd - && \
+	cp -f viron_local.mysql.env viron/mysql.env
 
 run_viron: viron
 	cd viron && \

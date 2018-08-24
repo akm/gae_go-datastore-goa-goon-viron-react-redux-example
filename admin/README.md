@@ -40,7 +40,8 @@
     $ make local
     ```
 1. Open another terminal
-1. Start Docker
+1. Start MySQL server
+1. Modify viron_local.mysql.env
 1. Start Viron
     ```
     $ make run_viron
