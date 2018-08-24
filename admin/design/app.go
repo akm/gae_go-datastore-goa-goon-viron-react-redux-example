@@ -21,7 +21,7 @@ var _ = API("appengine", func() {
 	Title("The appengine example")
 	Description("A simple appengine example")
 
-	Host(env("GOA_HOST", "localhost:8080"))
+	Host(env("GOA_HOST", "localhost:8081"))
 	Scheme(env("GOA_SCHEME", "http"))
 
 	BasePath("/")
