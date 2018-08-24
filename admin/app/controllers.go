@@ -142,6 +142,7 @@ func handleMemosOrigin(h goa.Handler) goa.Handler {
 			if acrm := req.Header.Get("Access-Control-Request-Method"); acrm != "" {
 				// We are handling a preflight request
 				rw.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+				rw.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
 			}
 			return h(ctx, rw, req)
 		}
@@ -356,6 +357,7 @@ func handleUsersOrigin(h goa.Handler) goa.Handler {
 			if acrm := req.Header.Get("Access-Control-Request-Method"); acrm != "" {
 				// We are handling a preflight request
 				rw.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+				rw.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
 			}
 			return h(ctx, rw, req)
 		}
