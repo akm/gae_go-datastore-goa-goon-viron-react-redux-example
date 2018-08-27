@@ -220,8 +220,7 @@ func CreateUsersCreated(t goatest.TInterface, ctx context.Context, service *goa.
 	u := &url.URL{
 		Path: fmt.Sprintf("/admin/users"),
 	}
-	newRequest := ctx.Value("NewRequestFunc").(app.NewRequestFunc)
-	req, _err := newRequest("POST", u.String(), nil)
+	req, _err := http.NewRequest("POST", u.String(), nil)
 	if _err != nil {
 		panic("invalid test " + _err.Error()) // bug
 	}

@@ -69,18 +69,18 @@ func (mt MemoCollection) Validate() (err error) {
 // Identifier: application/vnd.user+json; view=default
 type User struct {
 	// Admin
-	Admin bool `form:"admin" json:"admin" yaml:"admin" xml:"admin"`
+	Admin *bool `form:"admin,omitempty" json:"admin,omitempty" yaml:"admin,omitempty" xml:"admin,omitempty"`
 	// Auth Domain
-	AuthDomain string `form:"auth_domain" json:"auth_domain" yaml:"auth_domain" xml:"auth_domain"`
+	AuthDomain *string `form:"auth_domain,omitempty" json:"auth_domain,omitempty" yaml:"auth_domain,omitempty" xml:"auth_domain,omitempty"`
 	// Client ID
-	ClientID  string    `form:"client_id" json:"client_id" yaml:"client_id" xml:"client_id"`
+	ClientID  *string   `form:"client_id,omitempty" json:"client_id,omitempty" yaml:"client_id,omitempty" xml:"client_id,omitempty"`
 	CreatedAt time.Time `form:"created_at" json:"created_at" yaml:"created_at" xml:"created_at"`
 	// Email
 	Email string `form:"email" json:"email" yaml:"email" xml:"email"`
 	// FederatedIdentity
-	FederatedIdentity string `form:"federated_identity" json:"federated_identity" yaml:"federated_identity" xml:"federated_identity"`
+	FederatedIdentity *string `form:"federated_identity,omitempty" json:"federated_identity,omitempty" yaml:"federated_identity,omitempty" xml:"federated_identity,omitempty"`
 	// FederatedProvider
-	FederatedProvider string `form:"federated_provider" json:"federated_provider" yaml:"federated_provider" xml:"federated_provider"`
+	FederatedProvider *string `form:"federated_provider,omitempty" json:"federated_provider,omitempty" yaml:"federated_provider,omitempty" xml:"federated_provider,omitempty"`
 	// not auto-generated ID
 	ID        string    `form:"id" json:"id" yaml:"id" xml:"id"`
 	UpdatedAt time.Time `form:"updated_at" json:"updated_at" yaml:"updated_at" xml:"updated_at"`
@@ -93,19 +93,6 @@ func (mt *User) Validate() (err error) {
 	}
 	if mt.Email == "" {
 		err = goa.MergeErrors(err, goa.MissingAttributeError(`response`, "email"))
-	}
-	if mt.AuthDomain == "" {
-		err = goa.MergeErrors(err, goa.MissingAttributeError(`response`, "auth_domain"))
-	}
-
-	if mt.ClientID == "" {
-		err = goa.MergeErrors(err, goa.MissingAttributeError(`response`, "client_id"))
-	}
-	if mt.FederatedIdentity == "" {
-		err = goa.MergeErrors(err, goa.MissingAttributeError(`response`, "federated_identity"))
-	}
-	if mt.FederatedProvider == "" {
-		err = goa.MergeErrors(err, goa.MissingAttributeError(`response`, "federated_provider"))
 	}
 
 	return

@@ -41,11 +41,11 @@ func UserModelToMediaType(model *model.User) (*app.User, error) {
 
 	r.ID = model.ID
 	r.Email = model.Email
-	r.AuthDomain = model.AuthDomain
-	r.Admin = model.Admin
-	r.ClientID = model.ClientID
-	r.FederatedIdentity = model.FederatedIdentity
-	r.FederatedProvider = model.FederatedProvider
+	r.AuthDomain = StringToStringPointer(model.AuthDomain)
+	r.Admin = BoolToBoolPointer(model.Admin)
+	r.ClientID = StringToStringPointer(model.ClientID)
+	r.FederatedIdentity = StringToStringPointer(model.FederatedIdentity)
+	r.FederatedProvider = StringToStringPointer(model.FederatedProvider)
 	r.CreatedAt = model.CreatedAt
 	r.UpdatedAt = model.UpdatedAt
 	return r, nil

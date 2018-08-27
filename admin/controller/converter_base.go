@@ -22,6 +22,10 @@ func BoolPointerToBoolWith(v *bool, d bool) bool {
 	return *v
 }
 
+func BoolToBoolPointer(v bool) *bool {
+	return &v
+}
+
 func IntPointerToInt(v *int) int {
 	return IntPointerToIntWith(v, 0)
 }
@@ -40,6 +44,10 @@ func IntToInt64(v int) int64 {
 func IntToInt64Pointer(v int) *int64 {
 	r := IntToInt64(v)
 	return &r
+}
+
+func StringToStringPointer(v string) *string {
+	return &v
 }
 
 func StringPointerToString(v *string) string {

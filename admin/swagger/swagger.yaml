@@ -135,11 +135,6 @@ definitions:
     required:
     - id
     - email
-    - auth_domain
-    - admin
-    - client_id
-    - federated_identity
-    - federated_provider
     - created_at
     - updated_at
     title: 'Mediatype identifier: application/vnd.user+json; view=default'
