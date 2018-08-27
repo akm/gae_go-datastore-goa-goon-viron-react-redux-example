@@ -10,6 +10,14 @@
   revision = "3c58d8115a78a6879e5df75ae900846768d36895"
 
 [[projects]]
+  digest = "1:ffe9824d294da03b391f44e1ae8281281b4afc1bdaa9588c9097785e3af10cec"
+  name = "github.com/davecgh/go-spew"
+  packages = ["spew"]
+  pruneopts = "UT"
+  revision = "8991bc29aa16c548c550c7ff78260e27b9ab7c73"
+  version = "v1.1.1"
+
+[[projects]]
   branch = "master"
   digest = "1:376e5a9fdb57657725ff19b4c510c3f5e1f804ab4ab0ff3064d8f4dc01e40fe2"
   name = "github.com/dimfeld/httppath"
@@ -111,6 +119,14 @@
   revision = "0c01b4bc4f4970fa6f91409bf7f134a10809219c"
 
 [[projects]]
+  digest = "1:0028cb19b2e4c3112225cd871870f2d9cf49b9b4276531f03438a88e94be86fe"
+  name = "github.com/pmezard/go-difflib"
+  packages = ["difflib"]
+  pruneopts = "UT"
+  revision = "792786c7400a136282c1664665ae0a8db921c6c2"
+  version = "v1.0.0"
+
+[[projects]]
   digest = "1:ff6b0586c0621a76832cf783eee58cbb9d9795d2ce8acbc199a4131db11c42a9"
   name = "github.com/satori/go.uuid"
   packages = ["."]
@@ -134,6 +150,14 @@
   version = "v1.0.2"
 
 [[projects]]
+  digest = "1:18752d0b95816a1b777505a97f71c7467a8445b8ffb55631a7bf779f6ba4fa83"
+  name = "github.com/stretchr/testify"
+  packages = ["assert"]
+  pruneopts = "UT"
+  revision = "f35b8ab0b5a2cef36673838d662e249dd9c94686"
+  version = "v1.2.2"
+
+[[projects]]
   branch = "master"
   digest = "1:6f7f5a5452e6dc8b0665b0fd2b779c3c6b7e70a121e0661aeb03daef7baae58d"
   name = "github.com/zach-klippenstein/goregen"
@@ -153,10 +177,11 @@
   revision = "922f4815f713f213882e8ef45e0d315b164d705c"
 
 [[projects]]
-  digest = "1:ba5e331331c6e62f192602293340b50dab7aab164339f69d9ae7d0f0aa19ad44"
+  digest = "1:bad935150f1674be3edc0e645cf40e6d55d1e0b9d8502fec534bf42cc4a9752c"
   name = "google.golang.org/appengine"
   packages = [
     ".",
+    "aetest",
     "datastore",
     "internal",
     "internal/app_identity",
@@ -166,8 +191,10 @@
     "internal/memcache",
     "internal/modules",
     "internal/remote_api",
+    "internal/user",
     "log",
     "memcache",
+    "user",
   ]
   pruneopts = "UT"
   revision = "b1f26356af11148e710935ed1ac8a7f5702c7612"
@@ -195,7 +222,10 @@
     "github.com/goadesign/goa/uuid",
     "github.com/mjibson/goon",
     "github.com/spf13/cobra",
+    "github.com/stretchr/testify/assert",
     "golang.org/x/net/context",
+    "google.golang.org/appengine",
+    "google.golang.org/appengine/aetest",
     "google.golang.org/appengine/datastore",
     "google.golang.org/appengine/log",
     "gopkg.in/go-playground/validator.v9",
