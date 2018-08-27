@@ -35,8 +35,7 @@ var User = MediaType("application/vnd.user+json", func() {
 		}
 		Attribute("created_at", DateTime)
 		Attribute("updated_at", DateTime)
-		required := append(attrNames, "created_at", "updated_at")
-		Required(required...)
+		Required("id", "email", "created_at", "updated_at")
 	})
 
 	View("default", func() {
