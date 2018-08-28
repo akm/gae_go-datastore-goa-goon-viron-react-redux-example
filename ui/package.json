@@ -11,5 +11,9 @@
   "license": "ISC",
   "devDependencies": {
     "rollup": "^0.65.0"
+  },
+  "dependencies": {
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
   }
 }
