@@ -2,6 +2,7 @@
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs'
 import babel from 'rollup-plugin-babel'
+import replace from 'rollup-plugin-replace'
 import serve from 'rollup-plugin-serve'
 
 export default {
@@ -11,10 +12,10 @@ export default {
     format: 'iife'
   },
   // All the used libs needs to be here
-  external: [
-    'react',
-    'react-proptypes'
-  ],
+  // external: [
+  //   'react',
+  //   'react-proptypes'
+  // ],
   plugins: [
     babel({
       exclude: 'node_modules/**'
@@ -32,6 +33,9 @@ export default {
       ]
     }),
     resolve(),
+    replace({
+      'process.env.NODE_ENV': JSON.stringify( 'production' )
+    }),
     // https://github.com/thgh/rollup-plugin-serve#options
     serve({
       contentBase: 'dist',
