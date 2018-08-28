@@ -7,7 +7,8 @@ const presets = [
       safari: "11.1"
     },
     useBuiltIns: "usage"
-  }]
+  }],
+  "@babel/preset-react"
 ];
 
 module.exports = { presets };
