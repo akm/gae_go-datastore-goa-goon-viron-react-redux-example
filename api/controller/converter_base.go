@@ -1,8 +1,15 @@
 package controller
 
 import (
+	"fmt"
 	"strconv"
+
+	"google.golang.org/appengine/datastore"
 )
+
+var NoModelGiven = fmt.Errorf("No model given")
+var NoPayloadGiven = fmt.Errorf("No payload given")
+var NoMediaTypeGiven = fmt.Errorf("No media type given")
 
 func BoolPointerToBool(v *bool) bool {
 	return BoolPointerToBoolWith(v, false)
@@ -56,5 +63,31 @@ func Int64ToString(v int64) string {
 
 func Int64ToStringPointer(v int64) *string {
 	s := Int64ToString(v)
+	return &s
+}
+
+func StringToDatastoreKeyPointer(v string) (*datastore.Key, error) {
+	return datastore.DecodeKey(v)
+}
+
+func StringPointerToDatastoreKeyPointer(v *string) (*datastore.Key, error) {
+	if v == nil {
+		return nil, nil
+	}
+	return StringToDatastoreKeyPointer(*v)
+}
+
+func DatastoreKeyPointerToString(key *datastore.Key) string {
+	if key == nil {
+		return ""
+	}
+	return key.Encode()
+}
+
+func DatastoreKeyPointerToStringPointer(key *datastore.Key) *string {
+	if key == nil {
+		return nil
+	}
+	s := DatastoreKeyPointerToString(key)
 	return &s
 }
