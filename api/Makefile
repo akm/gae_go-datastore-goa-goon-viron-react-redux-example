@@ -71,11 +71,20 @@ clean:
 	@rm -rf tool
 	@rm -rf swagger
 
-goa_gen:
+goa_gen: gen_app gen_client gen_swagger
+
+gen_app:
 	@mv vendor vendor.bak
-	@goagen app     -d $(SERVER_BASE)/design && \
-	 goagen swagger -d $(SERVER_BASE)/design && \
-	 goagen client  -d $(SERVER_BASE)/design ; mv vendor.bak vendor
+	@goagen app            -d $(SERVER_BASE)/design; mv vendor.bak vendor
+
+gen_client:
+	@mv vendor vendor.bak
+	@goagen client         -d $(SERVER_BASE)/design; mv vendor.bak vendor
+
+gen_swagger:
+	@mv vendor vendor.bak
+	@goagen swagger        -d $(SERVER_BASE)/design; mv vendor.bak vendor
+
 
 generate: goa_gen model_gen converter_gen
 
