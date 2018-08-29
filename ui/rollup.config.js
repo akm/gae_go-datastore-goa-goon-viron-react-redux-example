@@ -15,9 +15,11 @@ export default {
   //   'react'
   // ],
   plugins: [
+    // https://github.com/rollup/rollup-plugin-babel
     babel({
       exclude: 'node_modules/**'
     }),
+    // https://github.com/rollup/rollup-plugin-commonjs
     commonjs({
       exclude: 'node_modules/process-es6/**',
       include: [
@@ -27,10 +29,12 @@ export default {
         'node_modules/react/**',
         'node_modules/react-dom/**',
         'node_modules/prop-types/**',
-        'node_modules/create-react-class/**' // adding the module with that "default not exported by" message to this includes list, made that message go away
+        'node_modules/create-react-class/**', // adding the module with that "default not exported by" message to this includes list, made that message go away
       ]
     }),
+    // https://github.com/rollup/rollup-plugin-node-resolve
     resolve(),
+    // https://github.com/rollup/rollup-plugin-replace
     replace({
       'process.env.NODE_ENV': JSON.stringify( 'production' )
     }),
