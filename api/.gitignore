@@ -1,3 +1,5 @@
+/js/*.go
+/js/*.html
 /swaggerui
 /tmp
 /vendor
