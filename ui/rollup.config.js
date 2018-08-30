@@ -4,6 +4,7 @@ import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import replace from 'rollup-plugin-replace';
 import json from 'rollup-plugin-json';
+import builtins from 'rollup-plugin-node-builtins';
 import serve from 'rollup-plugin-serve'
 
 export default {
@@ -16,6 +17,8 @@ export default {
   //   'react'
   // ],
   plugins: [
+    // https://github.com/calvinmetcalf/rollup-plugin-node-builtins
+    builtins(),
     // https://github.com/rollup/rollup-plugin-babel
     babel({
       exclude: 'node_modules/**'
