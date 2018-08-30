@@ -30,14 +30,21 @@ func (c *MemosController) Create(ctx *app.CreateMemosContext) error {
 	// Put your logic here
 	appCtx := appengine.NewContext(ctx.Request)
 	return ByGoogleSignIn(appCtx, func(userKey *datastore.Key) error {
-		m := MemoPayloadToModel(ctx.Payload)
+		m, err := MemoPayloadToModel(ctx.Payload)
+		if err != nil {
+			return ctx.BadRequest(err)
+		}
 		m.AuthorKey = userKey
 		store := &model.MemoStore{}
-		if _, err := store.Create(appCtx, &m); err != nil {
+		if _, err := store.Create(appCtx, m); err != nil {
 			log.Errorf(appCtx, "Failed to create memo %v because of %v\n", m, err)
 			return err
 		}
-		return ctx.Created(MemoModelToMediaType(&m))
+		if mediaType, err := MemoModelToMediaType(m); err != nil {
+			return err
+		} else {
+			return ctx.Created(mediaType)
+		}
 	})
 
 	// MemosController_Create: end_implement
@@ -78,7 +85,11 @@ func (c *MemosController) List(ctx *app.ListMemosContext) error {
 		}
 		results := []*app.Memo{}
 		for _, memo := range memos {
-			results = append(results, MemoModelToMediaType(memo))
+			if mediaType, err := MemoModelToMediaType(memo); err != nil {
+				return err
+			} else {
+				results = append(results, mediaType)
+			}
 		}
 
 		return ctx.OK(results)
@@ -93,7 +104,11 @@ func (c *MemosController) Show(ctx *app.ShowMemosContext) error {
 	// Put your logic here
 	appCtx := appengine.NewContext(ctx.Request)
 	return c.Member(appCtx, ctx.ID, ctx.BadRequest, ctx.NotFound, func(m *model.Memo) error {
-		return ctx.OK(MemoModelToMediaType(m))
+		if mediaType, err := MemoModelToMediaType(m); err != nil {
+			return err
+		} else {
+			return ctx.OK(mediaType)
+		}
 	})
 
 	// MemosController_Show: end_implement
@@ -118,7 +133,11 @@ func (c *MemosController) Update(ctx *app.UpdateMemosContext) error {
 			log.Errorf(appCtx, "Failed to update memo %v because of %v\n", m, err)
 			return err
 		}
-		return ctx.OK(MemoModelToMediaType(m))
+		if mediaType, err := MemoModelToMediaType(m); err != nil {
+			return err
+		} else {
+			return ctx.OK(mediaType)
+		}
 	})
 
 	// MemosController_Update: end_implement

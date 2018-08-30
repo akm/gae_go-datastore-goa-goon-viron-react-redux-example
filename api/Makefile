@@ -71,11 +71,24 @@ clean:
 	@rm -rf tool
 	@rm -rf swagger
 
-goa_gen:
+goa_gen: gen_app gen_client gen_js gen_swagger
+
+gen_app:
 	@mv vendor vendor.bak
-	@goagen app     -d $(SERVER_BASE)/design && \
-	 goagen swagger -d $(SERVER_BASE)/design && \
-	 goagen client  -d $(SERVER_BASE)/design ; mv vendor.bak vendor
+	@goagen app            -d $(SERVER_BASE)/design; mv vendor.bak vendor
+
+gen_client:
+	@mv vendor vendor.bak
+	@goagen client         -d $(SERVER_BASE)/design; mv vendor.bak vendor
+
+gen_js:
+	@mv vendor vendor.bak
+	@goagen js             -d $(SERVER_BASE)/design; mv vendor.bak vendor
+
+gen_swagger:
+	@mv vendor vendor.bak
+	@goagen swagger        -d $(SERVER_BASE)/design; mv vendor.bak vendor
+
 
 generate: goa_gen model_gen converter_gen
 
@@ -114,8 +127,17 @@ fmt:
 test:
 	goapp test $(SERVER_BASE)/model
 
-build:
+build: build-ui build-server
+
+build-server:
 	goapp build $(SERVER_BASE)/appengine
+
+build-ui:
+	cd ../ui && npm run build && \
+	cd - && \
+	rm -rf appengine/ui/ && \
+	mkdir -p appengine/ui/ && \
+	cp ../ui/dist/*.* appengine/ui/
 
 deploy:
 	goapp deploy -application $(GAE_PROJECT) ./app

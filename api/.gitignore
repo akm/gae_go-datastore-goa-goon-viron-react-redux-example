@@ -1,3 +1,6 @@
+/appengine/ui
+/js/*.go
+/js/*.html
 /swaggerui
 /tmp
 /vendor

@@ -28,6 +28,9 @@ func init() {
 	cs := controller.NewSwaggerController(service)
 	app.MountSwaggerController(service, cs)
 
+	service.ServeFiles("/js/*filepath", "./js")
+	service.LogInfo("mount", "ctrl", "JS", "action", "ServeFiles", "route", "GET /js/*")
+
 	// // Start service
 	// if err := service.ListenAndServe(":8080"); err != nil {
 	// 	service.LogError("startup", "err", err)
