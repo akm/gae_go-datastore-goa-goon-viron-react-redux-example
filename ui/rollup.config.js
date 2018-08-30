@@ -25,24 +25,14 @@ export default {
     }),
     // https://github.com/rollup/rollup-plugin-commonjs
     commonjs({
+      include: 'node_modules/**',
       exclude: 'node_modules/process-es6/**',
-      include: [
-        //some react related modules i need
-        'node_modules/fbjs/**',
-        'node_modules/object-assign/**',
-        'node_modules/react/**',
-        'node_modules/react-dom/**',
-        'node_modules/prop-types/**',
-        'node_modules/create-react-class/**', // adding the module with that "default not exported by" message to this includes list, made that message go away
-        'node_modules/axios/**',
-      ]
     }),
     // https://github.com/rollup/rollup-plugin-node-resolve
-    resolve({
-      modulesOnly: true,
-    }),
+    resolve(),
     // https://github.com/rollup/rollup-plugin-replace
     replace({
+      'global': 'window',
       'process.env.NODE_ENV': JSON.stringify( 'production' )
     }),
     // https://github.com/rollup/rollup-plugin-json
