@@ -30,6 +30,7 @@ export default {
         'node_modules/react-dom/**',
         'node_modules/prop-types/**',
         'node_modules/create-react-class/**', // adding the module with that "default not exported by" message to this includes list, made that message go away
+        'node_modules/axios/**',
       ]
     }),
     // https://github.com/rollup/rollup-plugin-node-resolve
