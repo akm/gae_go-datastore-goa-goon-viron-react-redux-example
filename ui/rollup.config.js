@@ -38,7 +38,9 @@ export default {
       ]
     }),
     // https://github.com/rollup/rollup-plugin-node-resolve
-    resolve(),
+    resolve({
+      modulesOnly: true,
+    }),
     // https://github.com/rollup/rollup-plugin-replace
     replace({
       'process.env.NODE_ENV': JSON.stringify( 'production' )
