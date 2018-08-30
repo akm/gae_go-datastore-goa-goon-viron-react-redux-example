@@ -127,7 +127,7 @@ fmt:
 test:
 	goapp test $(SERVER_BASE)/model
 
-build:
+build-server:
 	goapp build $(SERVER_BASE)/appengine
 
 deploy:
