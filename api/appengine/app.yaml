@@ -10,9 +10,24 @@ handlers:
 - url: /viron
   script: _go_app
 
-- url: /.*
+- url: /
   script: _go_app
   login: required
+
+- url: /memos
+  script: _go_app
+  login: required
+- url: /memos/.*
+  script: _go_app
+  login: required
+
+- url: /index.html
+  static_files: ui/index.html
+  upload: ui/index.html
+
+- url: /bundle.js
+  static_files: ui/bundle.js
+  upload: ui/bundle.js
 
 nobuild_files:
 - vendor/
