@@ -7,6 +7,8 @@ import json from 'rollup-plugin-json';
 import builtins from 'rollup-plugin-node-builtins';
 import serve from 'rollup-plugin-serve'
 
+const rollupArgs = process.argv.slice(2)
+
 export default {
   input: 'src/index.js',
   output: {
@@ -37,7 +39,8 @@ export default {
     }),
     // https://github.com/rollup/rollup-plugin-json
     json(),
-    serve({
+    // https://www.npmjs.com/package/rollup-plugin-serve
+    rollupArgs.includes('-w') && serve({
       contentBase: 'dist',
       port: 8080
     })
