@@ -127,8 +127,17 @@ fmt:
 test:
 	goapp test $(SERVER_BASE)/model
 
+build: build-ui build-server
+
 build-server:
 	goapp build $(SERVER_BASE)/appengine
+
+build-ui:
+	cd ../ui && npm run build && \
+	cd - && \
+	rm -rf appengine/ui/ && \
+	mkdir -p appengine/ui/ && \
+	cp ../ui/dist/*.* appengine/ui/
 
 deploy:
 	goapp deploy -application $(GAE_PROJECT) ./app
