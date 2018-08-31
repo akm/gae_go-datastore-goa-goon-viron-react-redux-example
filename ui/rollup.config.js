@@ -5,6 +5,7 @@ import babel from 'rollup-plugin-babel';
 import replace from 'rollup-plugin-replace';
 import json from 'rollup-plugin-json';
 import builtins from 'rollup-plugin-node-builtins';
+import postcss from 'rollup-plugin-postcss';
 import serve from 'rollup-plugin-serve'
 
 const rollupArgs = process.argv.slice(2)
@@ -43,6 +44,15 @@ export default {
     }),
     // https://github.com/rollup/rollup-plugin-json
     json(),
+    // https://github.com/zperrault/rollup-plugin-postcss
+    postcss({
+      plugins: [
+        // cssnext(),
+        // yourPostcssPlugin()
+      ],
+      extensions: ['.css']  // default value
+      // parser: sugarss
+    }),
     // https://www.npmjs.com/package/rollup-plugin-serve
     rollupArgs.includes('-w') && serve({
       contentBase: 'dist',
