@@ -5,9 +5,10 @@ import Root from './components/Root';
 import configureStore from './store.js';
 
 const store = configureStore([])
+const action = type => store.dispatch({type})
 
 const render = () => ReactDom.render(
-    <Root />,
+    <Root memos={store.getState()} onRefresh={ () => action('REFRESH_ASYNC') }/>,
     document.getElementById('root'),
 );
 
