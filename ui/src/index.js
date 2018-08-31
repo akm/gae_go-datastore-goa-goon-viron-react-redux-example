@@ -1,9 +1,15 @@
-// src/App.js
 import React from 'react';
 import ReactDom from 'react-dom';
 import Root from './components/Root';
 
-ReactDom.render(
+import configureStore from './store.js';
+
+const store = configureStore([])
+
+const render = () => ReactDom.render(
     <Root />,
     document.getElementById('root'),
 );
+
+render()
+store.subscribe(render)
