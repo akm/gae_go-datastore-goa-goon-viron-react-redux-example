@@ -6,7 +6,7 @@ const MemoList = ({memos}) => {
   return (
     <ListGroup>
       { memos.map((memo) => {
-        return <ListGroupItem>{memo}</ListGroupItem>;
+        return <ListGroupItem>{memo.content}</ListGroupItem>;
       }) }
     </ListGroup>
   )

@@ -5,6 +5,8 @@ export default (state = [], action) => {
   switch (action.type) {
   case 'REFRESH_POST':
     return action.memos
+  case 'ADD_MEMO':
+    return [...state, action.memo]
   default:
     return state
   }
