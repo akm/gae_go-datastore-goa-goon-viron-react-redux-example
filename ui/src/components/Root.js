@@ -8,7 +8,7 @@ import MemoList from './MemoList'
 import MemoEdit from './MemoEdit'
 
 
-const Root = ({memos, onRefresh}) => {
+const Root = ({memos, onRefresh, onSave}) => {
   console.log("Root memos", memos)
   return (
     <Container>
@@ -17,7 +17,7 @@ const Root = ({memos, onRefresh}) => {
           <MemoList memos={memos}/>
           <Button color="primary" tag="button" onClick={onRefresh}>Refresh</Button>
         </Col>
-        <Col md="6"><MemoEdit /></Col>
+        <Col md="6"><MemoEdit onSave={onSave}/></Col>
       </Row>
     </Container>
   )
