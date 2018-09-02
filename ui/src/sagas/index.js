@@ -3,6 +3,21 @@ import { call, takeEvery, put } from 'redux-saga/effects'
 
 import client from '../api/client'
 
+export default function* rootSaga() {
+  yield takeEvery('REFRESH_ASYNC', refreshAsync)
+}
+
+export function* refreshAsync() {
+  // const action = yield take({ type: 'REFRESH_REQUEST' })
+  const memos = yield call(fetchMemos);
+  // const memos = [
+  //   "Foo",
+  //   "Bar",
+  //   "Baz",
+  // ];
+  yield put({type: 'REFRESH_POST', memos})
+}
+
 function fetchMemos() {
   return client().listMemos("/memos")
     .then((resp) => {
@@ -18,19 +33,4 @@ function fetchMemos() {
       console.log("ERROR err", err)
       return ['Error ' + err]
     });
-}
-
-export function* refreshAsync() {
-  // const action = yield take({ type: 'REFRESH_REQUEST' })
-  const memos = yield call(fetchMemos);
-  // const memos = [
-  //   "Foo",
-  //   "Bar",
-  //   "Baz",
-  // ];
-  yield put({type: 'REFRESH_POST', memos})
-}
-
-export default function* rootSaga() {
-  yield takeEvery('REFRESH_ASYNC', refreshAsync)
 }
