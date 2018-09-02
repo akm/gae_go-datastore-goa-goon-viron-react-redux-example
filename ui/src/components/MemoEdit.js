@@ -11,11 +11,11 @@ class MemoEdit extends React.Component {
   }
 
   handleChange(event) {
-    console.log('handleChange', event);
     this.setState({content: event.target.value});
   }
 
   handleSubmit(event) {
+    event.preventDefault();
     this.props.onSave(this.state.content);
   }
 
