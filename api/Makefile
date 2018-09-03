@@ -134,10 +134,10 @@ build-server:
 
 build-ui:
 	cd ../ui && npm run build && \
-	cd - && \
-	rm -rf appengine/ui/ && \
-	mkdir -p appengine/ui/ && \
-	cp ../ui/dist/*.* appengine/ui/
+	cd -
+
+watch-ui:
+	cd ../ui && nohup npm run watch &
 
 deploy:
 	goapp deploy -application $(GAE_PROJECT) ./app
@@ -145,12 +145,13 @@ deploy:
 rollback:
 	appcfg.py rollback ./app -A $(GAE_PROJECT)
 
-local: swaggerui
+local_http_server:
 	dev_appserver.py --port=$(LOCAL_PORT) --enable_console --skip_sdk_update_check=yes appengine/app.yaml
-# goapp serve ./appengine
 
-local_https: swaggerui
+local_https_server:
 	dev_appserver.py --port=$(LOCAL_PORT) --enable_console --skip_sdk_update_check=yes appengine/app.yaml \
 		--ssl_certificate_path $(SSL_CERTIFICATE_PATH) \
 		--ssl_certificate_key_path $(SSL_CERTIFICATE_KEY_PATH)
-# goapp serve ./appengine
+
+local: swaggerui watch-ui local_http_server
+local_https: swaggerui watch-ui local_https_server
