@@ -8,7 +8,7 @@ import builtins from 'rollup-plugin-node-builtins';
 import postcss from 'rollup-plugin-postcss';
 import serve from 'rollup-plugin-serve'
 
-const rollupArgs = process.argv.slice(2)
+const server = !!process.env.SERVER
 
 export default {
   input: 'src/index.js',
@@ -54,7 +54,7 @@ export default {
       // parser: sugarss
     }),
     // https://www.npmjs.com/package/rollup-plugin-serve
-    rollupArgs.includes('-w') && serve({
+    server && serve({
       contentBase: 'dist',
       port: 8080
     })
