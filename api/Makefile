@@ -109,6 +109,12 @@ install:
 	@which dep || go get -u github.com/golang/dep/cmd/dep
 	@dep ensure
 
+setup: install setup-ui
+
+setup-ui:
+	cd ../ui && npm install && \
+	cd -
+
 import:
 	@which gorep || go get -v github.com/novalagung/gorep
 	@gorep -path="./" \
@@ -155,3 +161,5 @@ local_https_server:
 
 local: swaggerui watch-ui local_http_server
 local_https: swaggerui watch-ui local_https_server
+
+dev: build local
