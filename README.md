@@ -3,6 +3,7 @@
 ## How to setup
 
 Please read [API server README.md](api/README.md) before `git clone`.
+And check [Admin server README.md](admin/README.md) to run admin UI.
 
 ## Overview
 
