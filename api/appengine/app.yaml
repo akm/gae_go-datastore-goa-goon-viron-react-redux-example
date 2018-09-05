@@ -3,28 +3,29 @@ runtime: go
 api_version: go1.9
 
 handlers:
+# Paths for development
 - url: /swagger.json
   script: _go_app
-- url: /viron_authtype
+- url: /swaggerui/
   script: _go_app
-- url: /viron
-  script: _go_app
-
-- url: /
+  login: required
+- url: /swaggerui/*.*
   script: _go_app
   login: required
 
+# Paths for production
+- url: /
+  script: _go_app
+  login: required
 - url: /memos
   script: _go_app
   login: required
 - url: /memos/.*
   script: _go_app
   login: required
-
 - url: /index.html
   static_files: ui/index.html
   upload: ui/index.html
-
 - url: /bundle.js
   static_files: ui/bundle.js
   upload: ui/bundle.js
