@@ -126,13 +126,14 @@ rollback:
 
 local: swaggerui
 	dev_appserver.py --port=$(LOCAL_PORT) --enable_console --skip_sdk_update_check=yes appengine/app.yaml
-# goapp serve ./appengine
+
+local_nohup: swaggerui
+	nohup dev_appserver.py --port=$(LOCAL_PORT) --admin_port=8001 --enable_console --skip_sdk_update_check=yes appengine/app.yaml &
 
 local_https: swaggerui
 	dev_appserver.py --port=$(LOCAL_PORT) --enable_console --skip_sdk_update_check=yes appengine/app.yaml \
 		--ssl_certificate_path $(SSL_CERTIFICATE_PATH) \
 		--ssl_certificate_key_path $(SSL_CERTIFICATE_KEY_PATH)
-# goapp serve ./appengine
 
 viron:
 	git clone git@github.com:cam-inc/viron.git && \
@@ -147,3 +148,5 @@ run_viron: viron
 	rm package-lock.json && \
 	npm install && \
 	npm start
+
+dev: local_nohup run_viron

@@ -1,6 +1,38 @@
 # Admin
 
-## Run API server locally
+## Prerequisite
+
+- [Golang](https://golang.org/) ~> 1.9.x
+- [Google AppEngine SDK for Go with goapp](https://cloud.google.com/appengine/docs/standard/go/download)
+    - Download `the original App Engine SDK for Go` instead of using `gcloud components install app-engine-go`
+- [Node.js](https://nodejs.org/)
+- [MySQL](https://www.mysql.com/)
+
+See [API server README](../api/README.md) to install Golang and Node.js.
+
+## Setup
+
+```bash
+$ cd $(go env GOPATH)/src/github.com/akm/gae_go-datastore-goa-goon-viron-react-redux-example
+$ cd admin
+$ make install
+```
+
+Modify `viron_local.mysql.env` to connect your local mysql server.
+
+## Run servers
+
+```bash
+$ make dev
+```
+
+1. Open https://localhost:8082/
+2. Click `+ 追加`
+3. Set http://localhost:8081/swagger.json and click `追加`
+4. And click the box added
+   - You can see the admin UI
+
+## Test APIs in browser console
 
 1. Start local server
     ```
@@ -31,20 +63,3 @@
    post("/memos", {content: "Memo#1", shared: false})
    get("/memos")
    ```
-
-
-## Run Viron server locally
-
-1. Start local server
-    ```
-    $ make local
-    ```
-1. Open another terminal
-1. Start MySQL server
-1. Modify viron_local.mysql.env
-1. Start Viron
-    ```
-    $ make run_viron
-    ```
-1. Open https://localhost:8082
-1. Add http://localhost:8081/swagger.json

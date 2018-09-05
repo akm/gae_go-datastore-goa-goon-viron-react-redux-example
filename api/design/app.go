@@ -127,9 +127,4 @@ var _ = Resource("swagger", func() {
 	// See https://github.com/goadesign/goa#4-document
 	Files("/swagger.json", "swagger/swagger.json")
 	Files("/swaggerui/*filepath", "swaggerui/dist")
-
-	// See https://cam-inc.github.io/viron-doc/docs/dev_api_authtype.html
-	//     https://cam-inc.github.io/viron-doc/docs/dev_api_menu.html
-	Files("/viron_authtype", "viron/authtype.json")
-	Files("/viron", "viron/menu.json")
 })

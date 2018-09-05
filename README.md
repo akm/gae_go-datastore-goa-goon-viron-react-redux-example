@@ -1,5 +1,10 @@
 # GAE/Go Datastore Goa Goon Viron React Redux Example
 
+## How to setup
+
+Please read [API server README.md](api/README.md) before `git clone`.
+And check [Admin server README.md](admin/README.md) to run admin UI.
+
 ## Overview
 
 ![Overview](doc/overview.png)
@@ -15,6 +20,8 @@
     - goa is a holistic approach for building microservices in Go
     - goagen can generate the Swagger specification of an API given its design.
     - goa generates javascript library for client with [axios](https://github.com/axios/axios)
+  - [SwaggerUI](https://swagger.io/tools/swagger-ui/)
+    - Swagger UI allows anyone — be it your development team or your end consumers — to visualize and interact with the API’s resources without having any of the implementation logic in place.
   - [Datastore](https://cloud.google.com/appengine/docs/standard/go/datastore/)
     - A NoSQL document database built for automatic scaling, high performance, and ease of application development
   - [Goon](https://github.com/mjibson/goon)
