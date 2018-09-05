@@ -1,5 +1,9 @@
 # GAE/Go Datastore Goa Goon Viron React Redux Example
 
+## How to setup
+
+Please read [API server README.md](api/README.md) before `git clone`.
+
 ## Overview
 
 ![Overview](doc/overview.png)
