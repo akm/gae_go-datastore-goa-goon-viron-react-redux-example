@@ -209,8 +209,6 @@ func MountSwaggerController(service *goa.Service, ctrl SwaggerController) {
 	var h goa.Handler
 	service.Mux.Handle("OPTIONS", "/swagger.json", ctrl.MuxHandler("preflight", handleSwaggerOrigin(cors.HandlePreflight()), nil))
 	service.Mux.Handle("OPTIONS", "/swaggerui/*filepath", ctrl.MuxHandler("preflight", handleSwaggerOrigin(cors.HandlePreflight()), nil))
-	service.Mux.Handle("OPTIONS", "/viron_authtype", ctrl.MuxHandler("preflight", handleSwaggerOrigin(cors.HandlePreflight()), nil))
-	service.Mux.Handle("OPTIONS", "/viron", ctrl.MuxHandler("preflight", handleSwaggerOrigin(cors.HandlePreflight()), nil))
 
 	h = ctrl.FileHandler("/swagger.json", "swagger/swagger.json")
 	h = handleSwaggerOrigin(h)
@@ -221,16 +219,6 @@ func MountSwaggerController(service *goa.Service, ctrl SwaggerController) {
 	h = handleSwaggerOrigin(h)
 	service.Mux.Handle("GET", "/swaggerui/*filepath", ctrl.MuxHandler("serve", h, nil))
 	service.LogInfo("mount", "ctrl", "Swagger", "files", "swaggerui/dist", "route", "GET /swaggerui/*filepath")
-
-	h = ctrl.FileHandler("/viron_authtype", "viron/authtype.json")
-	h = handleSwaggerOrigin(h)
-	service.Mux.Handle("GET", "/viron_authtype", ctrl.MuxHandler("serve", h, nil))
-	service.LogInfo("mount", "ctrl", "Swagger", "files", "viron/authtype.json", "route", "GET /viron_authtype")
-
-	h = ctrl.FileHandler("/viron", "viron/menu.json")
-	h = handleSwaggerOrigin(h)
-	service.Mux.Handle("GET", "/viron", ctrl.MuxHandler("serve", h, nil))
-	service.LogInfo("mount", "ctrl", "Swagger", "files", "viron/menu.json", "route", "GET /viron")
 
 	h = ctrl.FileHandler("/swaggerui/", "swaggerui/dist/index.html")
 	h = handleSwaggerOrigin(h)
