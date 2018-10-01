@@ -1,7 +1,12 @@
-import React from 'react';
+import * as React from 'react';
 import { ListGroup, ListGroupItem } from 'reactstrap';
+import { Memo } from '../states/Memo'
 
-const MemoList = ({memos}) => {
+interface MemoListProps {
+  memos: Memo[]
+}
+
+const MemoList: React.SFC<MemoListProps> = ({memos}) => {
   console.log("MemoList memos", memos)
   return (
     <ListGroup>

@@ -7,11 +7,12 @@ import json from 'rollup-plugin-json';
 import builtins from 'rollup-plugin-node-builtins';
 import postcss from 'rollup-plugin-postcss';
 import serve from 'rollup-plugin-serve'
+import typescript from 'rollup-plugin-typescript2';
 
 const server = !!process.env.SERVER
 
 export default {
-  input: 'src/index.js',
+  input: 'src/index.tsx',
   output: {
     file: 'dist/bundle.js',
     format: 'iife'
@@ -35,6 +36,8 @@ export default {
         'node_modules/react-dom/index.js': ['render']
       },
     }),
+    // https://github.com/ezolenko/rollup-plugin-typescript2
+    typescript(),
     // https://github.com/rollup/rollup-plugin-node-resolve
     resolve(),
     // https://github.com/rollup/rollup-plugin-replace

@@ -1,20 +1,24 @@
-import React from 'react';
+import * as React from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
-class MemoEdit extends React.Component {
+interface MemoEditProps {
+  onSave(content: string): void,
+}
+interface MemoEditState {
+  content: string
+}
+
+class MemoEdit extends React.Component<MemoEditProps, MemoEditState> {
   constructor(props) {
     super(props);
     this.state = {content: ''};
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({content: event.target.value});
+  handleChange = (event: React.FormEvent<HTMLInputElement>): void => {
+    this.setState({content: event.currentTarget.value});
   }
 
-  handleSubmit(event) {
+  handleSubmit = (event:  React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     this.props.onSave(this.state.content);
   }
