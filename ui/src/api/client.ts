@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import * as objectAssign from 'object-assign';
+import { Memo } from '../states/Memo'
 
 const merge = (...args) => objectAssign({}, ...args)
 
@@ -55,7 +56,7 @@ function client (scheme = 'http', host = 'localhost:8080', timeout = 20000) {
         }
         return client(cfg);
     };
-    client.updateMemos = function (path: string, data: Object, config: Object) {
+    client.updateMemos = function (path: string, data: Memo, config?: AxiosRequestConfig) {
         let cfg: AxiosRequestConfig = {
             timeout: timeout,
             url: urlPrefix + path,
