@@ -1,14 +1,23 @@
-import axios, { AxiosRequestConfig } from 'axios';
-import * as objectAssign from 'object-assign';
-import { Memo } from '../states/Memo'
+import axios from 'axios';
 
-const merge = (...args) => objectAssign({}, ...args)
-
-function client (scheme = 'http', host = 'localhost:8080', timeout = 20000) {
-    let client = axios;
-    let urlPrefix = scheme + '://' + host;
-    client.createMemos = function (path: string, data: AxiosRequestConfig, config?: AxiosRequestConfig) {
-        let cfg: AxiosRequestConfig = {
+function merge(obj1, obj2) {
+    var obj3 = {};
+    for (var attrname in obj1) {
+        obj3[attrname] = obj1[attrname];
+    }
+    for (var attrname in obj2) {
+        obj3[attrname] = obj2[attrname];
+    }
+    return obj3;
+}
+function client (scheme, host, timeout) {
+    scheme = scheme || 'http';
+    host = host || 'localhost:8080';
+    timeout = timeout || 20000;
+    var client = axios;
+    var urlPrefix = scheme + '://' + host;
+    client.createMemos = function (path, data, config) {
+        var cfg = {
             timeout: timeout,
             url: urlPrefix + path,
             method: 'post',
@@ -20,8 +29,8 @@ function client (scheme = 'http', host = 'localhost:8080', timeout = 20000) {
         }
         return client(cfg);
     };
-    client.deleteMemos = function (path: string, config?: AxiosRequestConfig) {
-        let cfg: AxiosRequestConfig = {
+    client.deleteMemos = function (path, config) {
+        var cfg = {
             timeout: timeout,
             url: urlPrefix + path,
             method: 'delete',
@@ -32,8 +41,8 @@ function client (scheme = 'http', host = 'localhost:8080', timeout = 20000) {
         }
         return client(cfg);
     };
-    client.listMemos = function (path: string, config?: AxiosRequestConfig) {
-        let cfg: AxiosRequestConfig = {
+    client.listMemos = function (path, config) {
+        var cfg = {
             timeout: timeout,
             url: urlPrefix + path,
             method: 'get',
@@ -44,8 +53,8 @@ function client (scheme = 'http', host = 'localhost:8080', timeout = 20000) {
         }
         return client(cfg);
     };
-    client.showMemos = function (path: string, config?: AxiosRequestConfig) {
-        let cfg: AxiosRequestConfig = {
+    client.showMemos = function (path, config) {
+        var cfg = {
             timeout: timeout,
             url: urlPrefix + path,
             method: 'get',
@@ -56,8 +65,8 @@ function client (scheme = 'http', host = 'localhost:8080', timeout = 20000) {
         }
         return client(cfg);
     };
-    client.updateMemos = function (path: string, data: Memo, config?: AxiosRequestConfig) {
-        let cfg: AxiosRequestConfig = {
+    client.updateMemos = function (path, data, config) {
+        var cfg = {
             timeout: timeout,
             url: urlPrefix + path,
             method: 'put',
