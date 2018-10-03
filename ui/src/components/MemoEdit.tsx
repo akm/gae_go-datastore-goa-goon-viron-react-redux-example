@@ -1,3 +1,4 @@
+/// <reference path="../../node_modules/@types/reactstrap/index.d.ts" />
 import * as React from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 

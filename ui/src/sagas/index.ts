@@ -1,5 +1,6 @@
+/// <reference path="../../node_modules/axios/axios.d.ts" />
 import { call, takeEvery, put } from 'redux-saga/effects'
-import { AxiosResponse, AxiosError } from 'axios';
+import * as axios from 'axios';
 
 import client from '../api/client'
 import { IndexActionType, SaveAsyncAction, addMemoAction, refreshPostAction } from '../actions/index'
@@ -16,11 +17,11 @@ export function* refreshAsync() {
 
 function fetchMemos() {
   return client().listMemos("/memos")
-    .then((resp: AxiosResponse) => {
+    .then((resp: axios.Response) => {
       console.log("SUCCESS response", resp)
       return resp.data
     })
-    .catch( (err: AxiosError) => {
+    .catch( (err: axios.Response) => {
       console.log("ERROR err", err)
       return ['Error ' + err]
     });
@@ -33,11 +34,11 @@ export function* saveAsync(action: SaveAsyncAction) {
 
 function postMemo(action: SaveAsyncAction) {
   return client().createMemos("/memos", {content: action.content})
-    .then((resp: AxiosResponse) => {
+    .then((resp: axios.Response) => {
       console.log("SUCCESS response", resp)
       return resp.data
     })
-    .catch( (err: AxiosError) => {
+    .catch( (err: axios.Response) => {
       console.log("ERROR err", err)
       return ['Error ' + err]
     });
