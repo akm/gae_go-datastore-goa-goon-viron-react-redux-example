@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.dev.js",
+    "build:production": "webpack --config webpack.prod.js",
     "dev": "webpack-dev-server --config webpack.dev.js",
     "watch": "webpack --watch --config webpack.dev.js",
     "api:import": "rm -rf ./src/api/* ; cp -f ../api/ts/*.ts ./src/api/."
