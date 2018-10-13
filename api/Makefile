@@ -82,6 +82,7 @@ gen_client:
 	@goagen client         -d $(SERVER_BASE)/design; mv vendor.bak vendor
 
 gen_ts:
+	@rm -rf ts/*
 	@docker run --rm -v ${PWD}:/local swaggerapi/swagger-codegen-cli generate \
     -i /local/swagger/swagger.json \
     -l typescript-fetch \
