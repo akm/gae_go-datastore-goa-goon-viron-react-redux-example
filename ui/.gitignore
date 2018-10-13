@@ -1,5 +1,4 @@
-/dist/bundle.js
-/dist/bundle.js.map
+/dist/*
 /node_modules
 /nohup.out
 /.rpt2_cache

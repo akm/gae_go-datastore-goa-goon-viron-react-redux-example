@@ -1,3 +1,5 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 const path = require('path');
 
 const MODE = 'development';
@@ -18,6 +20,7 @@ module.exports = {
     rules: [
       { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
       { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+      { test: /\.hbs$/, loader: 'handlebars-loader' },
       {
         test: /\.css/,
         use: [
@@ -35,4 +38,10 @@ module.exports = {
 
     ]
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'src/templates/index.hbs'
+    }),
+    new CleanWebpackPlugin(["dist"]),
+  ]
 };
