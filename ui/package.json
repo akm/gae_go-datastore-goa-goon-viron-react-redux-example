@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "dev": "webpack-dev-server",
-    "watch": "webpack --watch",
+    "build": "webpack --config webpack.dev.js",
+    "dev": "webpack-dev-server --config webpack.dev.js",
+    "watch": "webpack --watch --config webpack.dev.js",
     "api:import": "rm -rf ./src/api/* ; cp -f ../api/ts/*.ts ./src/api/."
   },
   "keywords": [],
@@ -34,6 +34,7 @@
     "handlebars": "^4.0.12",
     "handlebars-loader": "^1.7.0",
     "html-webpack-plugin": "^3.2.0",
+    "webpack-merge": "^4.1.4",
     "typescript": "^3.0.3"
   },
   "dependencies": {

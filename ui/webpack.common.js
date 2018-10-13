@@ -2,17 +2,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const path = require('path');
 
-const MODE = 'development';
-const enabledSourceMap = (MODE === 'development');
-
 module.exports = {
-  mode: MODE,
   entry: "./src/index.tsx",
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist")
   },
-  devtool: "source-map", // for debug
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json"]
   },
@@ -29,8 +24,7 @@ module.exports = {
             loader: 'css-loader',
             options: {
               url: false,
-              minimize: true,
-              sourceMap: enabledSourceMap,
+              minimize: true
             },
           },
         ],
@@ -39,9 +33,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: 'src/templates/index.hbs'
-    }),
+    new HtmlWebpackPlugin({template: 'src/templates/index.hbs'}),
     new CleanWebpackPlugin(["dist"]),
   ]
 };
