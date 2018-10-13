@@ -11,8 +11,8 @@ const MemoList: React.SFC<MemoListProps> = ({memos}) => {
   console.log("MemoList memos", memos)
   return (
     <ListGroup>
-      { memos.map((memo) => {
-        return <ListGroupItem>{memo.content}</ListGroupItem>;
+      { memos.map((memo, idx) => {
+        return <ListGroupItem key={idx}>{memo.content}</ListGroupItem>;
       }) }
     </ListGroup>
   )

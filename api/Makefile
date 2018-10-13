@@ -71,7 +71,7 @@ clean:
 	@rm -rf tool
 	@rm -rf swagger
 
-goa_gen: gen_app gen_client gen_js gen_swagger
+goa_gen: gen_app gen_client gen_ts gen_swagger
 
 gen_app:
 	@mv vendor vendor.bak
@@ -81,9 +81,11 @@ gen_client:
 	@mv vendor vendor.bak
 	@goagen client         -d $(SERVER_BASE)/design; mv vendor.bak vendor
 
-gen_js:
-	@mv vendor vendor.bak
-	@goagen js             -d $(SERVER_BASE)/design; mv vendor.bak vendor
+gen_ts:
+	@docker run --rm -v ${PWD}:/local swaggerapi/swagger-codegen-cli generate \
+    -i /local/swagger/swagger.json \
+    -l typescript-fetch \
+    -o /local/ts
 
 gen_swagger:
 	@mv vendor vendor.bak

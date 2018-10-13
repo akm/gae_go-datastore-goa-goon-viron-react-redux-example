@@ -1,9 +1,7 @@
-/// <reference path="../../node_modules/axios/axios.d.ts" />
 import { call, takeEvery, put } from 'redux-saga/effects'
-import * as axios from 'axios';
 
-import client from '../api/client'
-import { IndexActionType, SaveAsyncAction, addMemoAction, refreshPostAction } from '../actions/index'
+import { MemosApiFactory, Memo, MemoCollection } from '../api/'
+import { IndexActionType, SaveAsyncAction, addMemoAction, refreshPostAction } from '../actions/'
 
 export default function* rootSaga() {
   yield takeEvery(IndexActionType.REFRESH_ASYNC, refreshAsync)
@@ -16,14 +14,14 @@ export function* refreshAsync() {
 }
 
 function fetchMemos() {
-  return client().listMemos("/memos")
-    .then((resp: axios.Response) => {
-      console.log("SUCCESS response", resp)
-      return resp.data
+  return MemosApiFactory().memosList()
+    .then((memos: MemoCollection) => {
+      console.log("SUCCESS response", memos);
+      return memos;
     })
-    .catch( (err: axios.Response) => {
-      console.log("ERROR err", err)
-      return ['Error ' + err]
+    .catch((err) => {
+      console.log("ERROR", err)
+      return err
     });
 }
 
@@ -33,13 +31,13 @@ export function* saveAsync(action: SaveAsyncAction) {
 }
 
 function postMemo(action: SaveAsyncAction) {
-  return client().createMemos("/memos", {content: action.content})
-    .then((resp: axios.Response) => {
-      console.log("SUCCESS response", resp)
-      return resp.data
+  return MemosApiFactory().memosCreate({content: action.content})
+    .then((memo: Memo) => {
+      console.log("SUCCESS response", memo)
+      return memo;
     })
-    .catch( (err: axios.Response) => {
-      console.log("ERROR err", err)
-      return ['Error ' + err]
-    });
+    .catch((err) => {
+      console.log("ERROR ", err);
+      return err;
+    })
 }
