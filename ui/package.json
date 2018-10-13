@@ -31,6 +31,8 @@
     "source-map-loader": "^0.2.4",
     "style-loader": "^0.23.1",
     "css-loader": "^1.0.0",
+    "sass-loader": "^7.1.0",
+    "node-sass": "^4.9.3",
     "clean-webpack-plugin": "^0.1.19",
     "handlebars": "^4.0.12",
     "handlebars-loader": "^1.7.0",

@@ -4,6 +4,7 @@ import Root from './components/Root';
 
 import configureStore from './store';
 import { saveAsyncAction, refreshAsyncAction } from './actions/index'
+import './styles/common.scss'
 
 const store = configureStore([])
 

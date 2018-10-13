@@ -16,20 +16,8 @@ module.exports = {
       { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
       { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
       { test: /\.hbs$/, loader: 'handlebars-loader' },
-      {
-        test: /\.css/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              url: false,
-              minimize: true
-            },
-          },
-        ],
-      },
-
+      { test: /\.css/, use: [ 'style-loader', { loader: 'css-loader', options: {url: false} } ],},
+      { test: /\.scss$/, use: ["style-loader", "css-loader", "sass-loader"] },
     ]
   },
   plugins: [
