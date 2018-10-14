@@ -9,7 +9,7 @@ export default function* rootSaga() {
   yield takeEvery("SAVE_ASYNC", saveAsync)
 }
 
-export function* refreshAsync() {
+function* refreshAsync() {
   const memos = yield call(fetchMemos); // TODO handle error
   yield put(refreshPostAction(memos))
 }
@@ -26,7 +26,7 @@ function fetchMemos() {
     });
 }
 
-export function* saveAsync(action: Action<{content: string}>) {
+function* saveAsync(action: Action<{content: string}>) {
   const memo = yield call(postMemo, action); // TODO handle error
   yield put(addMemoAction(memo))
 }
