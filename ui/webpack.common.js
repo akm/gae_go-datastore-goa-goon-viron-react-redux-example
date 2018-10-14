@@ -18,7 +18,7 @@ module.exports = ({sourceMap=false} = {}) => {
         { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
         { test: /\.hbs$/, loader: 'handlebars-loader' },
         {
-          test: /\.css/,
+          test: /\.css$/,
           use: [
             'style-loader',
             {
@@ -31,13 +31,13 @@ module.exports = ({sourceMap=false} = {}) => {
           ]
         },
         {
-          test: /\.scss$/,
+          test: /src\/styles\/.*\.scss$/,
           use: [
             "style-loader",
             {
               loader: 'css-loader',
               options: {
-                url: false,
+                url: true,
                 sourceMap: sourceMap,
                 importLoaders: 2
               }
@@ -47,6 +47,10 @@ module.exports = ({sourceMap=false} = {}) => {
               options: {sourceMap: sourceMap } 
             }
           ]
+        },
+        {
+          test: /src\/styles\/.*\.(gif|png|jpg|eot|wof|woff|woff2|ttf|svg)$/,
+          loader: 'url-loader'
         },
       ]
     },
