@@ -12,7 +12,7 @@ const render = () => ReactDom.render(
     <Root
       memos={store.getState()}
       onRefresh={ () => store.dispatch(refreshAsyncAction()) }
-      onSave={ (content) => store.dispatch(saveAsyncAction(content)) }
+      onSave={ (content) => store.dispatch(saveAsyncAction({content: content})) }
     />,
     document.getElementById('root'),
 );

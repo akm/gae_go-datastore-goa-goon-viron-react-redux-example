@@ -1,11 +1,12 @@
 import { call, takeEvery, put } from 'redux-saga/effects'
+import { Action } from 'typescript-fsa';
 
 import { MemosApiFactory, Memo, MemoCollection } from '../api/'
-import { IndexActionType, SaveAsyncAction, addMemoAction, refreshPostAction } from '../actions/'
+import { addMemoAction, refreshPostAction } from '../actions/index'
 
 export default function* rootSaga() {
-  yield takeEvery(IndexActionType.REFRESH_ASYNC, refreshAsync)
-  yield takeEvery(IndexActionType.SAVE_ASYNC, saveAsync)
+  yield takeEvery("REFRESH_ASYNC", refreshAsync)
+  yield takeEvery("SAVE_ASYNC", saveAsync)
 }
 
 export function* refreshAsync() {
@@ -25,13 +26,13 @@ function fetchMemos() {
     });
 }
 
-export function* saveAsync(action: SaveAsyncAction) {
+export function* saveAsync(action: Action<{content: string}>) {
   const memo = yield call(postMemo, action); // TODO handle error
   yield put(addMemoAction(memo))
 }
 
-function postMemo(action: SaveAsyncAction) {
-  return MemosApiFactory().memosCreate({content: action.content})
+function postMemo(action: Action<{content: string}>) {
+  return MemosApiFactory().memosCreate(action.payload)
     .then((memo: Memo) => {
       console.log("SUCCESS response", memo)
       return memo;

@@ -1,15 +1,7 @@
-import { IndexActionType, IndexAction } from '../actions/index'
+import { reducerWithInitialState } from "typescript-fsa-reducers";
 
-export default (state = [], action: IndexAction) => {
-  console.log("reducer state", state)
-  console.log("reducer action", action)
+import { addMemoAction, refreshPostAction } from '../actions/index'
 
-  switch (action.type) {
-  case IndexActionType.REFRESH_POST:
-    return action.memos
-  case IndexActionType.ADD_MEMO:
-    return [...state, action.memo]
-  default:
-    return state
-  }
-}
+export default reducerWithInitialState([])
+.case(refreshPostAction, (state, memos) => memos )
+.case(addMemoAction, (state, memo) => [...state, memo])
