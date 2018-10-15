@@ -1,5 +1,6 @@
 import { call, takeEvery, put } from 'redux-saga/effects'
 import { Action } from 'typescript-fsa';
+import { MemoPayload } from '../api/'
 
 import { MemosApiFactory, Memo, MemoCollection } from '../api/'
 import { addMemoAction, refreshPostAction } from '../actions/index'
@@ -26,12 +27,12 @@ function fetchMemos() {
     });
 }
 
-function* saveAsync(action: Action<{content: string}>) {
+function* saveAsync(action: Action<MemoPayload>) {
   const memo = yield call(postMemo, action); // TODO handle error
   yield put(addMemoAction(memo))
 }
 
-function postMemo(action: Action<{content: string}>) {
+function postMemo(action: Action<MemoPayload>) {
   return MemosApiFactory().memosCreate(action.payload)
     .then((memo: Memo) => {
       console.log("SUCCESS response", memo)

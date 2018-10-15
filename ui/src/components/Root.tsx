@@ -6,7 +6,7 @@ import { Container, Row, Col, Button } from 'reactstrap';
 
 import MemoList from './MemoList'
 import MemoEdit from './MemoEdit'
-import { Memo } from '../states/Memo'
+import { Memo } from '../api'
 
 interface RootProps {
   memos: Memo[];
