@@ -13,6 +13,11 @@ handlers:
   script: _go_app
   login: required
 
+# source map path for development
+- url: /(.*\.map)$
+  static_files: ui/\1
+  upload: ui/(.*\.map)$
+
 # Paths for production
 - url: /
   script: _go_app

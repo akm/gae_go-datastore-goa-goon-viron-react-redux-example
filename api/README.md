@@ -7,6 +7,9 @@
     - Download `the original App Engine SDK for Go` instead of using `gcloud components install app-engine-go`
 - [Node.js](https://nodejs.org/)
 - [Ruby](https://www.ruby-lang.org/)
+- [docker](https://www.docker.com/)
+- [swagger-codegen-cli](https://hub.docker.com/r/swaggerapi/swagger-codegen-cli/)
+    - `docker pull swaggerapi/swagger-codegen-cli`
 
 Don't forget to set the following environment variables:
 - `GOPATH` or use `$HOME/go` as [default GOPATH](https://github.com/golang/go/issues/17262)
